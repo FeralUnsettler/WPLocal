@@ -16,6 +16,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once plugin_dir_path( __FILE__ ) . 'inc/meta-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/relatos-form.php';
 
+// Desabilita a verificação SSL local para chamadas do WordPress (como update de plugins) para evitar erros de cURL no Docker
+add_filter( 'https_ssl_verify', '__return_false' );
+add_filter( 'https_local_ssl_verify', '__return_false' );
+add_filter( 'http_request_args', function( $args, $url ) {
+    $args['sslverify'] = false;
+    return $args;
+}, 10, 2 );
+
 /**
  * Registra todos os Custom Post Types e Taxonomias
  */
