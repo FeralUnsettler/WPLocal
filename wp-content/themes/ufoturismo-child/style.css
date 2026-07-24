@@ -9,4 +9,50 @@ Version: 1.0.0
 Text Domain: ufoturismo-child
 */
 
-/* Adicione CSS personalizado abaixo */
+:root {
+    /* ==== UFOTurismo Dark Mode Color Palette ==== */
+    --ufo-bg-dark: #0B0E14;         /* Fundo Principal - Deep Space */
+    --ufo-surface: #151A22;         /* Fundo de Cards e Mega Menu */
+    --ufo-surface-hover: #1E2530;   /* Hover states */
+    
+    --ufo-accent-primary: #F2A900;  /* Amarelo Ouro (Estilo NatGeo/Credibilidade) */
+    --ufo-accent-sci: #00E5FF;      /* Ciano Neon (Tecnologia/Mistério) */
+    
+    --ufo-text-main: #E2E8F0;       /* Texto Base (Branco Gelo - Alta Legibilidade) */
+    --ufo-text-muted: #94A3B8;      /* Texto Secundário (Data, Autor, Tags) */
+    
+    --ufo-border: #2A313C;          /* Linhas divisórias super sutis */
+
+    /* ==== Typography ==== */
+    --ufo-font-heading: 'Outfit', sans-serif;
+    --ufo-font-body: 'Inter', sans-serif;
+    --ufo-font-article: 'Lora', serif;
+}
+
+body {
+    background-color: var(--ufo-bg-dark) !important;
+    color: var(--ufo-text-main) !important;
+    font-family: var(--ufo-font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--ufo-font-heading) !important;
+    color: #FFFFFF !important;
+    font-weight: 700;
+}
+
+a {
+    color: var(--ufo-accent-sci);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--ufo-accent-primary);
+}
+
+/* Otimização Base para o Elementor não sobrescrever fundo escuro */
+.elementor-page {
+    background-color: var(--ufo-bg-dark) !important;
+}

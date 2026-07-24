@@ -27,5 +27,13 @@ function ufoturismo_child_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'ufoturismo_child_enqueue_styles', 20 );
 
+/**
+ * Enqueue Google Fonts (Outfit, Inter, Lora)
+ */
+function ufoturismo_enqueue_google_fonts() {
+    wp_enqueue_style( 'ufoturismo-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700;800&display=swap', false );
+}
+add_action( 'wp_enqueue_scripts', 'ufoturismo_enqueue_google_fonts' );
+
 // Disable Gutenberg Editor (Since we use Elementor entirely for layouts and Classic Editor for simple text if needed, though this is optional. We will keep it for now).
 // add_filter('use_block_editor_for_post', '__return_false', 10);
