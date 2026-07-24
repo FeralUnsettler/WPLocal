@@ -12,6 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
+// Inclui arquivos de dependência
+require_once plugin_dir_path( __FILE__ ) . 'inc/meta-boxes.php';
+
 /**
  * Registra todos os Custom Post Types e Taxonomias
  */
