@@ -209,3 +209,137 @@ a:hover {
         gap: 15px;
     }
 }
+
+/* ==== SINGLE POST (Notícias/Blog) ==== */
+.ufo-single-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.ufo-article-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.ufo-article-title {
+    font-size: 42px;
+    margin: 15px 0;
+    line-height: 1.2;
+}
+
+.ufo-article-meta {
+    color: var(--ufo-text-muted);
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border-top: 1px solid var(--ufo-border);
+    border-bottom: 1px solid var(--ufo-border);
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.ufo-article-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--ufo-text-main);
+    font-family: var(--ufo-font-article);
+}
+
+.ufo-article-content p {
+    margin-bottom: 25px;
+}
+
+.ufo-ad-placement {
+    background-color: var(--ufo-surface);
+    border: 1px dashed var(--ufo-border);
+    text-align: center;
+    padding: 20px;
+    margin: 30px 0;
+    color: var(--ufo-text-muted);
+}
+
+.ufo-btn-whatsapp {
+    background-color: #25D366;
+    color: #fff !important;
+}
+
+/* ==== SINGLE ROTEIRO (Turismo) ==== */
+.ufo-roteiro-hero {
+    position: relative;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+}
+
+.ufo-hero-overlay {
+    background: linear-gradient(to top, rgba(11,14,20,1) 0%, rgba(11,14,20,0) 100%);
+    width: 100%;
+    padding: 60px 20px 30px;
+    text-align: center;
+}
+
+.ufo-hero-title {
+    font-size: 56px;
+    margin: 0;
+}
+
+.ufo-hero-meta {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 18px;
+    color: var(--ufo-accent-primary);
+}
+
+.ufo-roteiro-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.ufo-roteiro-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.ufo-sidebar-box {
+    background-color: var(--ufo-surface);
+    border: 1px solid var(--ufo-border);
+    padding: 30px;
+    border-radius: 8px;
+    position: sticky;
+    top: 100px;
+}
+
+.ufo-detail-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--ufo-border);
+}
+
+.ufo-detail-item.ufo-price {
+    font-size: 24px;
+    color: var(--ufo-accent-sci);
+}
+
+.ufo-detail-item ul {
+    padding-left: 20px;
+    margin-top: 10px;
+    color: var(--ufo-text-muted);
+}
+
+.ufo-btn-full {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .ufo-roteiro-grid {
+        grid-template-columns: 1fr;
+    }
+}
