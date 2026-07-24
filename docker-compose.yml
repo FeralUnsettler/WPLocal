@@ -1,0 +1,46 @@
+services:
+  db:
+    image: mariadb:10.6
+    container_name: ufo_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpress_ufo
+      MYSQL_USER: wp_user
+      MYSQL_PASSWORD: wp_password
+    volumes:
+      - db_data:/var/lib/mysql
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 384M # Limite de RAM do banco de dados (Perfil Hostinger cPanel)
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    container_name: ufo_wp
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wp_user
+      WORDPRESS_DB_PASSWORD: wp_password
+      WORDPRESS_DB_NAME: wordpress_ufo
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_MEMORY_LIMIT', '256M');
+        define('WP_MAX_MEMORY_LIMIT', '256M');
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    deploy:
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 768M # Limite de RAM da aplicação WordPress (Perfil Hostinger cPanel ~1GB Total)
+
+volumes:
+  db_data:
