@@ -37,3 +37,14 @@ add_action( 'wp_enqueue_scripts', 'ufoturismo_enqueue_google_fonts' );
 
 // Disable Gutenberg Editor (Since we use Elementor entirely for layouts and Classic Editor for simple text if needed, though this is optional. We will keep it for now).
 // add_filter('use_block_editor_for_post', '__return_false', 10);
+
+/**
+ * Register Navigation Menus
+ */
+function ufoturismo_register_menus() {
+    register_nav_menus( array(
+        'primary' => __( 'Menu Principal (Header)', 'ufoturismo-child' ),
+        'footer'  => __( 'Menu do Rodapé (Footer)', 'ufoturismo-child' ),
+    ) );
+}
+add_action( 'after_setup_theme', 'ufoturismo_register_menus' );

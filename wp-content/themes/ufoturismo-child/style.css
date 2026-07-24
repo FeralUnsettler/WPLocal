@@ -56,3 +56,156 @@ a:hover {
 .elementor-page {
     background-color: var(--ufo-bg-dark) !important;
 }
+
+/* ==== HEADER (Mega Menu Base) ==== */
+.ufo-site-header {
+    background-color: rgba(11, 14, 20, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--ufo-border);
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    padding: 15px 0;
+}
+
+.ufo-header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.ufo-logo {
+    text-decoration: none;
+    font-family: var(--ufo-font-heading);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ufo-text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ufo-logo-icon {
+    font-size: 28px;
+}
+
+.ufo-logo-highlight {
+    color: var(--ufo-accent-primary);
+}
+
+.ufo-main-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.ufo-main-navigation a {
+    color: var(--ufo-text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.ufo-main-navigation a:hover {
+    color: var(--ufo-accent-sci);
+}
+
+/* ==== BUTTONS ==== */
+.ufo-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-family: var(--ufo-font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.ufo-btn-primary {
+    background-color: var(--ufo-accent-sci);
+    color: #000 !important;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.ufo-btn-primary:hover {
+    background-color: #fff;
+    color: #000 !important;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+}
+
+/* ==== FOOTER ==== */
+.ufo-site-footer {
+    background-color: var(--ufo-surface);
+    border-top: 1px solid var(--ufo-border);
+    padding: 60px 20px 20px;
+    margin-top: 60px;
+}
+
+.ufo-footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.ufo-footer-about p {
+    color: var(--ufo-text-muted);
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+.ufo-footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ufo-footer-nav a {
+    color: var(--ufo-text-muted);
+    text-decoration: none;
+}
+
+.ufo-footer-nav a:hover {
+    color: var(--ufo-accent-sci);
+}
+
+.ufo-footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--ufo-border);
+    text-align: center;
+    color: var(--ufo-text-muted);
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .ufo-header-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .ufo-footer-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .ufo-main-navigation ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+}
