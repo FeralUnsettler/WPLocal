@@ -1,0 +1,31 @@
+<?php
+/**
+ * UFOTurismo Child Theme Functions
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+/**
+ * Enqueue Theme Styles
+ */
+function ufoturismo_child_enqueue_styles() {
+    // Enqueue parent style
+    wp_enqueue_style(
+        'hello-elementor-parent-style',
+        get_template_directory_uri() . '/style.css'
+    );
+
+    // Enqueue child style
+    wp_enqueue_style(
+        'ufoturismo-child-style',
+        get_stylesheet_directory_uri() . '/style.css',
+        [ 'hello-elementor-parent-style' ],
+        wp_get_theme()->get('Version')
+    );
+}
+add_action( 'wp_enqueue_scripts', 'ufoturismo_child_enqueue_styles', 20 );
+
+// Disable Gutenberg Editor (Since we use Elementor entirely for layouts and Classic Editor for simple text if needed, though this is optional. We will keep it for now).
+// add_filter('use_block_editor_for_post', '__return_false', 10);
