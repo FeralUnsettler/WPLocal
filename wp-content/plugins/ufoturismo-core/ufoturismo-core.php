@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Inclui arquivos de dependência
 require_once plugin_dir_path( __FILE__ ) . 'inc/meta-boxes.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/relatos-form.php';
 
 /**
  * Registra todos os Custom Post Types e Taxonomias

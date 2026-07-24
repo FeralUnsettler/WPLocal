@@ -514,3 +514,76 @@ a:hover {
         text-align: center;
     }
 }
+
+/* ==== FORMULÁRIOS (Frontend) ==== */
+.ufo-form-container {
+    background-color: var(--ufo-surface);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--ufo-border);
+}
+
+.ufo-form-group {
+    margin-bottom: 20px;
+}
+
+.ufo-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--ufo-text-main);
+}
+
+.ufo-form-group input[type="text"],
+.ufo-form-group input[type="email"],
+.ufo-form-group input[type="date"],
+.ufo-form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--ufo-bg-dark);
+    border: 1px solid var(--ufo-border);
+    color: var(--ufo-text-main);
+    border-radius: 4px;
+    font-family: var(--ufo-font-body);
+}
+
+.ufo-form-group input[type="file"] {
+    width: 100%;
+    padding: 10px 0;
+    color: var(--ufo-text-main);
+}
+
+.ufo-form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.ufo-form-row .ufo-form-group {
+    flex: 1;
+}
+
+.ufo-alert {
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.ufo-alert-success {
+    background-color: rgba(37, 211, 102, 0.1);
+    color: #25D366;
+    border: 1px solid #25D366;
+}
+
+.ufo-alert-error {
+    background-color: rgba(255, 59, 48, 0.1);
+    color: #FF3B30;
+    border: 1px solid #FF3B30;
+}
+
+@media (max-width: 768px) {
+    .ufo-form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
