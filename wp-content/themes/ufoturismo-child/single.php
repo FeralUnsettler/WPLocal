@@ -41,7 +41,14 @@ get_header(); ?>
 
                 <!-- Ad Placement: In-Article Top -->
                 <div class="ufo-ad-placement ufo-ad-in-article">
-                    <!-- Espaço reservado para Google AdSense -->
+                    <?php 
+                        $ad_in_top = get_option('ufo_ad_in_article_top');
+                        if ( ! empty($ad_in_top) ) {
+                            echo $ad_in_top;
+                        } else {
+                            echo '<!-- UFO AdManager: Ad In-Article Top vazio -->';
+                        }
+                    ?>
                 </div>
 
                 <div class="ufo-article-content">
@@ -55,7 +62,14 @@ get_header(); ?>
                     
                     <!-- Ad Placement: In-Article Bottom -->
                     <div class="ufo-ad-placement ufo-ad-bottom">
-                        <!-- Espaço reservado para Google AdSense -->
+                        <?php 
+                            $ad_in_bottom = get_option('ufo_ad_in_article_bottom');
+                            if ( ! empty($ad_in_bottom) ) {
+                                echo $ad_in_bottom;
+                            } else {
+                                echo '<!-- UFO AdManager: Ad In-Article Bottom vazio -->';
+                            }
+                        ?>
                     </div>
 
                     <!-- Compartilhamento (Opcional nativo) -->

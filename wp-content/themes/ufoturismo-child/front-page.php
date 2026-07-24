@@ -36,7 +36,14 @@ get_header(); ?>
 
         <!-- Ad Placement: Home Top -->
         <div class="ufo-ad-placement ufo-ad-home-top" style="margin-top: 40px;">
-            <!-- Espaço reservado para Google AdSense Banner (Leaderboard) -->
+            <?php 
+                $ad_home_top = get_option('ufo_ad_home_top');
+                if ( ! empty($ad_home_top) ) {
+                    echo $ad_home_top;
+                } else {
+                    echo '<!-- UFO AdManager: Ad Home Top vazio -->';
+                }
+            ?>
         </div>
 
         <!-- Roteiros em Destaque -->

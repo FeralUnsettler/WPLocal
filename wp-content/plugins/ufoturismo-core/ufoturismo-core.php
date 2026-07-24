@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Inclui arquivos de dependência
 require_once plugin_dir_path( __FILE__ ) . 'inc/meta-boxes.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/relatos-form.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/ad-manager.php';
 
 // Desabilita a verificação SSL local para chamadas do WordPress (como update de plugins) para evitar erros de cURL no Docker
 add_filter( 'https_ssl_verify', '__return_false' );
