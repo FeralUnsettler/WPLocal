@@ -31,16 +31,16 @@ services:
       WORDPRESS_DB_NAME: wordpress_ufo
       WORDPRESS_DEBUG: 1
       WORDPRESS_CONFIG_EXTRA: |
-        define('WP_MEMORY_LIMIT', '256M');
-        define('WP_MAX_MEMORY_LIMIT', '256M');
+        define('WP_MEMORY_LIMIT', '1024M');
+        define('WP_MAX_MEMORY_LIMIT', '1024M');
     volumes:
       - ./wp-content:/var/www/html/wp-content
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     deploy:
       resources:
         limits:
-          cpus: '1.00'
-          memory: 768M # Limite de RAM da aplicação WordPress (Perfil Hostinger cPanel ~1GB Total)
+          cpus: '1.50'
+          memory: 1536M # Limite do contêiner aumentado para suportar PHP com 1024M e Elementor na máxima fluidez
 
 volumes:
   db_data:

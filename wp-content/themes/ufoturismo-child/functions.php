@@ -48,3 +48,9 @@ function ufoturismo_register_menus() {
     ) );
 }
 add_action( 'after_setup_theme', 'ufoturismo_register_menus' );
+
+/**
+ * Carregar Construtor Visual da Home (Metabox Nativo Sem ACF)
+ */
+require_once get_stylesheet_directory() . '/inc/home-metabox.php';
+

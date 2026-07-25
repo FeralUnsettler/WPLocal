@@ -587,3 +587,142 @@ a:hover {
         gap: 0;
     }
 }
+
+/* ==== CENTRAL DE VÍDEOS & CINEMA MODE ==== */
+.ufo-videos-portal-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.ufo-player-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--ufo-border);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    transition: transform 0.4s ease, z-index 0.4s ease, border-color 0.4s ease;
+}
+
+.ufo-player-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.ufo-active-video-meta {
+    margin-top: 20px;
+    padding: 25px;
+    background-color: var(--ufo-surface);
+    border: 1px solid var(--ufo-border);
+    border-radius: 8px;
+    position: relative;
+    z-index: 10;
+}
+
+.ufo-badge-playlist {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: var(--ufo-accent-primary);
+    color: #000;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.ufo-active-video-meta h2 {
+    font-size: 26px;
+    margin: 0 0 10px 0;
+}
+
+/* Cinema Backdrop and Focus */
+.ufo-cinema-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.ufo-cinema-backdrop.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.ufo-cinema-station {
+    position: relative;
+    transition: z-index 0s;
+}
+
+.ufo-cinema-station.cinema-focus {
+    z-index: 10001 !important;
+}
+
+.ufo-cinema-station.cinema-focus .ufo-player-wrapper {
+    transform: scale(1.03);
+    border-color: var(--ufo-accent-sci);
+    box-shadow: 0 0 50px rgba(0, 229, 255, 0.4);
+}
+
+/* Cards interativos de Vídeo */
+.ufo-video-card {
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+.ufo-video-card.active-card {
+    border-color: var(--ufo-accent-sci);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+}
+
+.ufo-play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 50px;
+    height: 50px;
+    background: rgba(242, 169, 0, 0.9);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.ufo-video-card:hover .ufo-play-overlay {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+    background: var(--ufo-accent-sci);
+}
+
+.ufo-card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #000;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
