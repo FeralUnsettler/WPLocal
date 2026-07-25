@@ -1,7 +1,7 @@
 <?php
 /**
  * O template para exibir a Página Inicial (Landing Page Monetizada & Responsiva)
- * Hero centralizado com menu fixo e Galeria Compacta (1/4 do tamanho, linha única e rolagem horizontal animada)
+ * Hero com 50% da altura inicial sem textos extras, Vitrine de Vídeos e Seção de Notícias em estilo Netflix 50% compacto em PT-BR
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,7 +13,7 @@ get_header();
 // Obtém ID da página inicial estática
 $page_id = get_option( 'page_on_front' ) ?: get_the_ID();
 
-// Puxa as customizações da Home ou aplica valores por padrão
+// Puxa as customizações da Home ou aplica valores por padrão (Tudo rigorosamente em Português do Brasil - PT-BR)
 $hero_title       = get_post_meta( $page_id, '_ufo_hero_title', true ) ?: 'A Verdade Está Lá Fora. E Nós Levamos Você Até Ela.';
 $hero_subtitle    = get_post_meta( $page_id, '_ufo_hero_subtitle', true ) ?: 'O maior portal brasileiro focado em Turismo Ufológico, Pesquisa de Fenômenos Anômalos e Divulgação Científica.';
 $hero_bg          = get_post_meta( $page_id, '_ufo_hero_bg_img', true ) ?: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop';
@@ -34,15 +34,15 @@ $cta_desc         = get_post_meta( $page_id, '_ufo_cta_desc', true ) ?: 'Partici
 $cta_btn_text     = get_post_meta( $page_id, '_ufo_cta_btn_text', true ) ?: 'Agendar Agora pelo WhatsApp';
 $cta_url          = get_post_meta( $page_id, '_ufo_cta_url', true ) ?: 'https://wa.me/5511999999999';
 
-// Busca artigos e clips com maior limite para o carrossel horizontal
+// Busca artigos e clips traduzidos para PT-BR para os carrosséis em estilo Netflix
 $yt_videos = function_exists('ufo_fetch_channel_videos') ? ufo_fetch_channel_videos($yt_channels_input, 12) : array();
-$yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_community_posts_feed($yt_posts_input, 6) : array();
+$yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_community_posts_feed($yt_posts_input, 8) : array();
 ?>
 
 <main id="primary" class="ufo-site-main">
 
-    <!-- Hero Section Customizável e Centralizado no Desktop -->
-    <section class="ufo-home-hero ufo-hero-centered" style="background-image: url('<?php echo esc_url( $hero_bg ); ?>');">
+    <!-- Hero Section Centralizado Direto com 50% da Altura Inicial (Sem textos supérfluos de boas-vindas) -->
+    <section class="ufo-home-hero ufo-hero-half" style="background-image: url('<?php echo esc_url( $hero_bg ); ?>');">
         <div class="ufo-hero-overlay">
             <div class="ufo-container ufo-hero-content ufo-centered-content">
                 <h1 class="ufo-hero-title"><?php echo esc_html( $hero_title ); ?></h1>
@@ -57,16 +57,9 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
         </div>
     </section>
 
-    <div class="ufo-container ufo-home-container">
-        
-        <!-- Conteúdo Estático adicional da página -->
-        <?php if ( have_posts() && get_the_content() ) : while ( have_posts() ) : the_post(); ?>
-            <div class="ufo-page-content" style="margin-bottom: 30px;">
-                <?php the_content(); ?>
-            </div>
-        <?php endwhile; endif; ?>
+    <div class="ufo-container ufo-home-container" style="padding-top: 35px;">
 
-        <!-- ZONA DE MONETIZAÇÃO 1: Topo da Home (Above The Fold - 728x90 / 300x250 Mobile) -->
+        <!-- ZONA DE MONETIZAÇÃO 1: Topo da Home (Above The Fold Centralizado) -->
         <div class="ufo-ad-placement ufo-ad-home-top">
             <span class="ufo-ad-label">Patrocinado</span>
             <div class="ufo-ad-box-centered">
@@ -81,7 +74,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </div>
 
-        <!-- Galeria de Previews Compactos (1/4 do tamanho antigo), em 1 única linha com Botão Animado Horizontal -->
+        <!-- Seção: Destaques de Canais em Estilo Netflix Compacto (1/4 do volume, traduzido para PT-BR com Preview On-Hover) -->
         <section class="ufo-home-section ufo-carousel-wrapper" style="position: relative; margin-top: 35px;">
             <div class="ufo-section-header">
                 <div>
@@ -92,7 +85,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
 
             <p style="color: var(--ufo-text-muted); font-size: 14px; margin-top: -15px; margin-bottom: 20px;">
-                Passe o mouse ou toque nos cards para zoom interativo em Cinema Mode. Use os botões direcionais para rolar horizontalmente.
+                Passe o mouse sobre os cards para pré-visualização instantânea do vídeo. Use as setas para rolar horizontalmente o acervo em PT-BR.
             </p>
 
             <!-- Viewport Relativa com Botões de Rolagem Animados -->
@@ -104,6 +97,8 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
                     if ( ! empty($yt_videos) ) :
                         foreach ( $yt_videos as $vid ) :
                             $hub_url = get_permalink( get_option('page_for_posts') ) ?: home_url('/noticias/');
+                            // Garante título traduzido no template caso de fallback exterior
+                            $titulo_ptbr = function_exists('ufo_auto_translate_ptbr') ? ufo_auto_translate_ptbr($vid['title']) : $vid['title'];
                     ?>
                         <div class="ufo-compact-card-wrapper">
                             <a href="<?php echo esc_url($hub_url); ?>" class="ufo-compact-video-card" data-videoid="<?php echo esc_attr($vid['video_id']); ?>">
@@ -114,8 +109,8 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
                                 </div>
                                 <div class="ufo-compact-card-info">
                                     <span class="ufo-compact-channel">▶️ <?php echo esc_html($vid['channel']); ?></span>
-                                    <h3 class="ufo-compact-title"><?php echo esc_html(wp_trim_words($vid['title'], 8)); ?></h3>
-                                    <span class="ufo-compact-link">Acessar matéria &rarr;</span>
+                                    <h3 class="ufo-compact-title"><?php echo esc_html(wp_trim_words($titulo_ptbr, 9)); ?></h3>
+                                    <span class="ufo-compact-link">Assistir em Português &rarr;</span>
                                 </div>
                             </a>
                         </div>
@@ -146,47 +141,91 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </div>
 
-        <!-- Galeria Parallax Horizontal Para Posts e Comunidade (Jesse Michels Community style) -->
-        <section class="ufo-home-section" style="margin-top: 50px;">
+        <!-- Seção: Últimas Notícias (Agora no Estilo Netflix Compacto com 50% de dimensão e Rolagem Direcional Animada) -->
+        <section id="noticias" class="ufo-home-section ufo-carousel-wrapper" style="position: relative; margin-top: 45px;">
             <div class="ufo-section-header">
                 <div>
-                    <span style="color: var(--ufo-accent-primary); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">🔥 Feed da Comunidade & Roteiros</span>
-                    <h2>Galeria Interativa de Posts & Atualizações</h2>
+                    <span style="color: var(--ufo-accent-primary); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">📰 Divulgação Científica & Jornalismo</span>
+                    <h2><?php echo esc_html( $sec_news_lbl ); ?></h2>
                 </div>
-                <a href="<?php echo get_permalink( get_option('page_for_posts') ) ?: '#'; ?>" class="ufo-view-all">Explorar Feed Completo &rarr;</a>
+                <a href="<?php echo get_permalink( get_option('page_for_posts') ) ?: '#'; ?>" class="ufo-view-all">Acessar Portal Jornalístico &rarr;</a>
             </div>
 
-            <div class="ufo-horizontal-slider-container">
-                <div class="ufo-horizontal-slider" id="ufoHorizSlider">
-                    <?php 
-                    if ( ! empty($yt_posts) ) :
-                        foreach ( $yt_posts as $p ) :
+            <p style="color: var(--ufo-text-muted); font-size: 14px; margin-top: -15px; margin-bottom: 20px;">
+                Explore nossa redação independente de pesquisa UAP e artigos de desclassificação. Deslize pela linha do tempo em formato de vitrine de streaming.
+            </p>
+
+            <!-- Viewport Relativa para Carrossel de Notícias Estilo Netflix -->
+            <div class="ufo-slider-viewport">
+                <button type="button" class="ufo-arrow-btn ufo-arrow-left" id="btnNewsLeft" aria-label="Rolar notícias para esquerda">&lsaquo;</button>
+                
+                <div class="ufo-compact-carousel" id="ufoNewsCarousel">
+                    <?php
+                    // Integra notícias nativas com o feed da comunidade Jesse Michels em PT-BR para uma experiência de streaming rica
+                    $all_news_items = array();
+                    
+                    $news_query = new WP_Query( array(
+                        'post_type'      => 'post',
+                        'posts_per_page' => 8,
+                        'post_status'    => 'publish'
+                    ) );
+
+                    if ( $news_query->have_posts() ) {
+                        while ( $news_query->have_posts() ) {
+                            $news_query->the_post();
+                            $all_news_items[] = array(
+                                'title'   => function_exists('ufo_auto_translate_ptbr') ? ufo_auto_translate_ptbr(get_the_title()) : get_the_title(),
+                                'url'     => get_permalink(),
+                                'thumb'   => get_the_post_thumbnail_url( get_the_ID(), 'medium_large' ) ?: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600&auto=format&fit=crop',
+                                'date'    => get_the_date('d M, Y'),
+                                'source'  => 'Redação UFOTurismo'
+                            );
+                        }
+                        wp_reset_postdata();
+                    }
+
+                    // Preenche com posts da comunidade e relatórios exopolíticos do sistema
+                    if ( ! empty($yt_posts) ) {
+                        foreach ( $yt_posts as $yp ) {
+                            $all_news_items[] = array(
+                                'title'  => $yp['title'],
+                                'url'    => $yp['url'],
+                                'thumb'  => $yp['thumb'],
+                                'date'   => $yp['date'],
+                                'source' => $yp['author']
+                            );
+                        }
+                    }
+
+                    if ( ! empty($all_news_items) ) :
+                        foreach ( $all_news_items as $n_item ) :
                     ?>
-                        <div class="ufo-post-card-horiz">
-                            <div>
-                                <div class="ufo-horiz-img" style="background-image: url('<?php echo esc_url($p['thumb']); ?>');">
-                                    <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(11,14,20,0.85); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 4px;"><?php echo esc_html($p['date']); ?></span>
+                        <div class="ufo-compact-card-wrapper">
+                            <a href="<?php echo esc_url($n_item['url']); ?>" class="ufo-compact-video-card ufo-compact-news-item">
+                                <div class="ufo-compact-media-box" style="height: 135px; background-image: url('<?php echo esc_url($n_item['thumb']); ?>'); background-size: cover; background-position: center;">
+                                    <span class="ufo-compact-badge" style="background: var(--ufo-accent-primary); color: #fff;">📰 <?php echo esc_html($n_item['date']); ?></span>
                                 </div>
-                                <div class="ufo-horiz-content">
-                                    <span class="ufo-channel-tag">📢 <?php echo esc_html($p['author']); ?></span>
-                                    <h3 style="font-size: 18px; color: #fff; margin: 0 0 12px; line-height: 1.35;"><a href="<?php echo esc_url($p['url']); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($p['title']); ?></a></h3>
-                                    <p style="color: var(--ufo-text-muted); font-size: 14px; margin: 0; line-height: 1.5;"><?php echo esc_html($p['excerpt']); ?></p>
+                                <div class="ufo-compact-card-info">
+                                    <span class="ufo-compact-channel">📌 <?php echo esc_html($n_item['source']); ?></span>
+                                    <h3 class="ufo-compact-title"><?php echo esc_html(wp_trim_words($n_item['title'], 9)); ?></h3>
+                                    <span class="ufo-compact-link">Ler na íntegra &rarr;</span>
                                 </div>
-                            </div>
-                            <div style="padding: 0 22px 20px;">
-                                <a href="<?php echo esc_url($p['url']); ?>" style="color: var(--ufo-accent-sci); text-decoration: none; font-size: 13px; font-weight: 700;">Ler Discussão Completa &rarr;</a>
-                            </div>
+                            </a>
                         </div>
-                    <?php 
+                    <?php
                         endforeach;
+                    else:
+                        echo '<p style="color: var(--ufo-text-muted);">Nenhuma notícia publicada ainda no portal.</p>';
                     endif;
                     ?>
                 </div>
+
+                <button type="button" class="ufo-arrow-btn ufo-arrow-right" id="btnNewsRight" aria-label="Rolar notícias para direita">&rsaquo;</button>
             </div>
         </section>
 
         <!-- Seção: Roteiros em Destaque (Turismo Ufológico) -->
-        <section id="roteiros" class="ufo-home-section" style="margin-top: 60px;">
+        <section id="roteiros" class="ufo-home-section" style="margin-top: 55px;">
             <div class="ufo-section-header">
                 <div>
                     <span style="color: var(--ufo-accent-sci); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">🛸 Expedições de Campo</span>
@@ -246,46 +285,8 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </div>
 
-        <!-- Seção: Últimas Notícias (Portal Jornalístico) -->
-        <section id="noticias" class="ufo-home-section" style="margin-top: 50px;">
-            <div class="ufo-section-header">
-                <div>
-                    <span style="color: var(--ufo-accent-primary); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">📰 Divulgação Científica</span>
-                    <h2><?php echo esc_html( $sec_news_lbl ); ?></h2>
-                </div>
-                <a href="<?php echo get_permalink( get_option('page_for_posts') ) ?: '#'; ?>" class="ufo-view-all">Acessar Portal Jornalístico &rarr;</a>
-            </div>
-
-            <div class="ufo-grid-3">
-                <?php
-                $news_query = new WP_Query( array(
-                    'post_type'      => 'post',
-                    'posts_per_page' => 3,
-                    'post_status'    => 'publish'
-                ) );
-
-                if ( $news_query->have_posts() ) :
-                    while ( $news_query->have_posts() ) : $news_query->the_post();
-                        $thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' ) ?: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600&auto=format&fit=crop';
-                ?>
-                    <article class="ufo-card ufo-news-card">
-                        <div class="ufo-card-img" style="background-image: url('<?php echo esc_url( $thumb ); ?>'); height: 180px;"></div>
-                        <div class="ufo-card-body">
-                            <span class="ufo-news-date"><?php echo get_the_date(); ?></span>
-                            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                            <p style="color: var(--ufo-text-muted); font-size: 14px;"><?php echo wp_trim_words( get_the_excerpt() ?: get_the_content(), 15 ); ?></p>
-                        </div>
-                    </article>
-                <?php
-                    endwhile;
-                    wp_reset_postdata();
-                endif;
-                ?>
-            </div>
-        </section>
-
         <!-- Seção: Agenda de Congressos e Eventos -->
-        <section id="eventos" class="ufo-home-section" style="margin-top: 60px;">
+        <section id="eventos" class="ufo-home-section" style="margin-top: 55px;">
             <div class="ufo-section-header">
                 <div>
                     <span style="color: var(--ufo-accent-sci); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">🗓️ Encontros Presenciais</span>
@@ -355,27 +356,43 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
 
 </main>
 
-<!-- Vanilla JS Carousel & Hover Preview Engine -->
+<!-- Vanilla JS Carousel (Vídeos & Notícias) & Hover Preview Engine -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // 1. Controle de Rolagem Horizontal Animada Para a Galeria Compacta de Vídeos
-    var carousel = document.getElementById('ufoVideoCarousel');
+    var videoCarousel = document.getElementById('ufoVideoCarousel');
     var btnLeft  = document.getElementById('btnSlideLeft');
     var btnRight = document.getElementById('btnSlideRight');
 
-    if (carousel && btnLeft && btnRight) {
+    if (videoCarousel && btnLeft && btnRight) {
         btnLeft.addEventListener('click', function() {
             var scrollAmount = window.innerWidth > 768 ? -750 : -280;
-            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            videoCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         });
         btnRight.addEventListener('click', function() {
             var scrollAmount = window.innerWidth > 768 ? 750 : 280;
-            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            videoCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         });
     }
 
-    // 2. Preview de Vídeo On-Hover e On-Touch (Injeta Iframe mudo em Cinema Mode no mouseenter)
-    var compactCards = document.querySelectorAll('.ufo-compact-video-card');
+    // 2. Controle de Rolagem Horizontal Animada Para a Seção de Notícias (Estilo Netflix Compacta)
+    var newsCarousel = document.getElementById('ufoNewsCarousel');
+    var btnNewsLeft  = document.getElementById('btnNewsLeft');
+    var btnNewsRight = document.getElementById('btnNewsRight');
+
+    if (newsCarousel && btnNewsLeft && btnNewsRight) {
+        btnNewsLeft.addEventListener('click', function() {
+            var scrollAmount = window.innerWidth > 768 ? -750 : -280;
+            newsCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+        btnNewsRight.addEventListener('click', function() {
+            var scrollAmount = window.innerWidth > 768 ? 750 : 280;
+            newsCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    }
+
+    // 3. Preview de Vídeo On-Hover e On-Touch (Injeta Iframe mudo no mouseenter)
+    var compactCards = document.querySelectorAll('.ufo-compact-video-card[data-videoid]');
     compactCards.forEach(function(card) {
         var videoId = card.getAttribute('data-videoid');
         var container = card.querySelector('.ufo-hover-iframe-container');
@@ -390,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     iframe.setAttribute('allow', 'autoplay; encrypted-media');
                     container.appendChild(iframe);
                 }
-            }, 200); 
+            }, 150); 
         });
 
         card.addEventListener('mouseleave', function() {

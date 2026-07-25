@@ -350,7 +350,9 @@ a:hover {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    height: 80vh;
+    height: 40vh !important;
+    min-height: 350px !important;
+    max-height: 440px !important;
     display: flex;
     align-items: center;
     position: relative;
@@ -1147,7 +1149,9 @@ a:hover {
     background-size: cover;
     background-position: center;
     position: relative;
-    min-height: 75vh;
+    height: 40vh !important;
+    min-height: 350px !important;
+    max-height: 440px !important;
 }
 
 .ufo-hero-overlay {
@@ -1348,13 +1352,43 @@ a:hover {
         transform: scale(1.06); /* Zoom suave ao tocar na tela touch */
         border-color: var(--ufo-accent-primary);
     }
-    .ufo-hero-centered {
-        min-height: 55vh;
+    .ufo-hero-centered, .ufo-hero-half, .ufo-home-hero {
+        height: 40vh !important;
+        min-height: 280px !important;
+        max-height: 360px !important;
     }
     .ufo-hero-title {
-        font-size: 32px !important;
+        font-size: 30px !important;
+        margin-bottom: 12px !important;
     }
     .ufo-hero-subtitle {
-        font-size: 16px !important;
+        font-size: 15px !important;
+        margin-bottom: 22px !important;
     }
+    .ufo-hero-overlay {
+        padding: 30px 15px !important;
+    }
+}
+
+/* ==== BANNER COM 50% DA ALTURA INICIAL & NOTÍCIAS ESTILO NETFLIX ==== */
+.ufo-hero-half {
+    height: 40vh !important;
+    min-height: 350px !important;
+    max-height: 440px !important;
+}
+
+.ufo-hero-half .ufo-hero-title {
+    font-size: 46px !important;
+    margin-bottom: 14px !important;
+}
+
+.ufo-hero-half .ufo-hero-subtitle {
+    font-size: 18px !important;
+    margin-bottom: 26px !important;
+}
+
+.ufo-compact-news-item:hover {
+    border-color: var(--ufo-accent-primary) !important;
+    box-shadow: 0 15px 40px rgba(112, 0, 255, 0.45) !important;
+    transform: scale(1.22) translateY(-6px) !important;
 }
