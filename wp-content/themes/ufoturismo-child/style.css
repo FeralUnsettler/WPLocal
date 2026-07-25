@@ -1653,4 +1653,109 @@ a:hover {
     }
 }
 
+/* ==========================================================================
+   REESTILIZAÇÃO GLOBAL DE TEMA: LARGURA MÁXIMA 1440PX & MARGEM LATERAL 200PX
+   ========================================================================== */
+.ufo-container,
+.ufo-home-container,
+.ufo-header-container,
+.ufo-footer-container,
+.ufo-single-container,
+.ufo-roteiro-container,
+.ufo-videos-portal-container,
+.ufo-top-header {
+    max-width: 1440px !important;
+    width: calc(100% - 400px) !important; /* Margem lateral de exatos 200px de cada lado (200px + 200px = 400px) */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* O fundo das seções Hero, Jumbotron e CTA permanece Full Width (100% da tela), porém seu conteúdo interno obedece estritamente a margem de 200px! */
+.ufo-jumbotron .ufo-hero-content,
+.ufo-home-hero .ufo-hero-content,
+.ufo-cta-section {
+    max-width: 1440px !important;
+    width: calc(100% - 400px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* O Cabeçalho Top Header Fixo flutuante centralizado alinha com perfeição à margem de 200px das seções centrais! */
+.ufo-top-header {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-radius: 12px !important;
+    top: 10px !important;
+}
+
+/* Proteção ergonômica para telas intermediárias (Notebooks compactos, iPads e Tablets Pro) sem comprometer o fluxo 1440px */
+@media (max-width: 1520px) and (min-width: 1025px) {
+    .ufo-container,
+    .ufo-home-container,
+    .ufo-header-container,
+    .ufo-footer-container,
+    .ufo-single-container,
+    .ufo-roteiro-container,
+    .ufo-videos-portal-container,
+    .ufo-top-header,
+    .ufo-jumbotron .ufo-hero-content,
+    .ufo-home-hero .ufo-hero-content,
+    .ufo-cta-section {
+        width: calc(100% - 220px) !important; /* 110px de margem em cada lado em telas 1366px - 1500px */
+        max-width: 1440px !important;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .ufo-container,
+    .ufo-home-container,
+    .ufo-header-container,
+    .ufo-footer-container,
+    .ufo-single-container,
+    .ufo-roteiro-container,
+    .ufo-videos-portal-container,
+    .ufo-top-header,
+    .ufo-jumbotron .ufo-hero-content,
+    .ufo-home-hero .ufo-hero-content,
+    .ufo-cta-section {
+        width: calc(100% - 80px) !important; /* 40px de cada lado em tablets */
+        max-width: 100% !important;
+    }
+}
+
+/* No smartphone (Mobile Touch), otimização 100% responsiva para usar toda a tela com margem de segurança de 16px */
+@media (max-width: 768px) {
+    .ufo-container,
+    .ufo-home-container,
+    .ufo-header-container,
+    .ufo-footer-container,
+    .ufo-single-container,
+    .ufo-roteiro-container,
+    .ufo-videos-portal-container,
+    .ufo-jumbotron .ufo-hero-content,
+    .ufo-home-hero .ufo-hero-content,
+    .ufo-cta-section {
+        width: calc(100% - 32px) !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .ufo-top-header {
+        width: 100% !important;
+        max-width: 100% !important;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+        border-radius: 0 !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+}
+
+
 
