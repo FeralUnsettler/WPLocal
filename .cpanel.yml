@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    # Caminho do diretório público do site no servidor Hostinger/cPanel
+    # ATENÇÃO: Verifique no cPanel em "Domínios" se o document root do subdomínio é exatamente este caminho:
+    - export DEPLOYPATH=/home/junglez/public_html/guaraufo.adzon.com.br
+    - /bin/mkdir -p $DEPLOYPATH/wp-content
+    - /bin/cp -R wp-content/* $DEPLOYPATH/wp-content/
