@@ -1,7 +1,7 @@
 <?php
 /**
  * O template para exibir a Página Inicial (Landing Page Monetizada & Responsiva)
- * Jumbotron de 4 Slides (5 em 5 seg, transição 600ms), sem espaço preto ou AdSense no topo, vitrines de Vídeos com Preview On-Hover 100% corrigido
+ * Jumbotron 4 Slides, Vitrines Netflix para Vídeos, Notícias e Expedições (70% do tamanho com até 12 itens), AdSense estrategicamente entre Notícias e Roteiros
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -62,7 +62,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
                 <div class="ufo-hero-overlay">
                     <div class="ufo-container ufo-hero-content ufo-centered-content">
                         <h2 class="ufo-hero-title">Expedições Noturnas Com Tecnologia FLIR e Radar Passivo</h2>
-                        <p class="ufo-hero-subtitle">Investigue avistamentos de campo com especialistas credenciados, equipamentos ópticos infravermelhos e sensores de gravidade nos roteiros de São Paulo.</p>
+                        <p class="ufo-hero-subtitle">Investigue avistamentos de campo com especialistas credenciados, equipamentos ópticos infravermelhos e sensores de gravidade nos roteiros do Brasil.</p>
                         <div class="ufo-hero-actions ufo-actions-centered">
                             <a href="#roteiros" class="ufo-btn ufo-btn-primary">Conhecer Expedições</a>
                             <a href="https://wa.me/5511999999999" target="_blank" class="ufo-btn ufo-btn-secondary" style="border: 1px solid var(--ufo-text-main); color: var(--ufo-text-main); margin-left: 15px; background: rgba(11,14,20,0.65);">Falar com Guia</a>
@@ -108,10 +108,10 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
         </div>
     </section>
 
-    <!-- Seção seguinte colada sem espaço preto e SEM bloco de AdSense intermediário -->
+    <!-- Seção seguinte colada sem espaço preto -->
     <div class="ufo-container ufo-home-container" style="padding-top: 15px; margin-top: 0;">
 
-        <!-- Seção: Destaques de Canais em Estilo Netflix (1/4 do volume, traduzido em PT-BR com Preview On-Hover 100% funcional) -->
+        <!-- Seção: Destaques de Canais em Estilo Netflix (Traduzido em PT-BR com Preview On-Hover) -->
         <section class="ufo-home-section ufo-carousel-wrapper" style="position: relative; margin-top: 10px;">
             <div class="ufo-section-header">
                 <div>
@@ -162,23 +162,8 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </section>
 
-        <!-- ZONA DE MONETIZAÇÃO 1: Meio de Página / Entre-Galerias (Deslocado do topo para aqui para não estragar a estética) -->
-        <div class="ufo-ad-placement ufo-ad-in-feed" style="margin: 45px auto;">
-            <span class="ufo-ad-label">Publicidade</span>
-            <div class="ufo-ad-box-centered">
-                <?php 
-                    $ad_feed = get_option('ufo_ad_in_article_top');
-                    if ( ! empty($ad_feed) ) {
-                        echo $ad_feed;
-                    } else {
-                        echo '<div class="ufo-ad-placeholder">📢 Google Ad Manager • In-Feed Native Placement (Otimizado Para CTR)</div>';
-                    }
-                ?>
-            </div>
-        </div>
-
-        <!-- Seção: Últimas Notícias (Estilo Netflix Compacto com 50% de dimensão e Rolagem Direcional Animada) -->
-        <section id="noticias" class="ufo-home-section ufo-carousel-wrapper" style="position: relative; margin-top: 35px;">
+        <!-- Seção: Últimas Notícias e Relatos (Estilo Netflix Compacto) -->
+        <section id="noticias" class="ufo-home-section ufo-carousel-wrapper" style="position: relative; margin-top: 45px;">
             <div class="ufo-section-header">
                 <div>
                     <span style="color: var(--ufo-accent-primary); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">📰 Divulgação Científica & Jornalismo</span>
@@ -257,54 +242,131 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </section>
 
-        <!-- Seção: Roteiros em Destaque (Turismo Ufológico) -->
-        <section id="roteiros" class="ufo-home-section" style="margin-top: 55px;">
+        <!-- ZONA DE MONETIZAÇÃO GOOGLE ADSENSE ENTRE "ÚLTIMAS NOTÍCIAS" E "PRÓXIMAS EXPEDIÇÕES" -->
+        <div class="ufo-ad-placement ufo-ad-between-news-exp" style="margin: 55px auto; text-align: center;">
+            <span class="ufo-ad-label">Patrocinado</span>
+            <div class="ufo-ad-box-centered">
+                <?php 
+                    $ad_between = get_option('ufo_ad_in_article_top') ?: get_option('ufo_ad_home_top');
+                    if ( ! empty($ad_between) ) {
+                        echo $ad_between;
+                    } else {
+                        echo '<div class="ufo-ad-placeholder">📢 Google AdSense / Ad Manager • Between News & Expeditions (High CTR Placement • 728x90 / 300x250)</div>';
+                    }
+                ?>
+            </div>
+        </div>
+
+        <!-- Seção: Roteiros e Expedições em Estilo Netflix com 70% do tamanho atual (Máximo 12 Expedições) -->
+        <section id="roteiros" class="ufo-home-section ufo-carousel-wrapper" style="position: relative; margin-top: 25px;">
             <div class="ufo-section-header">
                 <div>
-                    <span style="color: var(--ufo-accent-sci); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">🛸 Expedições de Campo</span>
+                    <span style="color: var(--ufo-accent-sci); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">🛸 Expedições de Campo & Turismo Científico</span>
                     <h2><?php echo esc_html( $sec_roteiros_lbl ); ?></h2>
                 </div>
                 <a href="<?php echo get_post_type_archive_link('roteiros') ?: '#'; ?>" class="ufo-view-all">Ver Todos os Roteiros &rarr;</a>
             </div>
-            
-            <div class="ufo-grid-3">
-                <?php
-                $roteiros_query = new WP_Query( array(
-                    'post_type'      => 'roteiros',
-                    'posts_per_page' => 3,
-                    'post_status'    => 'publish'
-                ) );
 
-                if ( $roteiros_query->have_posts() ) :
-                    while ( $roteiros_query->have_posts() ) : $roteiros_query->the_post();
-                        $duracao = get_post_meta( get_the_ID(), '_ufo_duracao', true );
-                        $preco   = get_post_meta( get_the_ID(), '_ufo_preco', true );
-                        $thumb   = get_the_post_thumbnail_url( get_the_ID(), 'large' ) ?: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=600&auto=format&fit=crop';
-                ?>
-                    <div class="ufo-card">
-                        <div class="ufo-card-img" style="background-image: url('<?php echo esc_url( $thumb ); ?>');"></div>
-                        <div class="ufo-card-body">
-                            <div class="ufo-card-meta">
-                                <span>🕒 <?php echo esc_html( $duracao ?: '1 Dia' ); ?></span>
-                                <span class="ufo-card-price"><?php echo esc_html( $preco ?: 'Consulte' ); ?></span>
+            <p style="color: var(--ufo-text-muted); font-size: 14px; margin-top: -15px; margin-bottom: 20px;">
+                Deslize pela galeria imersiva para escolher seu próximo destino de investigação anômala. Equipamentos de visão noturna e guias especialistas incluídos.
+            </p>
+            
+            <!-- Viewport Relativa com Setas Animadas Para a Galeria de 12 Expedições -->
+            <div class="ufo-slider-viewport">
+                <button type="button" class="ufo-arrow-btn ufo-arrow-left" id="btnRoteirosLeft" aria-label="Rolar expedições para esquerda">&lsaquo;</button>
+                
+                <div class="ufo-compact-carousel" id="ufoRoteirosCarousel">
+                    <?php
+                    $roteiros_items = array();
+
+                    $roteiros_query = new WP_Query( array(
+                        'post_type'      => 'roteiros',
+                        'posts_per_page' => 12,
+                        'post_status'    => 'publish'
+                    ) );
+
+                    if ( $roteiros_query->have_posts() ) {
+                        while ( $roteiros_query->have_posts() ) {
+                            $roteiros_query->the_post();
+                            $roteiros_items[] = array(
+                                'title'    => get_the_title(),
+                                'url'      => get_permalink(),
+                                'thumb'    => get_the_post_thumbnail_url( get_the_ID(), 'medium_large' ) ?: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=600&auto=format&fit=crop',
+                                'duracao'  => get_post_meta( get_the_ID(), '_ufo_duracao', true ) ?: '1 Dia',
+                                'preco'    => get_post_meta( get_the_ID(), '_ufo_preco', true ) ?: 'Consulte',
+                                'resumo'   => wp_trim_words( get_the_excerpt() ?: get_the_content(), 12 ),
+                                'local'    => 'Peruíbe / SP'
+                            );
+                        }
+                        wp_reset_postdata();
+                    }
+
+                    // Se houver menos de 12 roteiros no banco, preenche até atingir 12 expedições fascinantes do turismo ufológico brasileiro
+                    $default_roteiros = array(
+                        array('title' => 'Vigília Ufológica: Pedra da Macaca (Serra da Juréia)', 'local' => 'Peruíbe / SP', 'duracao' => '1 Dia', 'preco' => 'Consulte', 'resumo' => 'Participe de tradicional vigília em reserva ecológica com observação noturna por sensores.', 'thumb' => 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Expedição Serra do Itatins: O Portal de Peruíbe', 'local' => 'Peruíbe / SP', 'duracao' => '2 Dias', 'preco' => 'Consulte', 'resumo' => 'Mergulhe fundo nos mistérios de Peruíbe, considerada a capital ufológica do Brasil.', 'thumb' => 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Operação Prato Memorial: Vigília na Baía de Colares', 'local' => 'Colares / PA', 'duracao' => '3 Dias', 'preco' => 'Consulte', 'resumo' => 'Rota de campo nos pontos exatos investigados pelo Capitão Hollanda na Amazônia.', 'thumb' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Observação FLIR no Chapadão dos Veadeiros', 'local' => 'Alto Paraíso / GO', 'duracao' => '3 Dias', 'preco' => 'Consulte', 'resumo' => 'Expedição astronômica sobre o Paralelo 14 com telescópicos e câmeras térmicas de alta precisão.', 'thumb' => 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Acampamento Astronômico em São Thomé das Letras', 'local' => 'S. Thomé / MG', 'duracao' => '2 Dias', 'preco' => 'Consulte', 'resumo' => 'Vigília na Casa da Pirâmide e investigação de fendas geomagnéticas na serra mineira.', 'thumb' => 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Roteiro Noturno do Morro do Vintém & Serra da Mantiqueira', 'local' => 'Itatiaia / RJ', 'duracao' => '1 Dia', 'preco' => 'Consulte', 'resumo' => 'Monitoramento aeroespacial nas cadeias montanhosas históricas de avistamentos no Sudeste.', 'thumb' => 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Investigação Eletromagnética no Rincão do Inferno', 'local' => 'Bagé / RS', 'duracao' => '2 Dias', 'preco' => 'Consulte', 'resumo' => 'Roteiro exploratório nos cânions do Rio Grande do Sul em busca de fenômenos luminosos.', 'thumb' => 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Expedição Portal de Quixadá & Serra do Estêvão', 'local' => 'Quixadá / CE', 'duracao' => '3 Dias', 'preco' => 'Consulte', 'resumo' => 'Imersão nos cenários mais intrigantes de abdução e contatos de imediato no Nordeste.', 'thumb' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Vigília na Chapada Diamantina: O Morro do Pai Inácio', 'local' => 'Lençóis / BA', 'duracao' => '3 Dias', 'preco' => 'Consulte', 'resumo' => 'Experiência imersiva sob céus escuros certificados com guias exopolíticos especializados.', 'thumb' => 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Roteiro Científico do Pico do Marins', 'local' => 'Piquete / SP', 'duracao' => '2 Dias', 'preco' => 'Consulte', 'resumo' => 'Trilha de alta altitude orientada para detecção de luzes intra-atmosféricas anômalas.', 'thumb' => 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Expedição Ilha do Mel & Litoral Paranaense', 'local' => 'Ilha do Mel / PR', 'duracao' => '2 Dias', 'preco' => 'Consulte', 'resumo' => 'Vigília costeira focada em objetos transmidiáticos emergindo do Oceano Atlântico.', 'thumb' => 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#'),
+                        array('title' => 'Monitoramento Aeroespacial na Serra dos Órgãos', 'local' => 'Teresópolis / RJ', 'duracao' => '1 Dia', 'preco' => 'Consulte', 'resumo' => 'Roteiro técnico com uso de espectrômetros portáteis e câmeras de visão noturna militar.', 'thumb' => 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=600&auto=format&fit=crop', 'url' => get_post_type_archive_link('roteiros') ?: '#')
+                    );
+
+                    foreach ( $default_roteiros as $d_rot ) {
+                        if ( count($roteiros_items) < 12 ) {
+                            // Só adiciona se o título ainda não existir
+                            $existe = false;
+                            foreach ($roteiros_items as $existente) {
+                                if (stripos($existente['title'], substr($d_rot['title'], 0, 15)) !== false) {
+                                    $existe = true; break;
+                                }
+                            }
+                            if ( !$existe ) {
+                                $roteiros_items[] = $d_rot;
+                            }
+                        }
+                    }
+
+                    // Garante exatamente até o máximo de 12 expedições na galeria
+                    $roteiros_items = array_slice($roteiros_items, 0, 12);
+
+                    if ( ! empty($roteiros_items) ) :
+                        foreach ( $roteiros_items as $rot ) :
+                    ?>
+                        <!-- Card com 70% do tamanho atual no estilo Netflix -->
+                        <div class="ufo-expedition-compact-wrapper">
+                            <div class="ufo-expedition-card-70">
+                                <div class="ufo-exp-img-box" style="background-image: url('<?php echo esc_url($rot['thumb']); ?>');">
+                                    <span class="ufo-exp-badge">🕒 <?php echo esc_html($rot['duracao']); ?></span>
+                                    <span class="ufo-exp-price"><?php echo esc_html($rot['preco']); ?></span>
+                                </div>
+                                <div class="ufo-exp-card-body">
+                                    <span class="ufo-exp-local">📍 <?php echo esc_html($rot['local'] ?? 'Peruíbe / SP'); ?></span>
+                                    <h3 class="ufo-exp-title"><a href="<?php echo esc_url($rot['url']); ?>"><?php echo esc_html($rot['title']); ?></a></h3>
+                                    <p class="ufo-exp-desc"><?php echo esc_html($rot['resumo']); ?></p>
+                                    <a href="<?php echo esc_url($rot['url']); ?>" class="ufo-btn ufo-btn-primary ufo-exp-btn">Detalhes da Expedição &rarr;</a>
+                                </div>
                             </div>
-                            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                            <p style="color: var(--ufo-text-muted); font-size: 14px;"><?php echo wp_trim_words( get_the_excerpt() ?: get_the_content(), 18 ); ?></p>
-                            <a href="<?php the_permalink(); ?>" class="ufo-btn ufo-btn-primary" style="margin-top: 15px; padding: 10px 20px; font-size: 13px; display: inline-block;">Detalhes da Expedição</a>
                         </div>
-                    </div>
-                <?php
-                    endwhile;
-                    wp_reset_postdata();
-                else :
-                    echo '<p style="color: var(--ufo-text-muted);">Nenhuma expedição disponível no momento.</p>';
-                endif;
-                ?>
+                    <?php
+                        endforeach;
+                    else :
+                        echo '<p style="color: var(--ufo-text-muted);">Nenhuma expedição disponível no momento.</p>';
+                    endif;
+                    ?>
+                </div>
+
+                <button type="button" class="ufo-arrow-btn ufo-arrow-right" id="btnRoteirosRight" aria-label="Rolar expedições para direita">&rsaquo;</button>
             </div>
         </section>
 
-        <!-- ZONA DE MONETIZAÇÃO 2: Meio Inferior -->
-        <div class="ufo-ad-placement ufo-ad-mid-bottom" style="margin: 45px auto;">
+        <!-- ZONA DE MONETIZAÇÃO 3: Meio Inferior -->
+        <div class="ufo-ad-placement ufo-ad-mid-bottom" style="margin: 55px auto;">
             <span class="ufo-ad-label">Publicidade</span>
             <div class="ufo-ad-box-centered">
                 <?php 
@@ -370,7 +432,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </a>
         </section>
 
-        <!-- ZONA DE MONETIZAÇÃO 3: Rodapé de Encerramento (Monetização Final) -->
+        <!-- ZONA DE MONETIZAÇÃO 4: Rodapé de Encerramento (Monetização Final) -->
         <div class="ufo-ad-placement ufo-ad-home-bottom" style="margin: 60px auto 40px;">
             <span class="ufo-ad-label">Patrocinado</span>
             <div class="ufo-ad-box-centered">
@@ -389,7 +451,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
 
 </main>
 
-<!-- Vanilla JS Jumbotron Slider (5 em 5s com transição de 600ms) & Preview On-Hover Engine -->
+<!-- Vanilla JS Jumbotron Slider (5 em 5s / 600ms), Rolagens Directionais & Preview On-Hover -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // 1. Motor do Jumbotron Slider (Troca de 5 em 5 segundos, animação suave de 600ms)
@@ -417,14 +479,14 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(slideInterval);
         slideInterval = setInterval(function() {
             goToSlide(currentSlide + 1);
-        }, 5000); // 5000 milissegundos = 5 segundos
+        }, 5000);
     }
 
     dots.forEach(function(dot) {
         dot.addEventListener('click', function() {
             var idx = parseInt(this.getAttribute('data-slide'), 10);
             goToSlide(idx);
-            startSlideShow(); // reinicia o cronômetro sem quebrar o loop
+            startSlideShow();
         });
     });
 
@@ -432,7 +494,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startSlideShow();
     }
 
-    // 2. Controle de Rolagem Horizontal Animada Para a Galeria Compacta de Vídeos
+    // 2. Rolagem Horizontal Animada Para a Galeria Compacta de Vídeos
     var videoCarousel = document.getElementById('ufoVideoCarousel');
     var btnLeft  = document.getElementById('btnSlideLeft');
     var btnRight = document.getElementById('btnSlideRight');
@@ -448,7 +510,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 3. Controle de Rolagem Horizontal Animada Para a Seção de Notícias (Estilo Netflix Compacta)
+    // 3. Rolagem Horizontal Animada Para a Seção de Notícias (Estilo Netflix Compacta)
     var newsCarousel = document.getElementById('ufoNewsCarousel');
     var btnNewsLeft  = document.getElementById('btnNewsLeft');
     var btnNewsRight = document.getElementById('btnNewsRight');
@@ -464,25 +526,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 4. Preview de Vídeo On-Hover 100% Corrigido (Injeta Iframe sem bloqueio e oculta capa no hover)
+    // 4. Rolagem Horizontal Animada Para o Carrossel de Próximas Expedições (12 itens em 70% do tamanho)
+    var rotCarousel = document.getElementById('ufoRoteirosCarousel');
+    var btnRotLeft  = document.getElementById('btnRoteirosLeft');
+    var btnRotRight = document.getElementById('btnRoteirosRight');
+
+    if (rotCarousel && btnRotLeft && btnRotRight) {
+        btnRotLeft.addEventListener('click', function() {
+            var scrollAmount = window.innerWidth > 768 ? -720 : -290;
+            rotCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+        btnRotRight.addEventListener('click', function() {
+            var scrollAmount = window.innerWidth > 768 ? 720 : 290;
+            rotCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    }
+
+    // 5. Preview de Vídeo On-Hover (Injeta Iframe sem bloqueio e oculta capa no hover)
     var compactCards = document.querySelectorAll('.ufo-compact-video-card[data-videoid]');
     compactCards.forEach(function(card) {
         var videoId = card.getAttribute('data-videoid');
         var container = card.querySelector('.ufo-hover-iframe-container');
-        var thumb = card.querySelector('.ufo-hover-thumb');
         var hoverTimeout;
 
         card.addEventListener('mouseenter', function() {
             hoverTimeout = setTimeout(function() {
                 if (container && videoId && !container.hasChildNodes()) {
                     var iframe = document.createElement('iframe');
-                    // URL otimizada com playsinline, modestbranding, loop e sem controles para rodar solto no browser
                     iframe.setAttribute('src', 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + videoId + '&playsinline=1&modestbranding=1&rel=0');
                     iframe.setAttribute('class', 'ufo-hover-iframe');
                     iframe.setAttribute('allow', 'autoplay; encrypted-media; gyroscope; picture-in-picture');
                     container.appendChild(iframe);
                 }
-            }, 80); // 80ms para disparar na hora que posiciona
+            }, 80);
         });
 
         card.addEventListener('mouseleave', function() {

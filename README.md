@@ -6,72 +6,71 @@
 <h3 align="center">Plataforma Modular High-Performance de Turismo Ufológico, Divulgação Científica e Monetização High-RPM</h3>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Release-v3.4.0--PRO%20Jumbotron-00E5FF?style=for-the-badge&logo=wordpress&logoColor=black" alt="Release v3.4.0-PRO" />
-  <img src="https://img.shields.io/badge/Jumbotron-4x%20Slides%20%7C%205s%20%7C%20600ms-7000FF?style=for-the-badge&logo=simple-icons&logoColor=white" alt="Jumbotron Slides" />
+  <img src="https://img.shields.io/badge/Release-v3.5.0--PRO%20Full%20Netflix-00E5FF?style=for-the-badge&logo=wordpress&logoColor=black" alt="Release v3.5.0-PRO" />
+  <img src="https://img.shields.io/badge/Expedition%20Grid-12x%20Items%20%7C%2070%25%20Compact-7000FF?style=for-the-badge&logo=simple-icons&logoColor=white" alt="Expedition Grid 70%" />
   <img src="https://img.shields.io/badge/Language-Portugu%C3%AAs%20do%20Brasil%20%28PT--BR%29-25D366?style=for-the-badge&logo=google-translate&logoColor=white" alt="Language PT-BR" />
-  <img src="https://img.shields.io/badge/UI/UX-Zero%20Gap%20%2B%20Netflix%20Rows-FF0055?style=for-the-badge&logo=netflix&logoColor=white" alt="UI UX Netflix" />
-  <img src="https://img.shields.io/badge/Monetization-3x%20Centered%20AdSense%20Zones-F2A900?style=for-the-badge&logo=google-adsense&logoColor=black" alt="Monetization" />
+  <img src="https://img.shields.io/badge/UI/UX-Zero%20Gap%20%2B%203x%20Netflix%20Rows-FF0055?style=for-the-badge&logo=netflix&logoColor=white" alt="UI UX Netflix" />
+  <img src="https://img.shields.io/badge/Monetization-4x%20Strategic%20AdSense%20Zones-F2A900?style=for-the-badge&logo=google-adsense&logoColor=black" alt="Monetization" />
 </p>
 
 ---
 
-## 🌟 Resumo Executivo da Release `v3.4.0-PRO` (Jumbotron & Seamless UI Edition)
+## 🌟 Resumo Executivo da Release `v3.5.0-PRO` (Full Netflix & Expeditions 70% Edition)
 
-A plataforma **UFOTurismo PRO** atinge a consolidação arquitetônica definitiva na **Versão 3.4.0-PRO**. Esta atualização remove todos os espaços de quebra visual ("gordura ou vácuo preto") após o cabeçalho, unindo as vitrines em estilo Netflix imediatamente após um espetacular **Jumbotron Inteligente de 4 Slides**, que transita por 4 atmosferas exopolíticas a cada 5 segundos com animação de slide contínua de 600ms!
-
----
-
-## 💎 Novidades Arquitetônicas (v3.4.0-PRO)
-
-### 1. 🎠 Jumbotron Dinâmico de 4 Slides (50% Altura Compacta)
-* **4 Roteiros Temáticos Exclusivos:** O banner principal agora é um motor interativo de storytelling, apresentando:
-  1. *A Verdade Está Lá Fora & Divulgação Científica*
-  2. *Expedições Noturnas e Investigação Aeroespacial com Tecnologia FLIR*
-  3. *Acervo Oficial: Relatórios e Documentos Desclassificados da AARO/Pentágono*
-  4. *Turismo de Experiência e Imersão nos Pontos Quentes do Brasil*
-* **Precisão Cronometrada:** O motor JavaScript aciona a rotação contínua de **exatos 5 em 5 segundos (5000ms)**, utilizando transições CSS em hardware aceleração (`transform: translateX`) de **exatos 600 milissegundos (600ms)**.
-* **Indicadores Interativos:** Pontos de navegação (Dots) brilhantes com efeito *Neon Glow* na base do Jumbotron permitem ao usuário alternar os slides à vontade.
-
-### 2. ⚡ Zero Espaço Preto & Conexão Direta com Vitrine Netflix
-* **Remoção de Vácuos Visual e Blocos de Topo:** O antigo bloco publicitário Above The Fold foi reposicionado ergonomicamente no meio do conteúdo (In-Feed) para preservar o impacto de primeiro acesso.
-* **Adesão Perfeita do Acervo:** A vitrine **Destaques em Vídeo: Pesquisa & Investigação Anômala** surge imediatamente colada abaixo do Jumbotron, maximizando a densidade de conteúdo em uma única linha horizontal de rolagem com setas animadas (`⟨` e `⟩`).
-
-### 3. 🎬 Motor de Preview On-Hover 3D 100% Corrigido
-* **Injeção Lissa sem Restrições:** O algoritmo de carregamento foi remodelado para injetar players dinâmicos muted com parâmetros avançados do YouTube (`playsinline=1&modestbranding=1&autoplay=1&loop=1`).
-* **Sincronia de Camadas (Z-Index Engine):** Assim que o usuário repousa o cursor sobre qualquer card compacto do estilo Netflix (`.ufo-compact-video-card`), a thumbnail de capa ganha invisibilidade instantânea (`opacity: 0`), revelando em tempo real as cenas ao vivo da investigação ufológica em alta definição no plano de fundo do cartão!
-
-### 4. 🇧🇷 Tradução Total Automática PT-BR (Zero Inglês)
-* Nosso tradutor nativo no arquivo `yt-rss-helper.php` cobre 100% das chamadas e palavras estrangeiras dos canais monitorados de exopolítica dos EUA (como *Jesse Michels / Pesquisa UAP*), entregando resumos e manchetes em português autêntico e sem recuo de performance de cache.
+O ecossistema **UFOTurismo PRO** alcança na **Versão 3.5.0-PRO** a unificação total de suas seções no padrão arquitetônico **Streaming Netflix-Style**, incorporando estrategicamente o **Google AdSense / Ad Manager** entre a vitrine de Notícias e o acervo de Próximas Expedições, além de otimizar os cards de Roteiros para uma escala mais ágil, dinâmica e de altíssima conversão!
 
 ---
 
-## 📐 Fluxograma Técnico e Estrutural (`ufoturismo-child`)
+## 💎 Novidades Arquitetônicas (v3.5.0-PRO)
+
+### 1. 🏕️ Vitrine Netflix de Expedições (70% do Tamanho Original & Máximo 12 Roteiros)
+* **Escala Ergonomicamente Otimizada (70%):** Os cards da seção *Próximas Expedições e Roteiros* deixam o antigo formato de blocos largos e pesados (3 por linha) e adotam um layout ultra-compacto com 285px de largura (exatos 70% da dimensão anterior).
+* **Galeria Horizontal com 12 Expedições no Acervo:** O motor agora processa e apresenta até **12 expedições científicas brasileiras** simultâneas (desde a Serra do Itatins em Peruíbe até a Operação Prato na Amazônia e a Chapada dos Veadeiros), rolando horizontalmente sem esforço de tela via setas animadas (`⟨` e `⟩`).
+* **Efeito Relief 3D On-Hover:** Ao passar o mouse sobre um roteiro, o cartão eleva-se em zoom (`scale(1.1) translateY(-6px)`), iluminando as bordas em ciano neon com botão de agendamento instantâneo.
+
+### 2. 📢 Nova Zona Estratégica de Monetização Google AdSense
+* **Injeção de Bloco Entre Notícias e Expedições:** Alinhando-se aos mapas de calor e leitura vertical da landing page, um novo container de publicidade de altíssimo engajamento foi inserido exatamente na transição entre o jornalismo científico (*Últimas Notícias e Relatos*) e os roteiros turísticos (*Próximas Expedições e Roteiros*).
+* **4 Zonas Integradas:** O site passa a contar com quatro linhas mestras de anúncios, operando sem atrapalhar a estética das galerias.
+
+### 3. 🎠 Jumbotron Dinâmico de 4 Slides & Zero Espaço Preto
+* **Trocas Automáticas (5s / 600ms):** O topo exibe 4 variações atmosféricas girando de forma contínua de 5 em 5 segundos, com transições em 600ms.
+* **Adesão Contínua:** Todas as seções mantêm conexão direta e sem quebras visuais (zero vácuos de cor negra ou buracos de layout).
+
+### 4. 🎬 Preview On-Hover 3D & Idioma 100% em PT-BR
+* **Vídeos Animados Ao Vivo no Hover:** Os cartazes do YouTube ocultam automaticamente sua capa de foto e iniciam a rolagem e pré-visualização contínua do episódio sem cliques no mouse.
+* **Tradução Nativa e Integral:** Algoritmo dedicado elimina completamente títulos, emblemas ou descrições em inglês da interface.
+
+---
+
+## 📐 Fluxograma Técnico do Ecossistema (`ufoturismo-child`)
 
 ```mermaid
 graph TD
-    A[WordPress Core / Docker ufo_wp] --> B[Theme Child: ufoturismo-child]
-    B --> C["front-page.php (Jumbotron 4 Slides 5s/600ms + Colada na Vitrine Netflix)"]
-    B --> D["style.css (Zero Gaps, Preview 3D Z-Index Engine e Transições 600ms)"]
-    B --> E["inc/yt-rss-helper.php (Motor de Tradução PT-BR + Cache Instantâneo)"]
-    B --> F["header.php (Top Nav Sticky Fumê com Pílulas e WhatsApp VIP)"]
-    B --> G["home.php (Portal Jornalístico Centralizado em PT-BR)"]
+    A[Landing Page: front-page.php] --> B[Jumbotron 4 Slides 5s/600ms]
+    A --> C["Galeria 1: Destaques em Vídeo (Netflix Style + Preview 3D)"]
+    A --> D["Monetização 1: AdSense In-Feed Top"]
+    A --> E["Galeria 2: Últimas Notícias (Netflix Style Compacta)"]
+    A --> F["Monetização 2: AdSense Entre Notícias e Expedições"]
+    A --> G["Galeria 3: Próximas Expedições (12 Itens 70% Tamanho Netflix Style)"]
+    A --> H["Monetização 3: AdSense Meio-Inferior"]
+    A --> I[Agenda de Congressos & Banner VIP WhatsApp]
 ```
 
 ---
 
-## 🛠️ Guia de Infraestrutura & Comandos Git
+## 🛠️ Guia Rápido de Instalação & Git Sincronizado
 
-1. **Ativar Servidor Docker (PowerShell Windows):**
+1. **Subir Aplicação Completa no Docker (PowerShell Windows):**
    ```powershell
    cd C:\Users\luxx\Documents\Trampos\Guarau\UFO
    docker compose up -d
    ```
-2. **Acessar Online (Desktop & Dispositivos Móveis na Rede LAN):**
-   * **Portal Interativo:** `http://localhost:8000/` ou `http://192.168.15.3:8000/`
-   * **Admin UFO Studio:** `http://localhost:8000/wp-admin/` ou `http://192.168.15.3:8000/wp-admin/`
-3. **Sincronização com GitHub:**
+2. **Acessos Rápidos (LAN & WiFi Local):**
+   * **Portal Otimizado v3.5.0:** `http://localhost:8000/` ou `http://192.168.15.3:8000/`
+   * **Dashboard de Controle WordPress:** `http://localhost:8000/wp-admin/`
+3. **Comando de Espelhamento GitHub:**
    ```powershell
-   git add -A; git commit -m "feat(v3.4.0): implement 4-slide jumbotron 5s/600ms, remove top gap and fix video hover preview"; git push
+   git add -A; git commit -m "feat(v3.5.0): convert expeditions to netflix carousel with 12 items at 70% size and insert adsense between news and expeditions"; git push
    ```
 
 ---

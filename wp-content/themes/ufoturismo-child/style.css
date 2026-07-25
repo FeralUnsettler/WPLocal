@@ -1517,3 +1517,140 @@ a:hover {
     display: block !important;
 }
 
+/* ==== PRÓXIMAS EXPEDIÇÕES ESTILO NETFLIX COM 70% DO TAMANHO ATUAL ==== */
+.ufo-expedition-compact-wrapper {
+    flex: 0 0 285px; /* Exatamente 70% da proporção original (antes 400px no grid-3) */
+    width: 285px;
+    margin-right: 18px;
+    display: flex;
+    transition: transform 0.3s ease, z-index 0.3s ease;
+}
+
+.ufo-expedition-card-70 {
+    background: rgba(16, 22, 32, 0.92);
+    border: 1px solid var(--ufo-border);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+}
+
+.ufo-expedition-card-70:hover {
+    transform: scale(1.1) translateY(-6px);
+    border-color: var(--ufo-accent-sci);
+    box-shadow: 0 16px 40px rgba(0, 229, 255, 0.35);
+    z-index: 10;
+}
+
+.ufo-exp-img-box {
+    height: 145px; /* 70% da altura original de 210px */
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.ufo-exp-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--ufo-accent-sci);
+    color: var(--ufo-accent-sci);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+}
+
+.ufo-exp-price {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: var(--ufo-accent-primary);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.ufo-exp-card-body {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.ufo-exp-local {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--ufo-accent-sci);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.ufo-exp-title {
+    font-size: 16px !important;
+    font-family: var(--ufo-font-heading);
+    margin: 0 0 8px 0 !important;
+    line-height: 1.3 !important;
+}
+
+.ufo-exp-title a {
+    color: var(--ufo-text-main);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.ufo-exp-card-70:hover .ufo-exp-title a {
+    color: var(--ufo-accent-sci);
+}
+
+.ufo-exp-desc {
+    font-size: 13px !important;
+    color: var(--ufo-text-muted);
+    line-height: 1.4 !important;
+    margin: 0 0 15px 0 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ufo-exp-btn {
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    text-align: center;
+    border-radius: 6px !important;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
+    display: inline-block;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .ufo-expedition-compact-wrapper {
+        flex: 0 0 240px;
+        width: 240px;
+    }
+    .ufo-exp-img-box {
+        height: 125px;
+    }
+    .ufo-exp-card-70:active {
+        transform: scale(1.05);
+    }
+}
+
+
