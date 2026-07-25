@@ -1,7 +1,7 @@
 <?php
 /**
  * UFO Home Customizer Metabox (Sem ACF)
- * Interface de Administração UX/UI para Clientes editarem a Home Page
+ * Interface de Administração UX/UI para Clientes editarem a Home Page e Canais do YouTube/RSS
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,7 +16,6 @@ function ufo_home_admin_enqueue( $hook ) {
     }
     wp_enqueue_media();
 
-    // Injeção de Estilo UX/UI Exclusivo para o Metabox
     $custom_admin_css = "
         #ufo_home_custom_fields {
             background: #0B0E14;
@@ -115,12 +114,11 @@ function ufo_add_home_metabox() {
     global $post;
     if ( ! $post ) return;
     
-    // Mostra na página marcada como Home no WordPress ou de slug 'home'
     $front_id = get_option( 'page_on_front' );
     if ( $post->ID == $front_id || $post->post_name === 'home' || $post->post_name === 'portal-ufoturismo-inicio' ) {
         add_meta_box(
             'ufo_home_custom_fields',
-            '🛸 UFO Turismo Studio - construtor Visual da Home Page (Landing Page)',
+            '🛸 UFO Turismo Studio & Central de Feeds Parallax',
             'ufo_render_home_metabox',
             'page',
             'normal',
@@ -134,7 +132,6 @@ add_action( 'add_meta_boxes', 'ufo_add_home_metabox' );
 function ufo_render_home_metabox( $post ) {
     wp_nonce_field( 'ufo_home_save_meta', 'ufo_home_meta_nonce' );
 
-    // Ler Valores ou Defaulters
     $title         = get_post_meta( $post->ID, '_ufo_hero_title', true ) ?: 'A Verdade Está Lá Fora. E Nós Levamos Você Até Ela.';
     $subtitle      = get_post_meta( $post->ID, '_ufo_hero_subtitle', true ) ?: 'O maior portal brasileiro focado em Turismo Ufológico, Pesquisa de Fenômenos Anômalos e Divulgação Científica.';
     $bg_img        = get_post_meta( $post->ID, '_ufo_hero_bg_img', true ) ?: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop';
@@ -147,6 +144,10 @@ function ufo_render_home_metabox( $post ) {
     $sec_roteiros  = get_post_meta( $post->ID, '_ufo_sec_roteiros_title', true ) ?: 'Próximas Expedições e Roteiros';
     $sec_news      = get_post_meta( $post->ID, '_ufo_sec_news_title', true ) ?: 'Últimas Notícias e Relatos';
 
+    // Canais do YouTube & RSS para Galeria Parallax
+    $yt_channels   = get_post_meta( $post->ID, '_ufo_yt_channels', true ) ?: "https://www.youtube.com/@jessemichelsclips\nhttps://www.youtube.com/feeds/videos.xml?channel_id=UC8ZKTXN9trt5dhixz6b6l6w";
+    $yt_posts_feed = get_post_meta( $post->ID, '_ufo_yt_posts_feed', true ) ?: 'https://www.youtube.com/channel/UC8ZKTXN9trt5dhixz6b6l6w/posts';
+
     $cta_title     = get_post_meta( $post->ID, '_ufo_cta_title', true ) ?: 'Pronto Para Viver o Desconhecido?';
     $cta_desc      = get_post_meta( $post->ID, '_ufo_cta_desc', true ) ?: 'Participe de nossos roteiros noturnos com especialistas, equipamentos de visão noturna e guias credenciados.';
     $cta_btn       = get_post_meta( $post->ID, '_ufo_cta_btn_text', true ) ?: 'Agendar Agora pelo WhatsApp';
@@ -154,7 +155,25 @@ function ufo_render_home_metabox( $post ) {
     ?>
     
     <div class="ufo-admin-studio">
-        <!-- Seção 1: Hero Banner -->
+        <!-- Seção 1: Canais do YouTube & Feeds RSS (Parallax) -->
+        <div class="ufo-admin-section" style="border: 2px solid #00E5FF; box-shadow: 0 0 15px rgba(0,229,255,0.2);">
+            <h3>📺 Galeria Parallax de Vídeos & Posts (YouTube + Feeds RSS)</h3>
+            <p class="description" style="color: #E2E8F0; font-size: 14px;">Insira abaixo as URLs de canais do YouTube ou Feeds RSS. Os vídeos aparecem com <b>Efeito Parallax Randômico e Preview ao passar o mouse</b> na página inicial e na central de notícias!</p>
+            
+            <div class="ufo-field-group">
+                <label>URLs de Canais do YouTube e Feeds RSS (Uma URL por linha)</label>
+                <textarea name="ufo_yt_channels" rows="4"><?php echo esc_textarea( $yt_channels ); ?></textarea>
+                <p class="description">Padrão pré-configurado: <code>https://www.youtube.com/@jessemichelsclips</code> (Pode inserir tanto handles @canal quanto links XML de feeds RSS).</p>
+            </div>
+
+            <div class="ufo-field-group">
+                <label>URL Standard para Galeria Parallax Horizontal de Posts / Comunidade</label>
+                <input type="text" name="ufo_yt_posts_feed" value="<?php echo esc_attr( $yt_posts_feed ); ?>" />
+                <p class="description">Alimenta o carrossel/ticker horizontal de publicações institucionais. Padrão: <code>https://www.youtube.com/channel/UC8ZKTXN9trt5dhixz6b6l6w/posts</code>.</p>
+            </div>
+        </div>
+
+        <!-- Seção 2: Hero Banner -->
         <div class="ufo-admin-section">
             <h3>🛸 Hero Banner Principal (Topo do Portal)</h3>
             <div class="ufo-field-group">
@@ -201,7 +220,7 @@ function ufo_render_home_metabox( $post ) {
             </div>
         </div>
 
-        <!-- Seção 2: Títulos das Seções Monetizadas -->
+        <!-- Seção 3: Títulos das Seções Monetizadas -->
         <div class="ufo-admin-section">
             <h3>📰 Seções de Acervo & Vitrine de Roteiros</h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
@@ -216,7 +235,7 @@ function ufo_render_home_metabox( $post ) {
             </div>
         </div>
 
-        <!-- Seção 3: CTA Final de Conversão -->
+        <!-- Seção 4: CTA Final de Conversão -->
         <div class="ufo-admin-section">
             <h3>🔥 Box de Conversão & Fechamento de Vendas / Comunidade</h3>
             <p class="description" style="color: #00E5FF; font-size: 13px;">Este bloco aparece logo antes do rodapé para capturar usuários interessados em pacotes turísticos ou em entrar na comunidade.</p>
@@ -275,6 +294,8 @@ function ufo_save_home_metabox( $post_id ) {
     if ( ! current_user_can( 'edit_page', $post_id ) ) return;
 
     $fields = array(
+        'ufo_yt_channels'       => '_ufo_yt_channels',
+        'ufo_yt_posts_feed'     => '_ufo_yt_posts_feed',
         'ufo_hero_title'        => '_ufo_hero_title',
         'ufo_hero_subtitle'     => '_ufo_hero_subtitle',
         'ufo_hero_bg_img'       => '_ufo_hero_bg_img',
@@ -292,7 +313,7 @@ function ufo_save_home_metabox( $post_id ) {
 
     foreach ( $fields as $post_key => $meta_key ) {
         if ( isset( $_POST[ $post_key ] ) ) {
-            update_post_meta( $post_id, $meta_key, sanitize_text_field( $_POST[ $post_key ] ) );
+            update_post_meta( $post_id, $meta_key, sanitize_textarea_field( $_POST[ $post_key ] ) );
         }
     }
 }

@@ -54,3 +54,9 @@ add_action( 'after_setup_theme', 'ufoturismo_register_menus' );
  */
 require_once get_stylesheet_directory() . '/inc/home-metabox.php';
 
+/**
+ * Carregar Módulo de Feeds RSS e Vídeos do YouTube (Parallax Gallery)
+ */
+require_once get_stylesheet_directory() . '/inc/yt-rss-helper.php';
+
+

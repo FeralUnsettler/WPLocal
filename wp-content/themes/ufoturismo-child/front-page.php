@@ -2,6 +2,7 @@
 /**
  * O template para exibir a Página Inicial (Landing Page Monetizada)
  * Consome os campos customizados editados no WordPress Admin (UFO Turismo Studio)
+ * Inclui Galeria Parallax Randômica do YouTube e Carrossel Horizontal de Posts
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -25,10 +26,18 @@ $btn_2_url        = get_post_meta( $page_id, '_ufo_hero_btn_url_2', true ) ?: '#
 $sec_roteiros_lbl = get_post_meta( $page_id, '_ufo_sec_roteiros_title', true ) ?: 'Próximas Expedições e Roteiros';
 $sec_news_lbl     = get_post_meta( $page_id, '_ufo_sec_news_title', true ) ?: 'Últimas Notícias e Relatos';
 
+// Feeds Parallax Customizados
+$yt_channels_input = get_post_meta( $page_id, '_ufo_yt_channels', true ) ?: "https://www.youtube.com/@jessemichelsclips\nhttps://www.youtube.com/feeds/videos.xml?channel_id=UC8ZKTXN9trt5dhixz6b6l6w";
+$yt_posts_input    = get_post_meta( $page_id, '_ufo_yt_posts_feed', true ) ?: 'https://www.youtube.com/channel/UC8ZKTXN9trt5dhixz6b6l6w/posts';
+
 $cta_title        = get_post_meta( $page_id, '_ufo_cta_title', true ) ?: 'Pronto Para Viver o Desconhecido?';
 $cta_desc         = get_post_meta( $page_id, '_ufo_cta_desc', true ) ?: 'Participe de nossos roteiros noturnos com especialistas, equipamentos de visão noturna e guias credenciados.';
 $cta_btn_text     = get_post_meta( $page_id, '_ufo_cta_btn_text', true ) ?: 'Agendar Agora pelo WhatsApp';
 $cta_url          = get_post_meta( $page_id, '_ufo_cta_url', true ) ?: 'https://wa.me/5511999999999';
+
+// Busca artigos para feeds
+$yt_videos = function_exists('ufo_fetch_channel_videos') ? ufo_fetch_channel_videos($yt_channels_input, 6) : array();
+$yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_community_posts_feed($yt_posts_input, 5) : array();
 ?>
 
 <main id="primary" class="ufo-site-main">
@@ -70,8 +79,93 @@ $cta_url          = get_post_meta( $page_id, '_ufo_cta_url', true ) ?: 'https://
             ?>
         </div>
 
+        <!-- NEW: Galeria de Notícias & Vídeos com Parallax Randômico e Hover Preview (YouTube Canais) -->
+        <section class="ufo-home-section ufo-parallax-wrapper">
+            <div class="ufo-section-header">
+                <div>
+                    <span style="color: var(--ufo-accent-sci); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">📡 Coletâneas Especiais de Canais</span>
+                    <h2>Destaques em Vídeo: Pesquisa & Investigação Anômala</h2>
+                </div>
+                <a href="<?php echo get_permalink( get_option('page_for_posts') ) ?: '#'; ?>" class="ufo-view-all">Ver Acervo Central no Portal &rarr;</a>
+            </div>
+
+            <p style="color: var(--ufo-text-muted); font-size: 15px; margin-top: -15px; margin-bottom: 30px;">
+                Passe o mouse sobre os cards para pré-visualização instantânea em Cinema Mode. Clique para acessar nossa Central de Notícias com todos os canais parceiros e documentos revelados.
+            </p>
+
+            <div class="ufo-parallax-grid" id="ufoRandomGrid">
+                <?php 
+                if ( ! empty($yt_videos) ) :
+                    $i = 1;
+                    foreach ( $yt_videos as $vid ) :
+                        $col_class = "ufo-parallax-item-" . (($i % 3) + 1);
+                        $hub_url   = get_permalink( get_option('page_for_posts') ) ?: home_url('/noticias/');
+                ?>
+                    <div class="ufo-hover-card-wrapper <?php echo esc_attr($col_class); ?>">
+                        <a href="<?php echo esc_url($hub_url); ?>" class="ufo-hover-video-card" data-videoid="<?php echo esc_attr($vid['video_id']); ?>">
+                            <div class="ufo-hover-media-box">
+                                <div class="ufo-hover-thumb" style="background-image: url('<?php echo esc_url($vid['thumb']); ?>');"></div>
+                                <div class="ufo-hover-iframe-container"></div>
+                                <span class="ufo-hover-live-badge">🎬 Preview</span>
+                            </div>
+                            <div style="padding: 20px;">
+                                <span style="font-size: 11px; color: var(--ufo-accent-primary); font-weight: 700; text-transform: uppercase;">▶️ <?php echo esc_html($vid['channel']); ?></span>
+                                <h3 style="font-size: 18px; color: #fff; margin: 8px 0; line-height: 1.3;"><?php echo esc_html($vid['title']); ?></h3>
+                                <span style="font-size: 12px; color: var(--ufo-text-muted);">Acessar matéria e debate completo &rarr;</span>
+                            </div>
+                        </a>
+                    </div>
+                <?php 
+                        $i++;
+                    endforeach;
+                else :
+                    echo '<p style="color: var(--ufo-text-muted);">Nenhum feed disponível no momento.</p>';
+                endif;
+                ?>
+            </div>
+        </section>
+
+        <!-- NEW: Galeria Parallax Horizontal Para Posts e Comunidades (Style Jesse Michels Community) -->
+        <section class="ufo-home-section" style="margin-top: 60px;">
+            <div class="ufo-section-header">
+                <div>
+                    <span style="color: var(--ufo-accent-primary); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">🔥 Feed da Comunidade & Roteiros</span>
+                    <h2>Galeria Interativa de Posts & Atualizações</h2>
+                </div>
+                <a href="<?php echo get_permalink( get_option('page_for_posts') ) ?: '#'; ?>" class="ufo-view-all">Explorar Feed Completo &rarr;</a>
+            </div>
+
+            <div class="ufo-horizontal-slider-container">
+                <div class="ufo-horizontal-slider" id="ufoHorizSlider">
+                    <?php 
+                    if ( ! empty($yt_posts) ) :
+                        foreach ( $yt_posts as $p ) :
+                    ?>
+                        <div class="ufo-post-card-horiz">
+                            <div>
+                                <div class="ufo-horiz-img" style="background-image: url('<?php echo esc_url($p['thumb']); ?>');">
+                                    <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(11,14,20,0.85); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 4px;"><?php echo esc_html($p['date']); ?></span>
+                                </div>
+                                <div class="ufo-horiz-content">
+                                    <span class="ufo-channel-tag">📢 <?php echo esc_html($p['author']); ?></span>
+                                    <h3 style="font-size: 18px; color: #fff; margin: 0 0 12px; line-height: 1.35;"><a href="<?php echo esc_url($p['url']); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($p['title']); ?></a></h3>
+                                    <p style="color: var(--ufo-text-muted); font-size: 14px; margin: 0; line-height: 1.5;"><?php echo esc_html($p['excerpt']); ?></p>
+                                </div>
+                            </div>
+                            <div style="padding: 0 22px 20px;">
+                                <a href="<?php echo esc_url($p['url']); ?>" style="color: var(--ufo-accent-sci); text-decoration: none; font-size: 13px; font-weight: 700;">Ler Discussão Completa &rarr;</a>
+                            </div>
+                        </div>
+                    <?php 
+                        endforeach;
+                    endif;
+                    ?>
+                </div>
+            </div>
+        </section>
+
         <!-- Seção 1: Roteiros em Destaque (Turismo Ufológico) -->
-        <section id="roteiros" class="ufo-home-section">
+        <section id="roteiros" class="ufo-home-section" style="margin-top: 60px;">
             <div class="ufo-section-header">
                 <h2><?php echo esc_html( $sec_roteiros_lbl ); ?></h2>
                 <a href="<?php echo get_post_type_archive_link('roteiros') ?: '#'; ?>" class="ufo-view-all">Ver Todos os Roteiros &rarr;</a>
@@ -212,5 +306,56 @@ $cta_url          = get_post_meta( $page_id, '_ufo_cta_url', true ) ?: 'https://
     </div>
 
 </main>
+
+<!-- Vanilla JS Parallax Engine & Video Hover Preview (Lighthouse 95+ Friendly) -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Efeito Parallax Randômico no Scroll para Galeria de Canais
+    var grid = document.getElementById('ufoRandomGrid');
+    if (grid && window.innerWidth > 768) {
+        window.addEventListener('scroll', function() {
+            var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+            var items1 = grid.querySelectorAll('.ufo-parallax-item-1');
+            var items2 = grid.querySelectorAll('.ufo-parallax-item-2');
+            var items3 = grid.querySelectorAll('.ufo-parallax-item-3');
+            
+            var offset1 = (scrollY * 0.04) - 20;
+            var offset2 = (scrollY * -0.05) + 25;
+            var offset3 = (scrollY * 0.03) - 10;
+
+            items1.forEach(function(el) { el.style.transform = 'translateY(' + offset1 + 'px)'; });
+            items2.forEach(function(el) { el.style.transform = 'translateY(' + offset2 + 'px)'; });
+            items3.forEach(function(el) { el.style.transform = 'translateY(' + offset3 + 'px)'; });
+        }, { passive: true });
+    }
+
+    // 2. Preview de Vídeo On-Hover (Injeta Iframe mudo do YouTube no mouseenter)
+    var videoCards = document.querySelectorAll('.ufo-hover-video-card');
+    videoCards.forEach(function(card) {
+        var videoId = card.getAttribute('data-videoid');
+        var container = card.querySelector('.ufo-hover-iframe-container');
+        var hoverTimeout;
+
+        card.addEventListener('mouseenter', function() {
+            hoverTimeout = setTimeout(function() {
+                if (container && videoId && !container.hasChildNodes()) {
+                    var iframe = document.createElement('iframe');
+                    iframe.setAttribute('src', 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + videoId);
+                    iframe.setAttribute('class', 'ufo-hover-iframe');
+                    iframe.setAttribute('allow', 'autoplay; encrypted-media');
+                    container.appendChild(iframe);
+                }
+            }, 250); // Delay de 250ms para evitar disparos aciduais se o mouse passar voando
+        });
+
+        card.addEventListener('mouseleave', function() {
+            clearTimeout(hoverTimeout);
+            if (container) {
+                container.innerHTML = ''; // Limpa o iframe para poupar RAM do usuário e bateria
+            }
+        });
+    });
+});
+</script>
 
 <?php get_footer(); ?>
