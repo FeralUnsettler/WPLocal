@@ -1,7 +1,7 @@
 <?php
 /**
  * O template para exibir a Página Inicial (Landing Page Monetizada & Responsiva)
- * Consome os campos do UFO Turismo Studio com 4 Zonas Centradas para Google AdSense & Ad Manager
+ * Hero centralizado com menu fixo e Galeria Compacta (1/4 do tamanho, linha única e rolagem horizontal animada)
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,23 +34,23 @@ $cta_desc         = get_post_meta( $page_id, '_ufo_cta_desc', true ) ?: 'Partici
 $cta_btn_text     = get_post_meta( $page_id, '_ufo_cta_btn_text', true ) ?: 'Agendar Agora pelo WhatsApp';
 $cta_url          = get_post_meta( $page_id, '_ufo_cta_url', true ) ?: 'https://wa.me/5511999999999';
 
-// Busca artigos para feeds
-$yt_videos = function_exists('ufo_fetch_channel_videos') ? ufo_fetch_channel_videos($yt_channels_input, 6) : array();
-$yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_community_posts_feed($yt_posts_input, 5) : array();
+// Busca artigos e clips com maior limite para o carrossel horizontal
+$yt_videos = function_exists('ufo_fetch_channel_videos') ? ufo_fetch_channel_videos($yt_channels_input, 12) : array();
+$yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_community_posts_feed($yt_posts_input, 6) : array();
 ?>
 
 <main id="primary" class="ufo-site-main">
 
-    <!-- Hero Section Customizável e Responsiva -->
-    <section class="ufo-home-hero" style="background-image: url('<?php echo esc_url( $hero_bg ); ?>');">
+    <!-- Hero Section Customizável e Centralizado no Desktop -->
+    <section class="ufo-home-hero ufo-hero-centered" style="background-image: url('<?php echo esc_url( $hero_bg ); ?>');">
         <div class="ufo-hero-overlay">
-            <div class="ufo-container ufo-hero-content">
+            <div class="ufo-container ufo-hero-content ufo-centered-content">
                 <h1 class="ufo-hero-title"><?php echo esc_html( $hero_title ); ?></h1>
                 <p class="ufo-hero-subtitle"><?php echo esc_html( $hero_subtitle ); ?></p>
-                <div class="ufo-hero-actions">
+                <div class="ufo-hero-actions ufo-actions-centered">
                     <a href="<?php echo esc_attr( $btn_1_url ); ?>" class="ufo-btn ufo-btn-primary"><?php echo esc_html( $btn_1_text ); ?></a>
                     <?php if(!empty($btn_2_text)): ?>
-                        <a href="<?php echo esc_attr( $btn_2_url ); ?>" class="ufo-btn ufo-btn-secondary" style="border: 1px solid var(--ufo-text-main); color: var(--ufo-text-main); margin-left: 15px; background: rgba(11,14,20,0.6); backdrop-filter: blur(5px);"><?php echo esc_html( $btn_2_text ); ?></a>
+                        <a href="<?php echo esc_attr( $btn_2_url ); ?>" class="ufo-btn ufo-btn-secondary" style="border: 1px solid var(--ufo-text-main); color: var(--ufo-text-main); margin-left: 15px; background: rgba(11,14,20,0.65); backdrop-filter: blur(8px);"><?php echo esc_html( $btn_2_text ); ?></a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -59,7 +59,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
 
     <div class="ufo-container ufo-home-container">
         
-        <!-- Conteúdo Estático adicional da página (Se criado via Gutenberg ou Elementor) -->
+        <!-- Conteúdo Estático adicional da página -->
         <?php if ( have_posts() && get_the_content() ) : while ( have_posts() ) : the_post(); ?>
             <div class="ufo-page-content" style="margin-bottom: 30px;">
                 <?php the_content(); ?>
@@ -81,49 +81,53 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </div>
 
-        <!-- Galeria de Notícias & Vídeos com Parallax Randômico (Canais do YouTube / Jesse Michels) -->
-        <section class="ufo-home-section ufo-parallax-wrapper">
+        <!-- Galeria de Previews Compactos (1/4 do tamanho antigo), em 1 única linha com Botão Animado Horizontal -->
+        <section class="ufo-home-section ufo-carousel-wrapper" style="position: relative; margin-top: 35px;">
             <div class="ufo-section-header">
                 <div>
-                    <span style="color: var(--ufo-accent-sci); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">📡 Coletâneas Especiais de Canais</span>
+                    <span style="color: var(--ufo-accent-sci); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">📡 Coletâneas Especiais de Canais</span>
                     <h2>Destaques em Vídeo: Pesquisa & Investigação Anômala</h2>
                 </div>
                 <a href="<?php echo get_permalink( get_option('page_for_posts') ) ?: '#'; ?>" class="ufo-view-all">Ver Acervo Central no Portal &rarr;</a>
             </div>
 
-            <p style="color: var(--ufo-text-muted); font-size: 15px; margin-top: -15px; margin-bottom: 30px;">
-                Passe o mouse sobre os cards para pré-visualização instantânea em Cinema Mode. Clique para acessar nossa Central de Notícias com todos os canais parceiros e documentos revelados.
+            <p style="color: var(--ufo-text-muted); font-size: 14px; margin-top: -15px; margin-bottom: 20px;">
+                Passe o mouse ou toque nos cards para zoom interativo em Cinema Mode. Use os botões direcionais para rolar horizontalmente.
             </p>
 
-            <div class="ufo-parallax-grid" id="ufoRandomGrid">
-                <?php 
-                if ( ! empty($yt_videos) ) :
-                    $i = 1;
-                    foreach ( $yt_videos as $vid ) :
-                        $col_class = "ufo-parallax-item-" . (($i % 3) + 1);
-                        $hub_url   = get_permalink( get_option('page_for_posts') ) ?: home_url('/noticias/');
-                ?>
-                    <div class="ufo-hover-card-wrapper <?php echo esc_attr($col_class); ?>">
-                        <a href="<?php echo esc_url($hub_url); ?>" class="ufo-hover-video-card" data-videoid="<?php echo esc_attr($vid['video_id']); ?>">
-                            <div class="ufo-hover-media-box">
-                                <div class="ufo-hover-thumb" style="background-image: url('<?php echo esc_url($vid['thumb']); ?>');"></div>
-                                <div class="ufo-hover-iframe-container"></div>
-                                <span class="ufo-hover-live-badge">🎬 Preview</span>
-                            </div>
-                            <div style="padding: 20px;">
-                                <span style="font-size: 11px; color: var(--ufo-accent-primary); font-weight: 700; text-transform: uppercase;">▶️ <?php echo esc_html($vid['channel']); ?></span>
-                                <h3 style="font-size: 18px; color: #fff; margin: 8px 0; line-height: 1.3;"><?php echo esc_html($vid['title']); ?></h3>
-                                <span style="font-size: 12px; color: var(--ufo-text-muted);">Acessar matéria e debate completo &rarr;</span>
-                            </div>
-                        </a>
-                    </div>
-                <?php 
-                        $i++;
-                    endforeach;
-                else :
-                    echo '<p style="color: var(--ufo-text-muted);">Nenhum feed disponível no momento.</p>';
-                endif;
-                ?>
+            <!-- Viewport Relativa com Botões de Rolagem Animados -->
+            <div class="ufo-slider-viewport">
+                <button type="button" class="ufo-arrow-btn ufo-arrow-left" id="btnSlideLeft" aria-label="Rolar para esquerda">&lsaquo;</button>
+                
+                <div class="ufo-compact-carousel" id="ufoVideoCarousel">
+                    <?php 
+                    if ( ! empty($yt_videos) ) :
+                        foreach ( $yt_videos as $vid ) :
+                            $hub_url = get_permalink( get_option('page_for_posts') ) ?: home_url('/noticias/');
+                    ?>
+                        <div class="ufo-compact-card-wrapper">
+                            <a href="<?php echo esc_url($hub_url); ?>" class="ufo-compact-video-card" data-videoid="<?php echo esc_attr($vid['video_id']); ?>">
+                                <div class="ufo-compact-media-box">
+                                    <div class="ufo-hover-thumb" style="background-image: url('<?php echo esc_url($vid['thumb']); ?>');"></div>
+                                    <div class="ufo-hover-iframe-container"></div>
+                                    <span class="ufo-compact-badge">🎬 Preview</span>
+                                </div>
+                                <div class="ufo-compact-card-info">
+                                    <span class="ufo-compact-channel">▶️ <?php echo esc_html($vid['channel']); ?></span>
+                                    <h3 class="ufo-compact-title"><?php echo esc_html(wp_trim_words($vid['title'], 8)); ?></h3>
+                                    <span class="ufo-compact-link">Acessar matéria &rarr;</span>
+                                </div>
+                            </a>
+                        </div>
+                    <?php 
+                        endforeach;
+                    else :
+                        echo '<p style="color: var(--ufo-text-muted);">Nenhum feed disponível no momento.</p>';
+                    endif;
+                    ?>
+                </div>
+
+                <button type="button" class="ufo-arrow-btn ufo-arrow-right" id="btnSlideRight" aria-label="Rolar para direita">&rsaquo;</button>
             </div>
         </section>
 
@@ -227,7 +231,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </section>
 
-        <!-- ZONA DE MONETIZAÇÃO 3: Pré-Jornalismo / Meio Inferior -->
+        <!-- ZONA DE MONETIZAÇÃO 3: Meio Inferior -->
         <div class="ufo-ad-placement ufo-ad-mid-bottom">
             <span class="ufo-ad-label">Publicidade</span>
             <div class="ufo-ad-box-centered">
@@ -324,7 +328,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
         </section>
 
         <!-- Banner CTA Final Otimizado Para Conversão -->
-        <section class="ufo-cta-section" style="margin-top: 70px; background: linear-gradient(135deg, var(--ufo-surface) 0%, rgba(0, 229, 255, 0.12) 100%); border: 1px solid var(--ufo-border); border-radius: 12px; padding: 55px 35px; text-align: center; box-shadow: 0 10px 35px rgba(0,0,0,0.6);">
+        <section id="cta" class="ufo-cta-section" style="margin-top: 70px; background: linear-gradient(135deg, var(--ufo-surface) 0%, rgba(0, 229, 255, 0.12) 100%); border: 1px solid var(--ufo-border); border-radius: 12px; padding: 55px 35px; text-align: center; box-shadow: 0 10px 35px rgba(0,0,0,0.6);">
             <h2 style="font-size: 36px; color: var(--ufo-accent-primary); margin-bottom: 15px; font-family: var(--ufo-font-heading);"><?php echo esc_html( $cta_title ); ?></h2>
             <p style="max-width: 700px; margin: 0 auto 32px; font-size: 18px; color: var(--ufo-text-main); line-height: 1.6;"><?php echo esc_html( $cta_desc ); ?></p>
             <a href="<?php echo esc_url( $cta_url ); ?>" target="_blank" class="ufo-btn ufo-btn-primary" style="font-size: 16px; padding: 15px 35px; border-radius: 50px; box-shadow: 0 0 25px rgba(0, 229, 255, 0.5); font-weight: 800;">
@@ -351,31 +355,28 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
 
 </main>
 
-<!-- Vanilla JS Parallax Engine & Video Hover Preview (Lighthouse 95+ Friendly) -->
+<!-- Vanilla JS Carousel & Hover Preview Engine -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Efeito Parallax Randômico no Scroll para Galeria de Canais (Ativo apenas no Desktop/Tablet para fluidez no Celular)
-    var grid = document.getElementById('ufoRandomGrid');
-    if (grid && window.innerWidth > 768) {
-        window.addEventListener('scroll', function() {
-            var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-            var items1 = grid.querySelectorAll('.ufo-parallax-item-1');
-            var items2 = grid.querySelectorAll('.ufo-parallax-item-2');
-            var items3 = grid.querySelectorAll('.ufo-parallax-item-3');
-            
-            var offset1 = (scrollY * 0.04) - 20;
-            var offset2 = (scrollY * -0.05) + 25;
-            var offset3 = (scrollY * 0.03) - 10;
+    // 1. Controle de Rolagem Horizontal Animada Para a Galeria Compacta de Vídeos
+    var carousel = document.getElementById('ufoVideoCarousel');
+    var btnLeft  = document.getElementById('btnSlideLeft');
+    var btnRight = document.getElementById('btnSlideRight');
 
-            items1.forEach(function(el) { el.style.transform = 'translateY(' + offset1 + 'px)'; });
-            items2.forEach(function(el) { el.style.transform = 'translateY(' + offset2 + 'px)'; });
-            items3.forEach(function(el) { el.style.transform = 'translateY(' + offset3 + 'px)'; });
-        }, { passive: true });
+    if (carousel && btnLeft && btnRight) {
+        btnLeft.addEventListener('click', function() {
+            var scrollAmount = window.innerWidth > 768 ? -750 : -280;
+            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+        btnRight.addEventListener('click', function() {
+            var scrollAmount = window.innerWidth > 768 ? 750 : 280;
+            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
     }
 
-    // 2. Preview de Vídeo On-Hover (Injeta Iframe mudo do YouTube no mouseenter)
-    var videoCards = document.querySelectorAll('.ufo-hover-video-card');
-    videoCards.forEach(function(card) {
+    // 2. Preview de Vídeo On-Hover e On-Touch (Injeta Iframe mudo em Cinema Mode no mouseenter)
+    var compactCards = document.querySelectorAll('.ufo-compact-video-card');
+    compactCards.forEach(function(card) {
         var videoId = card.getAttribute('data-videoid');
         var container = card.querySelector('.ufo-hover-iframe-container');
         var hoverTimeout;
@@ -389,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     iframe.setAttribute('allow', 'autoplay; encrypted-media');
                     container.appendChild(iframe);
                 }
-            }, 250); // Delay de 250ms
+            }, 200); 
         });
 
         card.addEventListener('mouseleave', function() {

@@ -1,186 +1,116 @@
-<div align="center">
-
-# 🛸 UFOTurismo Brasil • O Ecossistema Definitivo
-
-### **A Maior Plataforma Interativa de Ufologia, Pesquisa Anômala e Turismo Temático da América Latina**
-
-*Desenvolvida com Arquitetura Modular Nativa • High-Performance Web • Design Cinematográfico*
-
----
-
-![Versão Atual](https://img.shields.io/badge/Versão-3.0.0--PRO_%7C_Enterprise_Edition-00E5FF?style=for-the-badge&logo=wordpress&logoColor=black)
-![Performance Target](https://img.shields.io/badge/Lighthouse-95%2B_Performance-25D366?style=for-the-badge&logo=google-chrome&logoColor=white)
-![Independência](https://img.shields.io/badge/ACF_Pro-Zero_Dependência_(Nativo)-F2A900?style=for-the-badge)
-![Memória e Infra](https://img.shields.io/badge/PHP_Memory_Limit-1024_MB_(Elementor_Boost)-7057ff?style=for-the-badge&logo=docker&logoColor=white)
-![Conformidade](https://img.shields.io/badge/Monetização-AdSense_%26_AdManager_Ready-0B0E14?style=for-the-badge&logo=google-ads&logoColor=white)
-
 <p align="center">
-  <br>
-  <b><a href="#-visão-geral-e-filosofia">Visão Geral</a></b> •
-  <b><a href="#-arquitetura-e-engenharia-de-software">Arquitetura Core</a></b> •
-  <b><a href="#-design-system-e-dark-mode">Design Cinematográfico</a></b> •
-  <b><a href="#-ufo-studio--painel-do-cliente">UFO Studio (Admin UX)</a></b> •
-  <b><a href="#-central-multimídia--modo-cinema">Cinema Mode</a></b> •
-  <b><a href="#-monetização--growth">Monetização</a></b> •
-  <b><a href="#-infraestrutura-docker--elementor-1024m">DevOps & LAN</a></b>
-  <br><br>
+  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="UFOTurismo Banner" width="100%" style="border-radius: 12px; box-shadow: 0px 10px 30px rgba(0, 229, 255, 0.25);" />
 </p>
 
-</div>
+<h1 align="center">🛸 UFOTURISMO PRO &bull; ENTERPRISE MEDIA & ANOMALOUS RESEARCH ECOSYSTEM</h1>
+<h3 align="center">Plataforma Modular High-Performance de Turismo Ufológico, Divulgação Científica e Monetização High-RPM</h3>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Release-v3.2.0--PRO%20Media%20&%20Revamp-00E5FF?style=for-the-badge&logo=wordpress&logoColor=black" alt="Release v3.2.0-PRO" />
+  <img src="https://img.shields.io/badge/Architecture-Native%20Modular%20%28No%20ACF%29-F2A900?style=for-the-badge&logo=php&logoColor=black" alt="Architecture" />
+  <img src="https://img.shields.io/badge/UI/UX-Netflix%20Carousel%20&%20Parallax-7000FF?style=for-the-badge&logo=css3&logoColor=white" alt="UI UX" />
+  <img src="https://img.shields.io/badge/Monetization-4x%20Centered%20AdSense%20Zones-25D366?style=for-the-badge&logo=google-adsense&logoColor=white" alt="Monetization" />
+  <img src="https://img.shields.io/badge/Docker-1024MB%20PHP%20Memory-00E5FF?style=for-the-badge&logo=docker&logoColor=black" alt="Docker Memory" />
+</p>
 
 ---
 
-## 🌟 Visão Geral e Filosofia (v3.0.0-PRO)
+## 🌟 Resumo Executivo da Release `v3.2.0-PRO`
 
-O **UFOTurismo Brasil v3.0.0-PRO (Enterprise Edition)** é uma plataforma digital completa que combina um **portal jornalístico de alta credibilidade** (no padrão editorial de agências de exploração como *National Geographic*, *Discovery Channel* e *History*), uma **plataforma de expedições turísticas** com conversão direta, uma **comunidade colaborativa de avistamentos** e uma **central multimídia interativa de streaming**.
+A plataforma **UFOTurismo PRO** alcança um novo patamar tecnológico com o lançamento da **Versão 3.2.0-PRO (Enterprise Media Ecosystem)**. O sistema foi arquitetado em *Pair Programming de Elite*, focando em **zero latência, interatividade de streaming e máxima rentabilidade publicitária**.
 
-O ecossistema foi desenhado por uma equipe multidisciplinar reunindo os mais altos padrões de **UX/UI Design**, **SEO Técnico**, **Engenharia Full Stack**, **Growth Marketing** e **Segurança LGPD**, tudo orquestrado sobre uma fundação nativa de altíssimo desempenho no WordPress.
-
-> [!IMPORTANT]  
-> **Filosofia de Performance (Zero Bloatware):** Para garantir o carregamento ultraveloz exigido pelo algoritmo do Google e pelo **Lighthouse (>95)**, a arquitetura **aboliu qualquer dependência de plugins comerciais pesados como o ACF Pro**. Toda a modelagem de dados, campos customizados e inteligência de interface foram engenhados nativamente no núcleo PHP e JavaScript do projeto.
+O ecossistema unifica operações de **Turismo de Experiência (Expedições Noturnas FLIR & Guia de Campo)**, **Jornalismo Exopolítico Científico (Portal de Notícias)**, e **Acervos de Canais do YouTube / Feeds RSS ao vivo**, tudo rodando nativamente sem dependências pagas (Sem ACF Pro, Sem Chaves de API Pagas).
 
 ---
 
-## 🏗️ Arquitetura e Engenharia de Software
+## 💎 Grandes Diferenciais & Novas Tecnologias (v3.2.0-PRO)
 
-O ecossistema adota uma rigorosa **Separação de Responsabilidades (Separation of Concerns)**, protegendo o banco de dados e as funcionalidades de negócios caso o tema de visualização seja alterado ou reestruturado no futuro.
+### 1. 🎬 Central de Mídia Estilo Netflix & Carrossel Horizontal Compacto
+* **Galeria Compacta de 1/4 do Volume (Single Row Carousel):** Redesenhamos a vitrine de vídeos na Home para o padrão das grandes empresas de streaming. Os cards agora são compactos (`~240px x 135px`), enfileirados em uma única linha horizontal sem poluição visual.
+* **Navegação Animada Direcional:** O carrossel possui botões circulares flutuantes iluminados em Neon Cyan (`⟨` e `⟩`). Ao clicar, um motor Vanilla JS dispara uma animação de deslizamento suave por página (`scrollBy with smooth behavior`).
+* **Zoom Responsivo & Preview Mudo On-Hover (Cinema Mode):** Ao passar o mouse no desktop, o card executa um zoom tridimensional (`transform: scale(1.22)`), sobrepõe-se às camadas vizinhas e **informa o player nativo para reproduzir as cenas de investigação em modo mudo automaticamente**! Ao sair do card, a memória do processador e a bateria são aliviadas com a destruição limpa do iframe.
 
-```
-       ┌────────────────────────────────────────────────────────┐
-       │             ORQUESTRAÇÃO DOCKER (LOCAL & PRODUCTION)   │
-       │    [PHP Memory: 1024MB | Max Input Vars: 5000 | MySQL] │
-       └───────────────────────────┬────────────────────────────┘
-                                   │
-                 ┌─────────────────┴─────────────────┐
-                 ▼                                   ▼
- ┌───────────────────────────────┐   ┌───────────────────────────────┐
- │       PLUGIN: UFO CORE        │   │     TEMA: UFOTURISMO CHILD    │
- │ (Camada de Dados & Backend)   │   │  (Camada de Visualização & UI)│
- ├───────────────────────────────┤   ├───────────────────────────────┤
- │ 🛸 CPTs Nativos (Roteiros,    │   │ 🎨 Design System (Deep Space  │
- │    Notícias, Vídeos, Eventos, │   │    #0B0E14 & Ouro #F2A900)    │
- │    Enciclopédia Anômala)      │   │ 🎛️ UFO Studio (Metabox Visual)│
- │ 📂 Taxonomias Exclusivas      │   │ 🏠 Landing Page Conversiva   │
- │ 📨 Form de Relatos Frontend   │   │ 🎬 Central Multimídia Cinema  │
- │ 💰 Módulo UFO Ad Manager      │   │ ⚡ Vanilla JS sem jQuery      │
- │ 🔐 SSL Bypass & API Utilities │   │ 📱 Responsividade Extrema    │
- └───────────────────────────────┘   └───────────────────────────────┘
-```
+### 2. 📺 UFO Studio Admin Customizer & RSS Helper (Nativo no Tema)
+* **Gestão Total na UI do WordPress:** Através do painel **Páginas &rarr; Portal UFOTurismo - Início**, o administrador edita cada elemento da Home Page por meio de uma interface customizada em Dark Mode.
+* **Ingestão Inteligente de Feeds (Sem Google Cloud API Key):** O novo arquivo `inc/yt-rss-helper.php` processa handles (`@jessemichelsclips`), links de canal e Feeds RSS XML via módulo nativo `fetch_feed()` do WordPress.
+* **Acervo Jesse Michels / UAP Research:** Por padrão de fábrica, a plataforma incorpora automaticamente os conteúdos e atualizações da comunidade do investigador **Jesse Michels**, garantindo credibilidade internacional de nível NatGeo/Discovery logo na instalação.
+* **Transiente Caching Ultrarrápido:** Todos os feeds XML requisitados externos recebem cache em transientes por 4 horas no WordPress, garantindo **Nota 95+ no Google Lighthouse** sem consultas excessivas de rede.
 
----
+### 3. 🛸 Cabeçalho Fixo (Sticky Nav) & Hero Centralizado
+* **Header Fixo Glassmorphic:** O cabeçalho mantém-se no topo superior em scroll permanente (`position: sticky; z-index: 99999`), com fundo escovado e efeito de desfoque de 16px (`backdrop-filter: blur(16px)`).
+* **Menu de Botões / Pills Centralizado:** No desktop, a navegação principal fica precisamente ao centro, em formato de pílulas interativas, separando instantaneamente as áreas do portal (Início, Cinema & Vídeos, Expedições, Portal Notícias, Agenda e Comunidade).
+* **Hero Banner Matemático:** Estruturado em Flexbox no desktop e mobile, centralizando H1 de impacto editorial e botões de chamada com ergonomia imbatível.
 
-## 🎨 Design System e Dark Mode ("Deep Space & Mystery")
-
-A identidade visual foi forjada para impressionar com um visual limpo, misterioso e elegante. Operamos com variáveis nativas `:root` aplicadas de forma consistente no CSS, garantindo uma leitura descansada em smartphones e tablets em cenários noturnos:
-
-| Token / Paleta | Código Cor | Aplicação Visual no Ecossistema |
-| :--- | :---: | :--- |
-| **Deep Space** | `#0B0E14` | Fundo principal da aplicação. Evita o cansaço visual do preto RGB(0,0,0). |
-| **Surface Dark** | `#151A22` | Cards de Roteiros, Mega Menus e blocos modulares interativos. |
-| **NatGeo Gold** | `#F2A900` | Cor da credibilidade científica. Badges de preço, alertas e destaques da marca. |
-| **Neon Sci-Fi** | `#00E5FF` | Elementos de radar, botões de alta conversão (*Glow Effect*) e foco no Modo Cinema. |
-| **Ice White** | `#E2E8F0` | Texto principal com contraste de alta acessibilidade para leituras longas. |
-| **Slate Muted** | `#94A3B8` | Subtítulos, datas jornalísticas, autores e legendas de metadados. |
-
-### 🖋️ Tipografia de Triplo Impacto
-* **Outfit**: Família moderna de forte apelo estético para títulos de impacto (H1 a H6) e botões de ação.
-* **Inter**: Interface de navegação (UI), relógios de expedição, agendas e formulários.
-* **Lora (Serif)**: Dedicada exclusivamente para o corpo literário de reportagens jornalísticas e relatos antropológicos, oferecendo ritmo imersivo de leitura.
+### 4. 📈 Monetização Centrada de Extremas Taxas RPM (Google AdSense & Ad Manager)
+* **4 Zonas Estratégicas e TUDO CENTRALIZADO:**
+  1. **Top Leaderboard (Above The Fold):** Máxima visibilidade logo após o Hero.
+  2. **In-Feed Sponsor (Entre Galerias):** Captura a atenção de leitores e espectadores engajados.
+  3. **Mid-Conversion Placement:** Posicionado antes do portal de notícias e após roteiros.
+  4. **Rodapé de Fechamento (High Completion RPM):** Antes do footer e na saída do CTA do WhatsApp.
+* **Responsividade Publicitária Adaptável:** Em computadores, os contêineres exibem leaderboards (`728x90`). Em smartphones e tablets (`< 768px`), o layout transiciona harmonicamente para o formato *Medium Rectangle* (`300x250`), o bloco que detém o **maior CTR mundial em plataformas móveis**.
+* **Showcase Placeholders para Apresentação Executiva:** Na ausência de scripts ad-server rodando no ambiente local/staging, o layout exibe um elegante contêiner tracejado dourado em gradiente espaciado, permitindo apresentações impecáveis a investidores e parceiros de negócio.
 
 ---
 
-## 🎛️ UFO Studio — Construtor Visual do Cliente (Admin UX)
+## 📐 Arquitetura do Sistema & Módulos do Tema Child (`ufoturismo-child`)
 
-Para presentear administradores e editores do cliente com a melhor experiência de gestão, desenvolvemos o **UFO Studio** no WordPress Admin. Ele permite editar a Home Page de forma incrivelmente simples e visual, substituindo complexos contrutores em bloco quando a precisão conversiva é necessária.
-
-### ✨ O que o cliente faz no UFO Studio (Aba *Páginas &rarr; Portal UFOTurismo - Início*):
-1. **Edição do Hero Banner Topo**: Alteração imediata da chamada H1 principal, Subtítulo editorial no estilo Discovery e customização simultânea dos Textos e URLs dos Botões de Ação de Vendas e Portal.
-2. **Integração com Biblioteca do WordPress**: Clicando em **"📷 Selecionar na Biblioteca"**, o cliente altera o fundo espacial ou serrano do Hero Banner usando fotos do próprio acervo de mídia do WordPress com conversão rápida.
-3. **Chamada de Conversão Final (WhatsApp & Comunidade)**: Modificação da vitrine de encerramento da Home, interligando direções comerciais de roteiros (ex: *WooCommerce Bookings* ou atendimento WhatsApp/Discord) de forma independente.
-
-> [!TIP]
-> **Acesso Instantâneo e Descomplicado:** O UFO Studio conta com estilos CSS escuros exclusivos injetados diretamente no WordPress Admin (`#ufo_home_custom_fields`), tornando o painel do cliente uma extensão harmoniosa de toda a marca.
-
----
-
-## 🎬 Central Multimídia & Modo Cinema ("NatGeo Stream")
-
-O ecossistema embarca uma verdadeira central de documentários, vídeos de expedição em campo e congressos na rota `/videos/` (Página **"Vídeos & Playlists"**).
-
-* **Integração em Lista Contínua (`PLdxIk4TWVBzFOnxREFf_XGN9mksdgSvHs`):** O player principal de 16:9 é renderizado diretamente do feed contínuo de Playlists do YouTube. Ao atualizar seu canal na web, o site já transmite os vídeos atualizados na hora.
-* **Imersão Cinema Mode (Dark Dimming):** Ao clicar no botão **"🎬 Ativar Modo Cinema"**, uma cortina escurecida com desfoque (*backdrop blur* a 92% de opacidade) envolve toda a página de fundo, elevando o foco exclusivamente para o player envolto num brilho neon ciano.
-* **Catálogo Interativo sem Reload:** Desenvolvido com *Vanilla JavaScript* de zero latência. Os usuários navegam pelo acervo abaixo da tela, alternando entre matérias exopolíticas e filmagens em Jureia/Peruíbe. Ao selecionar qualquer card, o player superior muda instantaneamente de vídeo e título com rolagem suave, mantendo o usuário imerso por horas.
-
----
-
-## 💰 Monetização Inteligente & Conformidade LGPD
-
-A rentabilização do tráfego foi desenhada milimetricamente por especialistas em **Growth & Google AdSense**:
-
-* **Módulo UFO Ad Manager**: Disponível no menu administrativo lateral. Permite injetar programaticamente os scripts globais de anúncios sem prejudicar o tempo de processamento de Scripts (*Main Thread Optimization*).
-* **Posicionamento de Alto RPM**: Banners injetados estrategicamente Above the Fold (acima da dobra da Home), In-Article (meio e final de leitura de postagens blog/relatos) e no rodapé do acervo multimídia.
-* **Compliance Absoluto (LGPD / Cookies / AdSense Approved)**: 
-  A plataforma gerou programaticamente **14 Páginas Institucionais Obrigatórias** (Quem Somos, Equipe, Contato, Política Editorial, Cookies, LGPD, Termos de Uso, Disclaimer, Anuncie, Parceiros e FAQ), todas conectadas automaticamente a um Menu Footer de Alta Confiança.
-
----
-
-## 🚀 DevOps, Docker Engine (1024MB) & Rede Local LAN
-
-Para que equipes de redação, diretores e desenvolvedores parceiros possam testar o site simultaneamente em redes locais com o poder do **Elementor** rodando liso sem engasgar, fortalecemos a infraestrutura técnica com recursos de servidor profissional (*cPanel Pro Specs*):
-
-### 1. Super-Configuração PHP e Memória (v3.0.0-PRO)
-Implementamos uma alocação massiva de recursos no contêiner e no `uploads.ini`, prevenindo qualquer travamento ao lidar com construtores visuais pesados ou upload de vídeos de relatos:
-* ⚡ **`WP_MEMORY_LIMIT` & `WP_MAX_MEMORY_LIMIT`**: **`1024M` (1 GB RAM)**
-* ⚡ **`memory_limit` PHP**: **`1024M`** | **Container RAM Ceiling**: **`1536M`** (CPUs: 1.50)
-* ⚡ **`max_input_vars`**: **`5000`** *(Recomendado oficialmente pelo Elementor Pro para páginas complexas)*
-* ⚡ **`upload_max_filesize` & `post_max_size`**: **`256M`**
-
-### 2. Rede Local Colaborativa (Cross-LAN Bridging)
-Adeus aos links quebrados no celular e nos navegadores da sua equipe quando acessam fora de seu monitor:
-O motor core foi enriquecido com reescrita dinâmica de `HTTP_HOST` no `wp-config.php` juntamente de `define('COOKIE_DOMAIN', false)`. 
-* 👉 **Acesso Externo pelo Wi-Fi / LAN:** **`http://192.168.15.3:8000`** *(ou IP da sua máquina host)*
-* O site, Dark Mode, Central de Cinema e **até mesmo o Login do Painel Admin (`/wp-admin`)** operam lisos no smartphone e computadores parceiros de sua casa ou escritório!
-
----
-
-## 🛠️ Guia Rápido de Instalação e Operação
-
-Siga os passos abaixo para instanciar ou reiniciar o ecossistema no terminal Windows/PowerShell via Docker Desktop:
-
-```powershell
-# 1. Acesse o diretório raiz do ecossistema no Windows
-cd C:\Users\luxx\Documents\Trampos\Guarau\UFO
-
-# 2. Inicialize ou atualize os contêineres MySQL e WordPress com 1024MB
-docker-compose up -d
-
-# 3. Para conferir o status ao vivo e logs de alta velocidade
-docker logs -f ufo_wp
-
-# 4. (Opcional) Reiniciar o motor da web para flush rápido de cache
-docker-compose restart wordpress
+```mermaid
+graph TD
+    A[WordPress Core / Docker Container ufo_wp] --> B[Hello Elementor Parent Theme]
+    A --> C[UFO Core Plugin - CPTs Roteiros & Eventos + Ad Manager]
+    B --> D[UFOTurismo Child Theme PRO]
+    D --> E["inc/home-metabox.php (UFO Studio Admin Customizer)"]
+    D --> F["inc/yt-rss-helper.php (Feed Engine & Transience Cache)"]
+    D --> G["header.php (Sticky Top Nav & Centered Area Pills)"]
+    D --> H["front-page.php (Landing Page Monetizada & Compact Carousel)"]
+    D --> I["home.php (Portal Jornalístico & Acervo de Canais)"]
+    D --> J["archive-videos.php (Central de Vídeos com Playlist Oficial)"]
+    D --> K["style.css (Design System Deep Space & Responsividade Extrema)"]
 ```
 
----
-
-## 🏆 Checklist Executivo do Ecossistema v3.0.0-PRO
-
-- [x] **Arquitetura Desacoplada:** Plugin *UFO Core* com CPTs nativos + Tema *UFO Child* (Hello Elementor) integrados.
-- [x] **Zero Dependências:** Substituição completa de licenças do ACF Pro pelo *UFO Studio Nativo*.
-- [x] **Design NatGeo / Sci-Fi:** Paleta Deep Space, botões Ciany Glow e contraste tipográfico otimizado.
-- [x] **Interatividade Vídeo:** Player Cinema Mode integrando Playlist oficial com comutação Instantânea sem Reload.
-- [x] **Comunidade Colaborativa:** Formulário de envio de relatos e provas via shortcode `[ufo_relatos_form]`.
-- [x] **Alta Lucratividade:** Posições de anúncios Ad Manager / AdSense nativas e otimizadas para alto RPM.
-- [x] **Segurança Jurídica:** 14 Páginas institucionais LGPD e Editorial redigidas e fixadas no Rodapé do Portal.
-- [x] **Potência Máxima no Docker:** Ambiente acelerado com **1024MB de Memória RAM PHP** e **5000 Input Vars**.
-- [x] **Colaboração Aberta (LAN):** Compatibilidade 100% resolvida para celulares e micros de rede via IP `192.168.15.3:8000`.
+### 📁 Mapeamento de Arquivos Estruturais
+| Arquivo / Diretório | Função Técnica & Módulos |
+| :--- | :--- |
+| `front-page.php` | Landing Page estática conversiva. Conecta o construtor nativo *UFO Studio* à vitrine de vídeos compactos, carrossel de comunidade, expedições, agenda e 4 áreas centralizadas de Ads. |
+| `header.php` | Cabeçalho fixo com logotipo na esquerda, botões de pílula centralizados para todas as áreas da plataforma e chamada de ação VIP à direita. |
+| `home.php` | Portal Jornalístico do WordPress. Agrega um diretório com os canais parceiros sob monitoramento (Jesse Michels Clips) e apresenta reportagens de investigação na íntegra. |
+| `archive-videos.php` | Central Cinematográfica com player em Cinema Mode para a Playlist Oficial do YouTube e troca interativa de episódios sem recarga de tela. |
+| `inc/home-metabox.php` | Interface *UFO Studio* injetada no WordPress Admin. Elimina a necessidade de plugins de campos personalizados pagos. |
+| `inc/yt-rss-helper.php` | Processador nativo de feeds XML, extração RegEx de IDs do YouTube e fallbacks inteligentes com cache transiente. |
+| `style.css` | Design System contendo Tokens CSS (Ouro Eclipso `#F2A900`, Ciany Glow `#00E5FF`, Dark Surface `#0B0E14`), regras de zoom 1/4 e breakpoints Mobile-First. |
 
 ---
 
-<div align="center">
-  <br>
-  <p><b>UFOTurismo Brasil • Todos os Direitos Reservados</b><br>
-  <i>Desenvolvido em Pair Programming pela equipe Antigravity AI & UFOTurismo</i> 🛸✨
-  </p>
-  <br>
-</div>
+## 🛠️ Especificações de Infraestrutura & Rede (Docker & LAN)
+
+### Parâmetros de Recursos Ampliados
+Para suportar edição intensa com construtores visuais e alto processamento em lote de mídias, o ambiente de desenvolvimento local via **Docker** (`ufo_wp` e `ufo_db`) foi otimizado nos arquivos `docker-compose.yml` e `uploads.ini`:
+* **Container Memory Limit:** `1536MB` (1.5 GB dedicados de RAM no Docker)
+* **PHP Memory Limit:** `1024M` (1 GB para processos WordPress)
+* **Max Input Variables:** `5000`
+* **Upload Max Filesize / Post Max Size:** `64M`
+* **Network Dynamic Injection:** Configurações no `wp-config.php` habilitam navegação na rede LAN a partir de smartphones e dispositivos convidados através do endereço fixado **`http://192.168.15.3:8000/`**.
+
+---
+
+## 🚀 Como Executar o Projeto & Comandos Git de Trabalho
+
+1. **Subir o Ambiente Otimizado (Terminal Windows/PowerShell):**
+   ```powershell
+   cd C:\Users\luxx\Documents\Trampos\Guarau\UFO
+   docker compose up -d
+   ```
+2. **Acesso no Computador ou Celular (Rede Wi-Fi):**
+   * **Frontend / Portal:** `http://192.168.15.3:8000/` (ou `http://localhost:8000/`)
+   * **Painel Administrativo:** `http://192.168.15.3:8000/wp-admin/`
+3. **Fluxo de Trabalho Git (Comandos em Cadeia no PowerShell):**
+   ```powershell
+   git add -A; git commit -m "feat(v3.2.0-PRO): enterprise release"; git push
+   ```
+
+---
+
+<p align="center">
+  <b>Engenharia de Software Exclusiva &bull; Desenvolvida com Antigravity & AI Pair Programming</b><br>
+  <i>"A Verdade Está Lá Fora. E Nós Levamos Você Até Ela."</i> 🛸👽🖖
+</p>

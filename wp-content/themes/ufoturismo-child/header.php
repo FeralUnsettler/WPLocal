@@ -1,9 +1,9 @@
 <?php
 /**
- * The template for displaying the header
+ * The template for displaying the fixed header with centered platform area buttons
  */
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 ?>
 <!doctype html>
@@ -17,8 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<header class="ufo-site-header">
+<header class="ufo-site-header ufo-fixed-header">
     <div class="ufo-header-container">
+        <!-- Logotipo Oficial no Cabeçalho -->
         <div class="ufo-site-branding">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ufo-logo">
                 <span class="ufo-logo-icon">🛸</span>
@@ -26,18 +27,20 @@ if ( ! defined( 'ABSPATH' ) ) {
             </a>
         </div>
 
-        <nav class="ufo-main-navigation" role="navigation">
-            <?php
-            wp_nav_menu( array(
-                'theme_location' => 'primary',
-                'menu_id'        => 'primary-menu',
-                'fallback_cb'    => false,
-            ) );
-            ?>
+        <!-- Menu com Botões das Áreas da Plataforma Centralizados para Desktop -->
+        <nav class="ufo-platform-nav" role="navigation" aria-label="Menu Principal da Plataforma">
+            <ul class="ufo-nav-buttons">
+                <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ufo-nav-pill">🌌 Início</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/videos/' ) ); ?>" class="ufo-nav-pill">🎬 Cinema & Vídeos</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/#roteiros' ) ); ?>" class="ufo-nav-pill">🛸 Expedições</a></li>
+                <li><a href="<?php echo esc_url( get_permalink( get_option('page_for_posts') ) ?: home_url( '/noticias/' ) ); ?>" class="ufo-nav-pill">📰 Portal Notícias</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/#eventos' ) ); ?>" class="ufo-nav-pill">🗓️ Agenda</a></li>
+            </ul>
         </nav>
 
+        <!-- Ação VIP / Comunidade no Canto Direito -->
         <div class="ufo-header-actions">
-            <a href="#eventos" class="ufo-btn ufo-btn-primary">Próximos Eventos</a>
+            <a href="https://wa.me/5511999999999" target="_blank" class="ufo-btn ufo-btn-vip">💬 VIP & Fórum</a>
         </div>
     </div>
 </header>

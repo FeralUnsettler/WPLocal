@@ -1067,3 +1067,294 @@ a:hover {
         padding: 30px 15px !important;
     }
 }
+
+/* ==== CABEÇALHO FIXO COM MENU CENTRALIZADO (STICKY TOP NAV) ==== */
+.ufo-fixed-header {
+    position: sticky !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99999 !important;
+    background: rgba(11, 14, 20, 0.92) !important;
+    backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid #2A313C !important;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.65);
+    padding: 12px 0 !important;
+    transition: all 0.3s ease;
+}
+
+.ufo-platform-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    margin: 0 25px;
+}
+
+.ufo-nav-buttons {
+    display: flex;
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 8px;
+    align-items: center;
+}
+
+.ufo-nav-pill {
+    display: inline-block;
+    padding: 7px 16px;
+    color: var(--ufo-text-main) !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ufo-nav-pill:hover, .ufo-nav-pill:focus {
+    color: #fff !important;
+    background: rgba(0, 229, 255, 0.12);
+    border-color: var(--ufo-accent-sci);
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.35);
+    transform: translateY(-2px);
+}
+
+.ufo-btn-vip {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    font-size: 12px !important;
+    padding: 8px 18px !important;
+    border-radius: 20px !important;
+    font-weight: 800 !important;
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+}
+
+.ufo-btn-vip:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.75);
+}
+
+/* ==== HERO CENTRALIZADO PARA DESKTOP ==== */
+.ufo-hero-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 75vh;
+}
+
+.ufo-hero-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(11, 14, 20, 0.6) 0%, rgba(11, 14, 20, 0.88) 100%);
+    padding: 60px 20px;
+}
+
+.ufo-centered-content {
+    margin: 0 auto !important;
+    max-width: 900px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center !important;
+}
+
+.ufo-actions-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* ==== CARROSSEL DE VÍDEOS COMPACTO (1/4 DO TAMANHO, LINHA ÚNICA COM ZOOM RESPONSIVO) ==== */
+.ufo-slider-viewport {
+    position: relative;
+    width: 100%;
+    padding: 10px 50px; /* Margem lateral reservada para os botões animados */
+    overflow: visible;
+}
+
+.ufo-compact-carousel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 18px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 20px 10px 30px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.ufo-compact-carousel::-webkit-scrollbar {
+    display: none; /* Deixa o trilho oculto no estilo Netflix */
+}
+
+.ufo-compact-card-wrapper {
+    flex: 0 0 240px; /* Largura compactada exatamente para ~1/4 do volume antigo */
+    scroll-snap-align: start;
+    position: relative;
+    transition: z-index 0s;
+}
+
+.ufo-compact-card-wrapper:hover {
+    z-index: 50; /* Garante que o card em zoom passe por cima dos vizinhos */
+}
+
+.ufo-compact-video-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--ufo-surface);
+    border: 1px solid var(--ufo-border);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+}
+
+.ufo-compact-video-card:hover {
+    transform: scale(1.22) translateY(-6px);
+    border-color: var(--ufo-accent-sci);
+    box-shadow: 0 15px 40px rgba(0, 229, 255, 0.45);
+}
+
+.ufo-compact-media-box {
+    position: relative;
+    width: 100%;
+    height: 135px;
+    background: #000;
+    overflow: hidden;
+}
+
+.ufo-compact-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    z-index: 3;
+    background: rgba(0, 229, 255, 0.95);
+    color: #000;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ufo-compact-card-info {
+    padding: 14px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 95px;
+}
+
+.ufo-compact-channel {
+    font-size: 10px;
+    color: var(--ufo-accent-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.ufo-compact-title {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    color: #fff !important;
+    margin: 0 0 10px 0 !important;
+    font-family: var(--ufo-font-body) !important;
+    font-weight: 600 !important;
+}
+
+.ufo-compact-link {
+    font-size: 11px;
+    color: var(--ufo-text-muted);
+    font-weight: 600;
+}
+
+/* Botões Animados Horizontais (< e >) */
+.ufo-arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #151A22;
+    border: 2px solid var(--ufo-accent-sci);
+    color: var(--ufo-accent-sci);
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 60;
+    box-shadow: 0 0 18px rgba(0, 229, 255, 0.35);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ufo-arrow-left {
+    left: 0;
+}
+
+.ufo-arrow-right {
+    right: 0;
+}
+
+.ufo-arrow-btn:hover, .ufo-arrow-btn:focus {
+    background: var(--ufo-accent-sci);
+    color: #000;
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 0 28px rgba(0, 229, 255, 0.85);
+    outline: none;
+}
+
+/* ==== AJUSTES DE RESPONSIVIDADE E ZOOM NO MOBILE/TABLET ==== */
+@media (max-width: 1100px) {
+    .ufo-platform-nav {
+        display: none; /* Em telas médias/menores preserva o logo e o botão de ação VIP sem quebrar linha */
+    }
+}
+
+@media (max-width: 768px) {
+    .ufo-slider-viewport {
+        padding: 10px 0; /* Remove margem lateral no celular para aproveitamento máximo da tela */
+    }
+    .ufo-arrow-btn {
+        display: none; /* No touch mobile o usuário desliza naturalmente na tela */
+    }
+    .ufo-compact-card-wrapper {
+        flex: 0 0 210px; /* Escala ergonomicamente e permite visualizar o início do próximo card */
+    }
+    .ufo-compact-video-card:active {
+        transform: scale(1.06); /* Zoom suave ao tocar na tela touch */
+        border-color: var(--ufo-accent-primary);
+    }
+    .ufo-hero-centered {
+        min-height: 55vh;
+    }
+    .ufo-hero-title {
+        font-size: 32px !important;
+    }
+    .ufo-hero-subtitle {
+        font-size: 16px !important;
+    }
+}
