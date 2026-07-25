@@ -73,7 +73,18 @@ graph TD
 
 ---
 
+## 🚀 Kit Pronto de Deploy em Produção na Hostinger (`https://guaraufo.adzon.com.br/`)
+
+Preparamos uma estrutura automatizada e completa com 100% das URLs, mídias e tabelas já adaptadas ao domínio oficial em produção:
+* **Pasta Oficial do Pacote:** [`deploy_hostinger_guaraufo/`](file:///C:/Users/luxx/Documents/Trampos/Guarau/UFO/deploy_hostinger_guaraufo)
+* **Banco de Dados Compatibilizado:** [`guaraufo_production_db.sql`](file:///C:/Users/luxx/Documents/Trampos/Guarau/UFO/deploy_hostinger_guaraufo/guaraufo_production_db.sql)
+* **Tema Filho Customizado:** [`ufoturismo-child.zip`](file:///C:/Users/luxx/Documents/Trampos/Guarau/UFO/deploy_hostinger_guaraufo/ufoturismo-child.zip)
+* **Acervo de Mídias e Imagens:** [`uploads-media-backup.zip`](file:///C:/Users/luxx/Documents/Trampos/Guarau/UFO/deploy_hostinger_guaraufo/uploads-media-backup.zip)
+* **Manual Completo Passo a Passo para cPanel / hPanel:** 👉 [**LER O GUIA DE DEPLOY NA HOSTINGER**](file:///C:/Users/luxx/Documents/Trampos/Guarau/UFO/deploy_hostinger_guaraufo/GUIA_OFICIAL_DEPLOY_HOSTINGER.md)
+
+---
+
 <p align="center">
   <b>Engenharia de Software Exclusiva &bull; Desenvolvida com Antigravity & AI Pair Programming</b><br>
-  <i>"A Verdade Está Lá Fora. E Nós Levamos Você Até Ela."</i> 🛸🇧🇷🖖
+  <i>"A Verdade Está Lá Fora... E Agora no Domínio guaraufo.adzon.com.br!"</i> 🛸🇧🇷🖖
 </p>

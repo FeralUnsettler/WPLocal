@@ -41,3 +41,8 @@ wp-content/blogs.dir/
 Thumbs.db
 .vscode/
 .idea/
+
+# Hostinger deploy binaries (keep safely on local disk, ignore in git to prevent HTTP 408 upload timeout)
+deploy_hostinger_guaraufo/*.sql
+deploy_hostinger_guaraufo/*.zip
+
