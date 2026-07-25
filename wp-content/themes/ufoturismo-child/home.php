@@ -1,7 +1,7 @@
 <?php
 /**
  * O template principal para o Portal Jornalístico (Página de Notícias & Central de Canais)
- * Exibe as notícias do portal e agrega todos os canais do YouTube/RSS utilizados atualmente na plataforma
+ * Exibe as notícias do portal e agrega todos os canais com Zonas Centrais de Publicidade Ad Manager
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,24 +26,27 @@ $yt_posts      = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_c
         <div class="ufo-hero-overlay" style="min-height: 400px;">
             <div class="ufo-container ufo-hero-content" style="text-align: center; max-width: 900px;">
                 <span class="ufo-badge-playlist">📰 CENTRAL JORNALÍSTICA & MÍDIA INDEPENDENTE</span>
-                <h1 class="ufo-hero-title" style="font-size: 46px;">Portal de Notícias & Investigação Anômala</h1>
-                <p class="ufo-hero-subtitle">Acervo completo de reportagens, documentos desclassificados efeeds em tempo real de pesquisadores internacionais (Jesse Michels, AARO, Colares & Exopolítica).</p>
+                <h1 class="ufo-hero-title" style="font-size: 44px;">Portal de Notícias & Investigação Anômala</h1>
+                <p class="ufo-hero-subtitle">Acervo completo de reportagens, documentos desclassificados e feeds em tempo real de pesquisadores internacionais (Jesse Michels, AARO, Colares & Exopolítica).</p>
             </div>
         </div>
     </section>
 
     <div class="ufo-container ufo-home-container">
 
-        <!-- Ad Placement: Topo de Notícias -->
-        <div class="ufo-ad-placement ufo-ad-home-top" style="margin-bottom: 50px;">
-            <?php 
-                $ad_top = get_option('ufo_ad_in_article_top');
-                if ( ! empty($ad_top) ) {
-                    echo $ad_top;
-                } else {
-                    echo '<!-- UFO AdManager: Topo da Central de Notícias -->';
-                }
-            ?>
+        <!-- ZONA DE MONETIZAÇÃO 1: Topo da Central de Notícias (Centralizada e Responsiva) -->
+        <div class="ufo-ad-placement ufo-ad-home-top" style="margin-bottom: 55px;">
+            <span class="ufo-ad-label">Patrocinado</span>
+            <div class="ufo-ad-box-centered">
+                <?php 
+                    $ad_top = get_option('ufo_ad_in_article_top');
+                    if ( ! empty($ad_top) ) {
+                        echo $ad_top;
+                    } else {
+                        echo '<div class="ufo-ad-placeholder">📢 Google AdSense / Ad Manager • Topo Central de Notícias • High RPM Placement</div>';
+                    }
+                ?>
+            </div>
         </div>
 
         <!-- Seção: Todos os Canais e Vídeos em Destaque na Plataforma -->
@@ -82,6 +85,21 @@ $yt_posts      = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_c
                 ?>
             </div>
         </section>
+
+        <!-- ZONA DE MONETIZAÇÃO 2: Meio do Portal Jornalístico -->
+        <div class="ufo-ad-placement ufo-ad-in-feed" style="margin: 60px auto;">
+            <span class="ufo-ad-label">Publicidade</span>
+            <div class="ufo-ad-box-centered">
+                <?php 
+                    $ad_mid = get_option('ufo_ad_in_article_mid');
+                    if ( ! empty($ad_mid) ) {
+                        echo $ad_mid;
+                    } else {
+                        echo '<div class="ufo-ad-placeholder">📢 Google Ad Manager • Meio da Central Jornalística (Otimizado Para Leitura)</div>';
+                    }
+                ?>
+            </div>
+        </div>
 
         <!-- Seção: Posts Especiais e Comunidade -->
         <section class="ufo-home-section" style="margin-top: 60px;">
@@ -152,14 +170,19 @@ $yt_posts      = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_c
             </div>
         </section>
 
-        <!-- Ad Placement: Rodapé de Notícias -->
-        <div class="ufo-ad-placement ufo-ad-home-bottom" style="margin-top: 50px;">
-            <?php 
-                $ad_bottom = get_option('ufo_ad_in_article_bottom');
-                if ( ! empty($ad_bottom) ) {
-                    echo $ad_bottom;
-                }
-            ?>
+        <!-- ZONA DE MONETIZAÇÃO 3: Rodapé do Portal de Notícias -->
+        <div class="ufo-ad-placement ufo-ad-home-bottom" style="margin-top: 60px;">
+            <span class="ufo-ad-label">Patrocinado</span>
+            <div class="ufo-ad-box-centered">
+                <?php 
+                    $ad_bottom = get_option('ufo_ad_in_article_bottom');
+                    if ( ! empty($ad_bottom) ) {
+                        echo $ad_bottom;
+                    } else {
+                        echo '<div class="ufo-ad-placeholder">📢 Google AdSense / Ad Manager • Rodapé do Portal Jornalístico</div>';
+                    }
+                ?>
+            </div>
         </div>
 
     </div>

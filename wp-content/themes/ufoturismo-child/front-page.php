@@ -1,8 +1,7 @@
 <?php
 /**
- * O template para exibir a Página Inicial (Landing Page Monetizada)
- * Consome os campos customizados editados no WordPress Admin (UFO Turismo Studio)
- * Inclui Galeria Parallax Randômica do YouTube e Carrossel Horizontal de Posts
+ * O template para exibir a Página Inicial (Landing Page Monetizada & Responsiva)
+ * Consome os campos do UFO Turismo Studio com 4 Zonas Centradas para Google AdSense & Ad Manager
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -42,7 +41,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
 
 <main id="primary" class="ufo-site-main">
 
-    <!-- Hero Section Customizável -->
+    <!-- Hero Section Customizável e Responsiva -->
     <section class="ufo-home-hero" style="background-image: url('<?php echo esc_url( $hero_bg ); ?>');">
         <div class="ufo-hero-overlay">
             <div class="ufo-container ufo-hero-content">
@@ -62,24 +61,27 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
         
         <!-- Conteúdo Estático adicional da página (Se criado via Gutenberg ou Elementor) -->
         <?php if ( have_posts() && get_the_content() ) : while ( have_posts() ) : the_post(); ?>
-            <div class="ufo-page-content" style="margin-bottom: 40px;">
+            <div class="ufo-page-content" style="margin-bottom: 30px;">
                 <?php the_content(); ?>
             </div>
         <?php endwhile; endif; ?>
 
-        <!-- Ad Placement: Topo da Home (Otimizado AdSense / Google Ad Manager) -->
-        <div class="ufo-ad-placement ufo-ad-home-top" style="margin: 20px 0 50px;">
-            <?php 
-                $ad_home_top = get_option('ufo_ad_home_top');
-                if ( ! empty($ad_home_top) ) {
-                    echo $ad_home_top;
-                } else {
-                    echo '<!-- UFO AdManager: Bloco Superior Reservado Para High-RPM Ads -->';
-                }
-            ?>
+        <!-- ZONA DE MONETIZAÇÃO 1: Topo da Home (Above The Fold - 728x90 / 300x250 Mobile) -->
+        <div class="ufo-ad-placement ufo-ad-home-top">
+            <span class="ufo-ad-label">Patrocinado</span>
+            <div class="ufo-ad-box-centered">
+                <?php 
+                    $ad_top = get_option('ufo_ad_home_top');
+                    if ( ! empty($ad_top) ) {
+                        echo $ad_top;
+                    } else {
+                        echo '<div class="ufo-ad-placeholder">📢 Google AdSense / Ad Manager • Top Leaderboard (728x90) • High RPM Placement</div>';
+                    }
+                ?>
+            </div>
         </div>
 
-        <!-- NEW: Galeria de Notícias & Vídeos com Parallax Randômico e Hover Preview (YouTube Canais) -->
+        <!-- Galeria de Notícias & Vídeos com Parallax Randômico (Canais do YouTube / Jesse Michels) -->
         <section class="ufo-home-section ufo-parallax-wrapper">
             <div class="ufo-section-header">
                 <div>
@@ -125,8 +127,23 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </section>
 
-        <!-- NEW: Galeria Parallax Horizontal Para Posts e Comunidades (Style Jesse Michels Community) -->
-        <section class="ufo-home-section" style="margin-top: 60px;">
+        <!-- ZONA DE MONETIZAÇÃO 2: Meio de Página / Entre-Galerias -->
+        <div class="ufo-ad-placement ufo-ad-in-feed">
+            <span class="ufo-ad-label">Publicidade</span>
+            <div class="ufo-ad-box-centered">
+                <?php 
+                    $ad_feed = get_option('ufo_ad_in_article_top');
+                    if ( ! empty($ad_feed) ) {
+                        echo $ad_feed;
+                    } else {
+                        echo '<div class="ufo-ad-placeholder">📢 Google Ad Manager • In-Feed Native Placement (Otimizado Para CTR)</div>';
+                    }
+                ?>
+            </div>
+        </div>
+
+        <!-- Galeria Parallax Horizontal Para Posts e Comunidade (Jesse Michels Community style) -->
+        <section class="ufo-home-section" style="margin-top: 50px;">
             <div class="ufo-section-header">
                 <div>
                     <span style="color: var(--ufo-accent-primary); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">🔥 Feed da Comunidade & Roteiros</span>
@@ -164,10 +181,13 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </section>
 
-        <!-- Seção 1: Roteiros em Destaque (Turismo Ufológico) -->
+        <!-- Seção: Roteiros em Destaque (Turismo Ufológico) -->
         <section id="roteiros" class="ufo-home-section" style="margin-top: 60px;">
             <div class="ufo-section-header">
-                <h2><?php echo esc_html( $sec_roteiros_lbl ); ?></h2>
+                <div>
+                    <span style="color: var(--ufo-accent-sci); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">🛸 Expedições de Campo</span>
+                    <h2><?php echo esc_html( $sec_roteiros_lbl ); ?></h2>
+                </div>
                 <a href="<?php echo get_post_type_archive_link('roteiros') ?: '#'; ?>" class="ufo-view-all">Ver Todos os Roteiros &rarr;</a>
             </div>
             
@@ -194,7 +214,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
                             </div>
                             <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                             <p style="color: var(--ufo-text-muted); font-size: 14px;"><?php echo wp_trim_words( get_the_excerpt() ?: get_the_content(), 18 ); ?></p>
-                            <a href="<?php the_permalink(); ?>" class="ufo-btn ufo-btn-primary" style="margin-top: 15px; padding: 8px 18px; font-size: 12px; display: inline-block;">Detalhes da Expedição</a>
+                            <a href="<?php the_permalink(); ?>" class="ufo-btn ufo-btn-primary" style="margin-top: 15px; padding: 10px 20px; font-size: 13px; display: inline-block;">Detalhes da Expedição</a>
                         </div>
                     </div>
                 <?php
@@ -207,10 +227,28 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </section>
 
-        <!-- Seção 2: Últimas Notícias (Portal Jornalístico) -->
-        <section id="noticias" class="ufo-home-section" style="margin-top: 60px;">
+        <!-- ZONA DE MONETIZAÇÃO 3: Pré-Jornalismo / Meio Inferior -->
+        <div class="ufo-ad-placement ufo-ad-mid-bottom">
+            <span class="ufo-ad-label">Publicidade</span>
+            <div class="ufo-ad-box-centered">
+                <?php 
+                    $ad_mid = get_option('ufo_ad_in_article_mid');
+                    if ( ! empty($ad_mid) ) {
+                        echo $ad_mid;
+                    } else {
+                        echo '<div class="ufo-ad-placeholder">📢 Google Ad Manager • Mid-Page Conversions & Sponsor Placement</div>';
+                    }
+                ?>
+            </div>
+        </div>
+
+        <!-- Seção: Últimas Notícias (Portal Jornalístico) -->
+        <section id="noticias" class="ufo-home-section" style="margin-top: 50px;">
             <div class="ufo-section-header">
-                <h2><?php echo esc_html( $sec_news_lbl ); ?></h2>
+                <div>
+                    <span style="color: var(--ufo-accent-primary); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">📰 Divulgação Científica</span>
+                    <h2><?php echo esc_html( $sec_news_lbl ); ?></h2>
+                </div>
                 <a href="<?php echo get_permalink( get_option('page_for_posts') ) ?: '#'; ?>" class="ufo-view-all">Acessar Portal Jornalístico &rarr;</a>
             </div>
 
@@ -242,10 +280,13 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
             </div>
         </section>
 
-        <!-- Seção 3: Agenda de Congressos e Eventos -->
+        <!-- Seção: Agenda de Congressos e Eventos -->
         <section id="eventos" class="ufo-home-section" style="margin-top: 60px;">
             <div class="ufo-section-header">
-                <h2>🗓️ Agenda de Congressos e Eventos</h2>
+                <div>
+                    <span style="color: var(--ufo-accent-sci); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">🗓️ Encontros Presenciais</span>
+                    <h2>Agenda de Congressos e Eventos</h2>
+                </div>
                 <a href="<?php echo get_post_type_archive_link('eventos') ?: '#'; ?>" class="ufo-view-all">Ver Toda a Agenda &rarr;</a>
             </div>
             
@@ -283,24 +324,27 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
         </section>
 
         <!-- Banner CTA Final Otimizado Para Conversão -->
-        <section class="ufo-cta-section" style="margin-top: 80px; background: linear-gradient(135deg, var(--ufo-surface) 0%, rgba(0, 229, 255, 0.1) 100%); border: 1px solid var(--ufo-border); border-radius: 12px; padding: 50px 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-            <h2 style="font-size: 36px; color: var(--ufo-accent-primary); margin-bottom: 15px;"><?php echo esc_html( $cta_title ); ?></h2>
-            <p style="max-width: 700px; margin: 0 auto 30px; font-size: 18px; color: var(--ufo-text-main); line-height: 1.6;"><?php echo esc_html( $cta_desc ); ?></p>
-            <a href="<?php echo esc_url( $cta_url ); ?>" target="_blank" class="ufo-btn ufo-btn-primary" style="font-size: 16px; padding: 14px 32px; border-radius: 50px; box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);">
+        <section class="ufo-cta-section" style="margin-top: 70px; background: linear-gradient(135deg, var(--ufo-surface) 0%, rgba(0, 229, 255, 0.12) 100%); border: 1px solid var(--ufo-border); border-radius: 12px; padding: 55px 35px; text-align: center; box-shadow: 0 10px 35px rgba(0,0,0,0.6);">
+            <h2 style="font-size: 36px; color: var(--ufo-accent-primary); margin-bottom: 15px; font-family: var(--ufo-font-heading);"><?php echo esc_html( $cta_title ); ?></h2>
+            <p style="max-width: 700px; margin: 0 auto 32px; font-size: 18px; color: var(--ufo-text-main); line-height: 1.6;"><?php echo esc_html( $cta_desc ); ?></p>
+            <a href="<?php echo esc_url( $cta_url ); ?>" target="_blank" class="ufo-btn ufo-btn-primary" style="font-size: 16px; padding: 15px 35px; border-radius: 50px; box-shadow: 0 0 25px rgba(0, 229, 255, 0.5); font-weight: 800;">
                 💬 <?php echo esc_html( $cta_btn_text ); ?>
             </a>
         </section>
 
-        <!-- Ad Placement: Rodapé (Monetização Fim de Página) -->
-        <div class="ufo-ad-placement ufo-ad-home-bottom" style="margin-top: 50px;">
-            <?php 
-                $ad_bottom = get_option('ufo_ad_in_article_bottom');
-                if ( ! empty($ad_bottom) ) {
-                    echo $ad_bottom;
-                } else {
-                    echo '<!-- UFO AdManager: Rodapé Monetizado -->';
-                }
-            ?>
+        <!-- ZONA DE MONETIZAÇÃO 4: Rodapé de Encerramento (Monetização Final) -->
+        <div class="ufo-ad-placement ufo-ad-home-bottom" style="margin-top: 60px;">
+            <span class="ufo-ad-label">Patrocinado</span>
+            <div class="ufo-ad-box-centered">
+                <?php 
+                    $ad_bottom = get_option('ufo_ad_in_article_bottom');
+                    if ( ! empty($ad_bottom) ) {
+                        echo $ad_bottom;
+                    } else {
+                        echo '<div class="ufo-ad-placeholder">📢 Google AdSense / Ad Manager • Rodapé Monetizado • High Completion RPM</div>';
+                    }
+                ?>
+            </div>
         </div>
 
     </div>
@@ -310,7 +354,7 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
 <!-- Vanilla JS Parallax Engine & Video Hover Preview (Lighthouse 95+ Friendly) -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Efeito Parallax Randômico no Scroll para Galeria de Canais
+    // 1. Efeito Parallax Randômico no Scroll para Galeria de Canais (Ativo apenas no Desktop/Tablet para fluidez no Celular)
     var grid = document.getElementById('ufoRandomGrid');
     if (grid && window.innerWidth > 768) {
         window.addEventListener('scroll', function() {
@@ -345,13 +389,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     iframe.setAttribute('allow', 'autoplay; encrypted-media');
                     container.appendChild(iframe);
                 }
-            }, 250); // Delay de 250ms para evitar disparos aciduais se o mouse passar voando
+            }, 250); // Delay de 250ms
         });
 
         card.addEventListener('mouseleave', function() {
             clearTimeout(hoverTimeout);
             if (container) {
-                container.innerHTML = ''; // Limpa o iframe para poupar RAM do usuário e bateria
+                container.innerHTML = '';
             }
         });
     });

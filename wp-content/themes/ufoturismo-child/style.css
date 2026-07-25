@@ -920,3 +920,150 @@ a:hover {
         transform: translateY(0) !important;
     }
 }
+
+/* ==== CENTRAL de MONETIZAÇÃO AD-SENSE & AD MANAGER (CENTRALIZADA E RESPONSIVA) ==== */
+.ufo-ad-placement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 45px auto;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.ufo-ad-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--ufo-text-muted);
+    opacity: 0.6;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 700;
+}
+
+.ufo-ad-box-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 90px;
+    margin: 0 auto;
+}
+
+/* Estilo Exclusivo de Showcase / Placeholder para Apresentações & Local Staging */
+.ufo-ad-placeholder {
+    width: 100%;
+    max-width: 728px;
+    height: 90px;
+    background: radial-gradient(circle at center, #151A22 0%, #0B0E14 100%);
+    border: 1px dashed var(--ufo-accent-primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ufo-accent-primary);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    box-shadow: 0 0 15px rgba(242, 169, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.ufo-ad-placeholder:hover {
+    border-color: var(--ufo-accent-sci);
+    color: var(--ufo-accent-sci);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+    transform: scale(1.01);
+}
+
+/* ==== RESPONSIVIDADE EXTREMA PARA MOBILE & TABLET ==== */
+@media (max-width: 992px) {
+    .ufo-ad-placeholder {
+        max-width: 100%;
+        height: auto;
+        min-height: 90px;
+        padding: 15px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ufo-home-hero {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        min-height: auto !important;
+    }
+    .ufo-hero-content {
+        padding: 20px !important;
+    }
+    .ufo-hero-title {
+        font-size: 34px !important;
+        line-height: 1.2 !important;
+    }
+    .ufo-hero-subtitle {
+        font-size: 16px !important;
+        margin-bottom: 25px !important;
+    }
+    .ufo-hero-actions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    .ufo-hero-actions .ufo-btn {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 !important;
+        text-align: center;
+        padding: 14px 20px !important;
+    }
+    .ufo-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .ufo-view-all {
+        align-self: flex-start;
+        font-size: 14px;
+    }
+    .ufo-ad-placeholder {
+        max-width: 300px;
+        min-height: 250px; /* Adapta para o banner padrão Medium Rectangle 300x250 do AdSense no Celular! */
+        text-align: center;
+        flex-direction: column;
+    }
+    .ufo-ad-placeholder::before {
+        content: "📢 PUBLICIDADE GOOGLE AD MANAGER";
+        display: block;
+        font-size: 11px;
+        color: var(--ufo-text-muted);
+        margin-bottom: 8px;
+    }
+    .ufo-cta-section {
+        padding: 35px 20px !important;
+    }
+    .ufo-cta-section h2 {
+        font-size: 26px !important;
+    }
+    .ufo-cta-section p {
+        font-size: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .ufo-hero-title {
+        font-size: 28px !important;
+    }
+    .ufo-card-body h3 {
+        font-size: 19px !important;
+    }
+    .ufo-home-container {
+        padding: 30px 15px !important;
+    }
+}
