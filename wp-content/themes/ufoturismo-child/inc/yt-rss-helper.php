@@ -28,6 +28,11 @@ function ufo_auto_translate_ptbr( $text ) {
         'The Science of Antigravity Propulsion' => 'A Ciência da Propulsão por Antigravidade',
         'Why ufos act like quantum physics' => 'Por que os OVNIs se Comportam Como Física Quântica',
         'Why UFOs Act Like Quantum Physics' => 'Por Que os OVNIs se Comportam Como Física Quântica',
+        'Astronomer Searching for Stars Stumbled Into a UFO Mystery!' => 'Astrônoma Em Busca de Estrelas Descobre Mistério OVNI!',
+        'Astronomer Searching for Stars Stumbled Into a OVNI Mystery!' => 'Astrônoma Em Busca de Estrelas Descobre Mistério OVNI!',
+        'NASA Found A Giant MONOLITH on Mars\' Moon!' => 'NASA Descobre MONOLITO GIGANTE em Lua de Marte!',
+        'Logan Paul\'s UFO Footage Left Bob Lazar SPEECHLESS!' => 'Filmagem OVNI de Logan Paul Deixou Bob Lazar SEM PALAVRAS!',
+        'Logan Paul\'s OVNI Footage Left Bob Lazar SPEECHLESS!' => 'Filmagem OVNI de Logan Paul Deixou Bob Lazar SEM PALAVRAS!',
     );
     if ( isset($exact_map[$text]) ) {
         return $exact_map[$text];
@@ -35,6 +40,14 @@ function ufo_auto_translate_ptbr( $text ) {
 
     // Substituições gramaticais e de termos técnicos do inglês para o português do Brasil
     $replacements = array(
+        'Astronomer Searching for Stars Stumbled Into a' => 'Astrônoma Em Busca de Estrelas Descobre',
+        'Astronomer Searching for Stars' => 'Astrônoma Em Busca de Estrelas',
+        'Stumbled Into a' => 'Descobre um',
+        'Found A Giant MONOLITH' => 'Descobre MONOLITO GIGANTE',
+        'on Mars\' Moon' => 'em Lua de Marte',
+        'Logan Paul\'s' => 'De Logan Paul',
+        'Footage Left' => 'Filmagem Deixou',
+        'SPEECHLESS' => 'SEM PALAVRAS',
         'The Occult History of NASA' => 'A História Oculta da NASA',
         'The Most Convincing UFO Theory' => 'A Teoria Sobre OVNI Mais Convincente',
         'NASA Insiders Believe' => 'Insiders da NASA Acreditam',
@@ -48,6 +61,7 @@ function ufo_auto_translate_ptbr( $text ) {
         'Antigravity Propulsion' => 'Propulsão por Antigravidade',
         'Quantum Physics' => 'Física Quântica',
         'UAP Research' => 'Pesquisa de Anomalias UAP',
+        'Mystery' => 'Mistério',
         'UFOs' => 'OVNIs',
         'UFO' => 'OVNI',
         'Alien' => 'Alienígena',
@@ -109,7 +123,7 @@ function ufo_fetch_channel_videos( $channel_urls, $max_items = 6 ) {
         if ( empty($url) ) continue;
 
         $rss_url = ufo_get_youtube_rss_url($url);
-        $cache_key = 'ufo_yt_feed_ptbr_' . md5($rss_url);
+        $cache_key = 'ufo_yt_feed_ptv2_' . md5($rss_url);
         $cached_videos = get_transient($cache_key);
 
         if ( $cached_videos !== false && is_array($cached_videos) && count($cached_videos) > 0 ) {
