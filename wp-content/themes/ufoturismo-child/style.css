@@ -1782,6 +1782,33 @@ a:hover {
     }
 }
 
+/* ==========================================================================
+   MÓDULOS FLEXBOX DO ELEMENTOR & COMPATIBILIDADE DE ARRASTO KANBAN/FLEX
+   ========================================================================== */
+.ufo-elementor-flexbox-block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.elementor-section .ufo-elementor-flexbox-block,
+.elementor-container .ufo-elementor-flexbox-block,
+.e-con .ufo-elementor-flexbox-block {
+    margin-top: 0 !important;
+    margin-bottom: 25px !important;
+    width: 100% !important;
+}
+
+/* Destaque visual leve no modo de edição do Elementor para facilitar arrastar o módulo Flexbox */
+.elementor-editor-active .ufo-elementor-flexbox-block:hover {
+    outline: 2px dashed var(--ufo-accent-sci);
+    outline-offset: 6px;
+    border-radius: 8px;
+}
+
 
 
 

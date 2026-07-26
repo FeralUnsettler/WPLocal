@@ -60,6 +60,11 @@ require_once get_stylesheet_directory() . '/inc/home-metabox.php';
 require_once get_stylesheet_directory() . '/inc/yt-rss-helper.php';
 
 /**
+ * Carregar Módulo de Flexbox Editáveis e Widgets Nativos para o Elementor PRO
+ */
+require_once get_stylesheet_directory() . '/inc/elementor-flexbox-sections.php';
+
+/**
  * OTIMIZAÇÃO DE AMBIENTE LOCAL & BLINDAGEM CONTRA TIMEOUTS DO WORDPRESS.ORG
  * Elimina erros de conexão SSL, travamentos no /wp-admin/ e alertas de "headers already sent" ao usar rede local/offline.
  */
