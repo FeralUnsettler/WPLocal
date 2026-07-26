@@ -16,20 +16,20 @@ get_header(); ?>
         $page_id = get_the_ID();
         $elementor_data = get_post_meta( $page_id, '_elementor_data', true );
         
-        // Verifica se a página está no editor visual do Elementor OU se os nossos widgets já foram sincronizados como blocos nativos no banco!
+        // Verifica se a página está no editor visual do Elementor OU se tem estrutura construída/sincronizada do Elementor
         $is_elementor_active = class_exists( '\Elementor\Plugin' ) && (
             \Elementor\Plugin::$instance->editor->is_edit_mode() ||
             \Elementor\Plugin::$instance->db->is_built_with_elementor( $page_id ) ||
-            ( ! empty( $elementor_data ) && strpos( $elementor_data, 'ufo_' ) !== false )
+            ( ! empty( $elementor_data ) && $elementor_data !== '[]' )
         );
 
         if ( $is_elementor_active ) {
-            // No modo Elementor, CADA BLOCO DA PÁGINA é um widget/container nativo 100% arrastável, rearranjável e editável individualmente na tela do Elementor!
+            // No modo Elementor, CADA BLOCO DA PÁGINA é um widget nativo 100% arrastável, rearranjável e editável individualmente!
             echo '<div class="ufo-elementor-native-canvas" style="width: 100%; position: relative; z-index: 5;">';
             the_content();
             echo '</div>';
         } else {
-            // Modo de fallback (caso o plugin Elementor esteja desativado ou desinstalado)
+            // Modo de fallback (caso o plugin Elementor esteja desativado)
             echo function_exists( 'ufo_render_section_jumbotron' ) ? ufo_render_section_jumbotron() : '';
             echo '<div class="ufo-container ufo-home-container" style="padding-top: 15px; margin-top: 0;">';
             echo function_exists( 'ufo_render_section_videos' ) ? ufo_render_section_videos() : '';

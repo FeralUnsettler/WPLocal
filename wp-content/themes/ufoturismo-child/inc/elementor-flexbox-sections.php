@@ -1,7 +1,7 @@
 <?php
 /**
  * Módulo de Flexbox Editáveis do Elementor & Shortcodes Modulares (UFOTurismo PRO)
- * Permite que cada seção da Home seja arrastada, editada e rearranjada livremente em containers flexbox do Elementor.
+ * Permite que cada seção da Home seja arrastada, editada e rearranjada livremente no Elementor.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -430,7 +430,7 @@ function ufo_render_section_cta() {
  */
 function ufo_render_section_adsense( $atts = array() ) {
     $atts = shortcode_atts( array(
-        'placement' => 'between_news_exp' // opções: between_news_exp, mid_bottom, home_bottom
+        'placement' => 'between_news_exp'
     ), $atts );
 
     ob_start();
@@ -485,7 +485,6 @@ add_action( 'elementor/init', function() {
         return;
     }
 
-    // Registrar Categoria Exclusiva "🛰️ UFOTurismo PRO (Flexbox)"
     add_action( 'elementor/elements/categories_registered', function( $elements_manager ) {
         $elements_manager->add_category(
             'ufoturismo-pro',
@@ -496,73 +495,88 @@ add_action( 'elementor/init', function() {
         );
     });
 
-    // Registrar Classes de Widget Individuais do Elementor
     add_action( 'elementor/widgets/register', function( $widgets_manager ) {
-
-        class UFOTurismo_Elementor_Jumbotron_Widget extends \Elementor\Widget_Base {
-            public function get_name() { return 'ufo_jumbotron_widget'; }
-            public function get_title() { return '🚀 UFO Jumbotron Hero (4 Slides)'; }
-            public function get_icon() { return 'eicon-slider-push'; }
-            public function get_categories() { return [ 'ufoturismo-pro' ]; }
-            protected function render() { echo ufo_render_section_jumbotron(); }
+        if ( ! class_exists( '\Elementor\Widget_Base' ) ) {
+            return;
         }
 
-        class UFOTurismo_Elementor_Videos_Widget extends \Elementor\Widget_Base {
-            public function get_name() { return 'ufo_videos_widget'; }
-            public function get_title() { return '🎬 UFO Vitrine Vídeos Netflix (PT-BR)'; }
-            public function get_icon() { return 'eicon-video-playlist'; }
-            public function get_categories() { return [ 'ufoturismo-pro' ]; }
-            protected function render() { echo ufo_render_section_videos(); }
+        if ( ! class_exists( 'UFOTurismo_Elementor_Jumbotron_Widget' ) ) {
+            class UFOTurismo_Elementor_Jumbotron_Widget extends \Elementor\Widget_Base {
+                public function get_name() { return 'ufo_jumbotron_widget'; }
+                public function get_title() { return '🚀 UFO Jumbotron Hero (4 Slides)'; }
+                public function get_icon() { return 'eicon-slider-push'; }
+                public function get_categories() { return [ 'ufoturismo-pro' ]; }
+                protected function render() { echo ufo_render_section_jumbotron(); }
+            }
         }
 
-        class UFOTurismo_Elementor_Noticias_Widget extends \Elementor\Widget_Base {
-            public function get_name() { return 'ufo_noticias_widget'; }
-            public function get_title() { return '📰 UFO Vitrine Notícias & Relatos'; }
-            public function get_icon() { return 'eicon-post-slider'; }
-            public function get_categories() { return [ 'ufoturismo-pro' ]; }
-            protected function render() { echo ufo_render_section_noticias(); }
+        if ( ! class_exists( 'UFOTurismo_Elementor_Videos_Widget' ) ) {
+            class UFOTurismo_Elementor_Videos_Widget extends \Elementor\Widget_Base {
+                public function get_name() { return 'ufo_videos_widget'; }
+                public function get_title() { return '🎬 UFO Vitrine Vídeos Netflix (PT-BR)'; }
+                public function get_icon() { return 'eicon-video-playlist'; }
+                public function get_categories() { return [ 'ufoturismo-pro' ]; }
+                protected function render() { echo ufo_render_section_videos(); }
+            }
         }
 
-        class UFOTurismo_Elementor_Expedition_Widget extends \Elementor\Widget_Base {
-            public function get_name() { return 'ufo_expedicoes_widget'; }
-            public function get_title() { return '⛺ UFO Galeria 12 Expedições (70% Netflix)'; }
-            public function get_icon() { return 'eicon-global-settings'; }
-            public function get_categories() { return [ 'ufoturismo-pro' ]; }
-            protected function render() { echo ufo_render_section_expedicoes(); }
+        if ( ! class_exists( 'UFOTurismo_Elementor_Noticias_Widget' ) ) {
+            class UFOTurismo_Elementor_Noticias_Widget extends \Elementor\Widget_Base {
+                public function get_name() { return 'ufo_noticias_widget'; }
+                public function get_title() { return '📰 UFO Vitrine Notícias & Relatos'; }
+                public function get_icon() { return 'eicon-post-slider'; }
+                public function get_categories() { return [ 'ufoturismo-pro' ]; }
+                protected function render() { echo ufo_render_section_noticias(); }
+            }
         }
 
-        class UFOTurismo_Elementor_Eventos_Widget extends \Elementor\Widget_Base {
-            public function get_name() { return 'ufo_eventos_widget'; }
-            public function get_title() { return '🗓️ UFO Agenda Congressos & Encontros'; }
-            public function get_icon() { return 'eicon-calendar'; }
-            public function get_categories() { return [ 'ufoturismo-pro' ]; }
-            protected function render() { echo ufo_render_section_eventos(); }
+        if ( ! class_exists( 'UFOTurismo_Elementor_Expedition_Widget' ) ) {
+            class UFOTurismo_Elementor_Expedition_Widget extends \Elementor\Widget_Base {
+                public function get_name() { return 'ufo_expedicoes_widget'; }
+                public function get_title() { return '⛺ UFO Galeria 12 Expedições (70% Netflix)'; }
+                public function get_icon() { return 'eicon-global-settings'; }
+                public function get_categories() { return [ 'ufoturismo-pro' ]; }
+                protected function render() { echo ufo_render_section_expedicoes(); }
+            }
         }
 
-        class UFOTurismo_Elementor_CTA_Widget extends \Elementor\Widget_Base {
-            public function get_name() { return 'ufo_cta_widget'; }
-            public function get_title() { return '💬 UFO Banner CTA Grupo VIP WhatsApp'; }
-            public function get_icon() { return 'eicon-button'; }
-            public function get_categories() { return [ 'ufoturismo-pro' ]; }
-            protected function render() { echo ufo_render_section_cta(); }
+        if ( ! class_exists( 'UFOTurismo_Elementor_Eventos_Widget' ) ) {
+            class UFOTurismo_Elementor_Eventos_Widget extends \Elementor\Widget_Base {
+                public function get_name() { return 'ufo_eventos_widget'; }
+                public function get_title() { return '🗓️ UFO Agenda Congressos & Encontros'; }
+                public function get_icon() { return 'eicon-calendar'; }
+                public function get_categories() { return [ 'ufoturismo-pro' ]; }
+                protected function render() { echo ufo_render_section_eventos(); }
+            }
         }
 
-        class UFOTurismo_Elementor_AdSense_Widget extends \Elementor\Widget_Base {
-            public function get_name() { return 'ufo_adsense_widget'; }
-            public function get_title() { return '💰 UFO Zona Ad Manager / AdSense'; }
-            public function get_icon() { return 'eicon-ad'; }
-            public function get_categories() { return [ 'ufoturismo-pro' ]; }
-            protected function render() { echo ufo_render_section_adsense(); }
+        if ( ! class_exists( 'UFOTurismo_Elementor_CTA_Widget' ) ) {
+            class UFOTurismo_Elementor_CTA_Widget extends \Elementor\Widget_Base {
+                public function get_name() { return 'ufo_cta_widget'; }
+                public function get_title() { return '💬 UFO Banner CTA Grupo VIP WhatsApp'; }
+                public function get_icon() { return 'eicon-button'; }
+                public function get_categories() { return [ 'ufoturismo-pro' ]; }
+                protected function render() { echo ufo_render_section_cta(); }
+            }
         }
 
-        // Registrar no painel do Elementor
-        $widgets_manager->register( new UFOTurismo_Elementor_Jumbotron_Widget() );
-        $widgets_manager->register( new UFOTurismo_Elementor_Videos_Widget() );
-        $widgets_manager->register( new UFOTurismo_Elementor_Noticias_Widget() );
-        $widgets_manager->register( new UFOTurismo_Elementor_Expedition_Widget() );
-        $widgets_manager->register( new UFOTurismo_Elementor_Eventos_Widget() );
-        $widgets_manager->register( new UFOTurismo_Elementor_CTA_Widget() );
-        $widgets_manager->register( new UFOTurismo_Elementor_AdSense_Widget() );
+        if ( ! class_exists( 'UFOTurismo_Elementor_AdSense_Widget' ) ) {
+            class UFOTurismo_Elementor_AdSense_Widget extends \Elementor\Widget_Base {
+                public function get_name() { return 'ufo_adsense_widget'; }
+                public function get_title() { return '💰 UFO Zona Ad Manager / AdSense'; }
+                public function get_icon() { return 'eicon-ad'; }
+                public function get_categories() { return [ 'ufoturismo-pro' ]; }
+                protected function render() { echo ufo_render_section_adsense(); }
+            }
+        }
+
+        $widgets_manager->register( new \UFOTurismo_Elementor_Jumbotron_Widget() );
+        $widgets_manager->register( new \UFOTurismo_Elementor_Videos_Widget() );
+        $widgets_manager->register( new \UFOTurismo_Elementor_Noticias_Widget() );
+        $widgets_manager->register( new \UFOTurismo_Elementor_Expedition_Widget() );
+        $widgets_manager->register( new \UFOTurismo_Elementor_Eventos_Widget() );
+        $widgets_manager->register( new \UFOTurismo_Elementor_CTA_Widget() );
+        $widgets_manager->register( new \UFOTurismo_Elementor_AdSense_Widget() );
     });
 });
 
@@ -571,21 +585,32 @@ add_action( 'elementor/init', function() {
    ========================================================================== */
 add_action( 'init', 'ufo_auto_populate_elementor_front_page', 20 );
 function ufo_auto_populate_elementor_front_page() {
+    // Evita rodar durante chamadas AJAX do Elementor ou salvar automáticos do editor
+    if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
+        return;
+    }
+
     $page_ids = array();
     
     $front_id = get_option( 'page_on_front' );
-    if ( $front_id && ! in_array( $front_id, $page_ids ) ) {
-        $page_ids[] = $front_id;
+    if ( $front_id ) {
+        $page_ids[] = (int) $front_id;
     }
     
-    // IDs comuns do ambiente do cliente para a Página Inicial (57) e páginas "Home"
     if ( ! in_array( 57, $page_ids ) ) {
         $page_ids[] = 57;
     }
     
-    $home_p = get_page_by_title( 'Home' ) ?: get_page_by_title( 'Início' ) ?: get_page_by_path( 'home' );
-    if ( $home_p && ! in_array( $home_p->ID, $page_ids ) ) {
-        $page_ids[] = $home_p->ID;
+    // SUBSTITUIÇÃO COMPATÍVEL COM WP 6.2+ (Evita o erro deprecated get_page_by_title)
+    $pages_query = get_posts( array(
+        'post_type'      => 'page',
+        'title'          => 'Home',
+        'posts_per_page' => 1,
+        'post_status'    => 'publish',
+        'fields'         => 'ids',
+    ) );
+    if ( ! empty( $pages_query ) && ! in_array( (int) $pages_query[0], $page_ids ) ) {
+        $page_ids[] = (int) $pages_query[0];
     }
 
     foreach ( $page_ids as $p_id ) {
@@ -594,26 +619,26 @@ function ufo_auto_populate_elementor_front_page() {
             continue;
         }
 
-        $synced = get_post_meta( $p_id, '_ufo_blocks_flexbox_synced_v3', true );
+        $synced = get_post_meta( $p_id, '_ufo_blocks_flex_synced_v5', true );
         $current_data = get_post_meta( $p_id, '_elementor_data', true );
 
-        // Se ainda não sincronizou a estrutura de 9 blocos arrastáveis do Elementor nesta página:
-        if ( ! $synced || empty( $current_data ) || strpos( $current_data, 'ufo_jumbotron_widget' ) === false ) {
+        // Sincroniza e corrige o banco com estrutura 100% válida e IDs alfanuméricos puros
+        if ( ! $synced || empty( $current_data ) || strpos( $current_data, 'w100001' ) === false ) {
 
             $elementor_blocks = array(
                 // Bloco 1: Jumbotron Hero
                 array(
-                    'id' => 'ufo_sec_hero',
+                    'id' => 'e100001',
                     'elType' => 'section',
                     'settings' => array( 'layout' => 'full_width', 'stretch_section' => 'section-stretched' ),
                     'elements' => array(
                         array(
-                            'id' => 'ufo_col_hero',
+                            'id' => 'c100001',
                             'elType' => 'column',
                             'settings' => array( '_column_size' => 100 ),
                             'elements' => array(
                                 array(
-                                    'id' => 'ufo_w_hero',
+                                    'id' => 'w100001',
                                     'elType' => 'widget',
                                     'widgetType' => 'ufo_jumbotron_widget',
                                     'settings' => array()
@@ -624,17 +649,17 @@ function ufo_auto_populate_elementor_front_page() {
                 ),
                 // Bloco 2: Vídeos Netflix
                 array(
-                    'id' => 'ufo_sec_vids',
+                    'id' => 'e100002',
                     'elType' => 'section',
                     'settings' => array(),
                     'elements' => array(
                         array(
-                            'id' => 'ufo_col_vids',
+                            'id' => 'c100002',
                             'elType' => 'column',
                             'settings' => array( '_column_size' => 100 ),
                             'elements' => array(
                                 array(
-                                    'id' => 'ufo_w_vids',
+                                    'id' => 'w100002',
                                     'elType' => 'widget',
                                     'widgetType' => 'ufo_videos_widget',
                                     'settings' => array()
@@ -645,17 +670,17 @@ function ufo_auto_populate_elementor_front_page() {
                 ),
                 // Bloco 3: Notícias e Relatos
                 array(
-                    'id' => 'ufo_sec_news',
+                    'id' => 'e100003',
                     'elType' => 'section',
                     'settings' => array(),
                     'elements' => array(
                         array(
-                            'id' => 'ufo_col_news',
+                            'id' => 'c100003',
                             'elType' => 'column',
                             'settings' => array( '_column_size' => 100 ),
                             'elements' => array(
                                 array(
-                                    'id' => 'ufo_w_news',
+                                    'id' => 'w100003',
                                     'elType' => 'widget',
                                     'widgetType' => 'ufo_noticias_widget',
                                     'settings' => array()
@@ -666,17 +691,17 @@ function ufo_auto_populate_elementor_front_page() {
                 ),
                 // Bloco 4: Monetização AdSense Topo
                 array(
-                    'id' => 'ufo_sec_ad1',
+                    'id' => 'e100004',
                     'elType' => 'section',
                     'settings' => array(),
                     'elements' => array(
                         array(
-                            'id' => 'ufo_col_ad1',
+                            'id' => 'c100004',
                             'elType' => 'column',
                             'settings' => array( '_column_size' => 100 ),
                             'elements' => array(
                                 array(
-                                    'id' => 'ufo_w_ad1',
+                                    'id' => 'w100004',
                                     'elType' => 'widget',
                                     'widgetType' => 'ufo_adsense_widget',
                                     'settings' => array( 'placement' => 'between_news_exp' )
@@ -687,17 +712,17 @@ function ufo_auto_populate_elementor_front_page() {
                 ),
                 // Bloco 5: Galeria 12 Expedições
                 array(
-                    'id' => 'ufo_sec_exp',
+                    'id' => 'e100005',
                     'elType' => 'section',
                     'settings' => array(),
                     'elements' => array(
                         array(
-                            'id' => 'ufo_col_exp',
+                            'id' => 'c100005',
                             'elType' => 'column',
                             'settings' => array( '_column_size' => 100 ),
                             'elements' => array(
                                 array(
-                                    'id' => 'ufo_w_exp',
+                                    'id' => 'w100005',
                                     'elType' => 'widget',
                                     'widgetType' => 'ufo_expedicoes_widget',
                                     'settings' => array()
@@ -708,17 +733,17 @@ function ufo_auto_populate_elementor_front_page() {
                 ),
                 // Bloco 6: Monetização Ad Manager Meio
                 array(
-                    'id' => 'ufo_sec_ad2',
+                    'id' => 'e100006',
                     'elType' => 'section',
                     'settings' => array(),
                     'elements' => array(
                         array(
-                            'id' => 'ufo_col_ad2',
+                            'id' => 'c100006',
                             'elType' => 'column',
                             'settings' => array( '_column_size' => 100 ),
                             'elements' => array(
                                 array(
-                                    'id' => 'ufo_w_ad2',
+                                    'id' => 'w100006',
                                     'elType' => 'widget',
                                     'widgetType' => 'ufo_adsense_widget',
                                     'settings' => array( 'placement' => 'mid_bottom' )
@@ -729,17 +754,17 @@ function ufo_auto_populate_elementor_front_page() {
                 ),
                 // Bloco 7: Agenda de Congressos
                 array(
-                    'id' => 'ufo_sec_events',
+                    'id' => 'e100007',
                     'elType' => 'section',
                     'settings' => array(),
                     'elements' => array(
                         array(
-                            'id' => 'ufo_col_events',
+                            'id' => 'c100007',
                             'elType' => 'column',
                             'settings' => array( '_column_size' => 100 ),
                             'elements' => array(
                                 array(
-                                    'id' => 'ufo_w_events',
+                                    'id' => 'w100007',
                                     'elType' => 'widget',
                                     'widgetType' => 'ufo_eventos_widget',
                                     'settings' => array()
@@ -750,17 +775,17 @@ function ufo_auto_populate_elementor_front_page() {
                 ),
                 // Bloco 8: Banner CTA VIP WhatsApp
                 array(
-                    'id' => 'ufo_sec_cta',
+                    'id' => 'e100008',
                     'elType' => 'section',
                     'settings' => array(),
                     'elements' => array(
                         array(
-                            'id' => 'ufo_col_cta',
+                            'id' => 'c100008',
                             'elType' => 'column',
                             'settings' => array( '_column_size' => 100 ),
                             'elements' => array(
                                 array(
-                                    'id' => 'ufo_w_cta',
+                                    'id' => 'w100008',
                                     'elType' => 'widget',
                                     'widgetType' => 'ufo_cta_widget',
                                     'settings' => array()
@@ -771,17 +796,17 @@ function ufo_auto_populate_elementor_front_page() {
                 ),
                 // Bloco 9: Monetização Rodapé
                 array(
-                    'id' => 'ufo_sec_ad3',
+                    'id' => 'e100009',
                     'elType' => 'section',
                     'settings' => array(),
                     'elements' => array(
                         array(
-                            'id' => 'ufo_col_ad3',
+                            'id' => 'c100009',
                             'elType' => 'column',
                             'settings' => array( '_column_size' => 100 ),
                             'elements' => array(
                                 array(
-                                    'id' => 'ufo_w_ad3',
+                                    'id' => 'w100009',
                                     'elType' => 'widget',
                                     'widgetType' => 'ufo_adsense_widget',
                                     'settings' => array( 'placement' => 'home_bottom' )
@@ -795,7 +820,8 @@ function ufo_auto_populate_elementor_front_page() {
             update_post_meta( $p_id, '_elementor_data', wp_slash( wp_json_encode( $elementor_blocks ) ) );
             update_post_meta( $p_id, '_elementor_edit_mode', 'builder' );
             update_post_meta( $p_id, '_elementor_template_type', 'wp-page' );
-            update_post_meta( $p_id, '_ufo_blocks_flexbox_synced_v3', 'yes' );
+            update_post_meta( $p_id, '_elementor_version', '3.20.0' );
+            update_post_meta( $p_id, '_ufo_blocks_flex_synced_v5', 'yes' );
         }
     }
 }
