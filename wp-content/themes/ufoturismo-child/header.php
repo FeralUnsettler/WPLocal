@@ -19,11 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <header class="ufo-site-header ufo-fixed-header">
     <div class="ufo-header-container">
-        <!-- Logotipo Oficial no Cabeçalho -->
+        <!-- Logotipo Oficial GuaraUFO Turismo no Cabeçalho -->
         <div class="ufo-site-branding">
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ufo-logo">
-                <span class="ufo-logo-icon">🛸</span>
-                <span class="ufo-logo-text">UFO<span class="ufo-logo-highlight">Turismo</span></span>
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ufo-logo" title="GuaraUFO Turismo" style="display: flex; align-items: center;">
+                <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/guaraufo-logo.png' ); ?>" alt="GuaraUFO Turismo" class="ufo-brand-logo" style="height: 52px; width: auto; max-width: 210px; object-fit: contain; border-radius: 6px; filter: drop-shadow(0 0 10px rgba(255, 0, 127, 0.7)) drop-shadow(0 0 4px rgba(0, 229, 255, 0.5)); transition: transform 0.3s ease;" />
             </a>
         </div>
 

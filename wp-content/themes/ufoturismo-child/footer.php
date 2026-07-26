@@ -11,8 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 <footer class="ufo-site-footer">
     <div class="ufo-footer-container">
         <div class="ufo-footer-about">
-            <span class="ufo-logo-text">UFO<span class="ufo-logo-highlight">Turismo</span></span>
-            <p>O Maior Portal Brasileiro sobre Ufologia, Fenômenos Anômalos e Turismo Ufológico. Explorando o desconhecido com credibilidade.</p>
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="display: inline-block; margin-bottom: 12px;">
+                <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/guaraufo-logo.png' ); ?>" alt="GuaraUFO Turismo" style="height: 70px; width: auto; max-width: 240px; object-fit: contain; border-radius: 6px; filter: drop-shadow(0 0 12px rgba(255, 0, 127, 0.65)) drop-shadow(0 0 5px rgba(0, 229, 255, 0.45));" />
+            </a>
+            <p><strong>GuaraUFO Turismo & Pesquisa</strong> &bull; O Maior Portal Brasileiro sobre Ufologia, Fenômenos Anômalos e Expedições Científicas de Turismo Ufológico. Explorando o desconhecido com credibilidade, segurança e rigor técnico.</p>
         </div>
         
         <div class="ufo-footer-nav">
@@ -26,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
     </div>
     <div class="ufo-footer-bottom">
-        <p>&copy; <?php echo date('Y'); ?> UFOTurismo. Todos os direitos reservados.</p>
+        <p>&copy; <?php echo date('Y'); ?> GuaraUFO Turismo. Todos os direitos reservados. Plataforma otimizada para monetização de alta conversão.</p>
     </div>
 </footer>
 

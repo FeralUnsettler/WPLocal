@@ -1757,5 +1757,27 @@ a:hover {
     }
 }
 
+/* ==========================================================================
+   ESTILIZAÇÃO & ANIMAÇÃO NEON CYBER-UFO DO LOGOTIPO GUARA UFO TURISMO
+   ========================================================================== */
+.ufo-brand-logo {
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.35s ease !important;
+    will-change: transform, filter;
+}
+
+.ufo-logo:hover .ufo-brand-logo,
+.ufo-logo:focus .ufo-brand-logo {
+    transform: scale(1.08) translateY(-2px) !important;
+    filter: drop-shadow(0 0 16px rgba(255, 0, 127, 0.95)) drop-shadow(0 0 8px rgba(0, 229, 255, 0.85)) !important;
+}
+
+@media (max-width: 768px) {
+    .ufo-brand-logo {
+        height: 42px !important;
+        max-width: 170px !important;
+    }
+}
+
+
 
 
