@@ -110,6 +110,16 @@ $yt_posts  = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_commu
 
     <!-- Seção seguinte colada sem espaço preto -->
     <div class="ufo-container ufo-home-container" style="padding-top: 15px; margin-top: 0;">
+        <?php
+        // ==== SUPORTE NATIVO AO EDITOR DO ELEMENTOR & CONTROLE DO WORDPRESS CONTENT ====
+        while ( have_posts() ) : the_post(); 
+            if ( trim( get_the_content() ) !== '' || ( class_exists( '\Elementor\Plugin' ) && \Elementor\Plugin::$instance->editor->is_edit_mode() ) || is_preview() ) : ?>
+                <div class="ufo-elementor-content-box" style="position: relative; z-index: 5; margin-bottom: 25px; width: 100%;">
+                    <?php the_content(); ?>
+                </div>
+            <?php endif; 
+        endwhile;
+        ?>
 
         <!-- Seção: Destaques de Canais em Estilo Netflix (Traduzido em PT-BR com Preview On-Hover) -->
         <section class="ufo-home-section ufo-carousel-wrapper" style="position: relative; margin-top: 10px;">
