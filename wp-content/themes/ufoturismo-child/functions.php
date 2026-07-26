@@ -59,4 +59,36 @@ require_once get_stylesheet_directory() . '/inc/home-metabox.php';
  */
 require_once get_stylesheet_directory() . '/inc/yt-rss-helper.php';
 
+/**
+ * OTIMIZAÇÃO DE AMBIENTE LOCAL & BLINDAGEM CONTRA TIMEOUTS DO WORDPRESS.ORG
+ * Elimina erros de conexão SSL, travamentos no /wp-admin/ e alertas de "headers already sent" ao usar rede local/offline.
+ */
+if ( defined( 'WP_DEBUG' ) && WP_DEBUG && ! defined( 'WP_DEBUG_DISPLAY' ) ) {
+    @ini_set( 'display_errors', 0 );
+}
 
+add_filter( 'pre_http_request', function( $preempt, $parsed_args, $url ) {
+    // Verifica se estamos rodando em ambiente local (Docker, localhost ou IP LAN do seu estúdio 192.168.x)
+    if ( isset( $_SERVER['HTTP_HOST'] ) && ( strpos( $_SERVER['HTTP_HOST'], 'localhost' ) !== false || strpos( $_SERVER['HTTP_HOST'], '192.168.' ) !== false || strpos( $_SERVER['HTTP_HOST'], '10.0.' ) !== false || strpos( $_SERVER['HTTP_HOST'], '127.0.0.1' ) !== false ) ) {
+        // Intercepta requisições de checagem do WordPress e retorna 200 OK imediato sem tentar internet externa
+        if ( strpos( $url, 'api.wordpress.org' ) !== false || strpos( $url, 'downloads.wordpress.org' ) !== false || strpos( $url, 'w.org' ) !== false ) {
+            return array(
+                'headers'  => array(),
+                'body'     => '{"offers":[],"translations":[]}',
+                'response' => array( 'code' => 200, 'message' => 'OK' ),
+                'cookies'  => array(),
+                'filename' => null
+            );
+        }
+    }
+    return $preempt;
+}, 10, 3 );
+
+// Silencia rotinas pesadas de verificação no admin quando conectado sem internet externa em modo LAN
+add_action( 'admin_init', function() {
+    if ( isset( $_SERVER['HTTP_HOST'] ) && ( strpos( $_SERVER['HTTP_HOST'], 'localhost' ) !== false || strpos( $_SERVER['HTTP_HOST'], '192.168.' ) !== false ) ) {
+        remove_action( 'admin_init', '_maybe_update_core' );
+        remove_action( 'admin_init', '_maybe_update_plugins' );
+        remove_action( 'admin_init', '_maybe_update_themes' );
+    }
+}, 1 );
