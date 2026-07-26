@@ -32,6 +32,13 @@ $yt_posts      = function_exists('ufo_fetch_community_posts_feed') ? ufo_fetch_c
     </section>
 
     <div class="ufo-container ufo-home-container" style="padding-top: 35px;">
+        <?php
+        // ==== SUPORTE OBRIGATÓRIO E INCONDICIONAL AO CONSTRUTOR ELEMENTOR PRO ====
+        while ( have_posts() ) : the_post(); ?>
+            <div class="ufo-elementor-content-box" style="position: relative; z-index: 5; width: 100%;">
+                <?php the_content(); ?>
+            </div>
+        <?php endwhile; ?>
 
         <!-- ZONA DE MONETIZAÇÃO 1: Topo da Central de Notícias (Centralizada) -->
         <div class="ufo-ad-placement ufo-ad-home-top" style="margin-bottom: 45px;">
