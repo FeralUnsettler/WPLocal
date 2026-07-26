@@ -65,6 +65,11 @@ require_once get_stylesheet_directory() . '/inc/yt-rss-helper.php';
 require_once get_stylesheet_directory() . '/inc/elementor-flexbox-sections.php';
 
 /**
+ * Carregar Módulo de Sincronização de Rede Interna (LAN & Acesso Equipe Dev em IP 192.168.x.x:8000)
+ */
+require_once get_stylesheet_directory() . '/inc/lan-sync.php';
+
+/**
  * OTIMIZAÇÃO DE AMBIENTE LOCAL & BLINDAGEM CONTRA TIMEOUTS DO WORDPRESS.ORG
  * Elimina erros de conexão SSL, travamentos no /wp-admin/ e alertas de "headers already sent" ao usar rede local/offline.
  */
