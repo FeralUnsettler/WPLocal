@@ -2,6 +2,7 @@
 /**
  * Módulo de Flexbox Editáveis do Elementor & Shortcodes Modulares (UFOTurismo PRO)
  * Permite que cada seção da Home seja arrastada, editada e rearranjada livremente no Elementor.
+ * Inclui o poderoso Widget Carrossel Jumbotron do Elementor PRO com controles dinâmicos em tempo real!
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
    ========================================================================== */
 
 /**
- * Módulo 1: Jumbotron Hero de 4 Slides (5 em 5s / 600ms)
+ * Módulo 1: Jumbotron Hero de 4 Slides (Fallback Estático ou Shortcode)
  */
 function ufo_render_section_jumbotron() {
     $page_id = get_option( 'page_on_front' ) ?: ( get_the_ID() ?: 0 );
@@ -26,65 +27,65 @@ function ufo_render_section_jumbotron() {
 
     ob_start();
     ?>
-    <!-- Bloco Flexbox Elementor: Jumbotron de 4 Slides -->
-    <section class="ufo-jumbotron ufo-elementor-flexbox-block" id="ufoJumbotronSlider" style="position: relative; width: 100%; overflow: hidden; background: var(--ufo-bg);">
-        <div class="ufo-jumbotron-track" id="ufoJumbotronTrack">
+    <!-- Bloco Flexbox Elementor: Jumbotron de 4 Slides (Fallback Padrão) -->
+    <section class="ufo-jumbotron ufo-elementor-flexbox-block ufo-jumbotron-dynamic" id="ufoJumbotronSlider" data-autoplay="5000" data-speed="600" style="position: relative; width: 100%; overflow: hidden; background: var(--ufo-bg);">
+        <div class="ufo-jumbotron-track" id="ufoJumbotronTrack" style="display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);">
             <!-- Slide 1: Proposta de Valor Principal -->
-            <div class="ufo-jumbotron-slide" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');">
-                <div class="ufo-hero-overlay">
-                    <div class="ufo-container ufo-hero-content ufo-centered-content">
-                        <h1 class="ufo-hero-title"><?php echo esc_html( $hero_title ); ?></h1>
-                        <p class="ufo-hero-subtitle"><?php echo esc_html( $hero_subtitle ); ?></p>
-                        <div class="ufo-hero-actions ufo-actions-centered">
-                            <a href="<?php echo esc_attr( $btn_1_url ); ?>" class="ufo-btn ufo-btn-primary"><?php echo esc_html( $btn_1_text ); ?></a>
-                            <a href="<?php echo esc_attr( $btn_2_url ); ?>" class="ufo-btn ufo-btn-secondary" style="border: 1px solid var(--ufo-text-main); color: var(--ufo-text-main); margin-left: 15px; background: rgba(11,14,20,0.65); backdrop-filter: blur(8px);"><?php echo esc_html( $btn_2_text ); ?></a>
+            <div class="ufo-jumbotron-slide" style="flex: 0 0 100%; width: 100%; background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'); background-size: cover; background-position: center; min-height: 600px; display: flex; align-items: center;">
+                <div class="ufo-hero-overlay" style="width: 100%; height: 100%; background: linear-gradient(180deg, rgba(11,14,20,0.5) 0%, rgba(11,14,20,0.85) 100%); padding: 80px 0;">
+                    <div class="ufo-container ufo-hero-content ufo-centered-content" style="max-width: 1100px; margin: 0 auto; text-align: center; padding: 0 20px;">
+                        <h1 class="ufo-hero-title" style="font-family: var(--ufo-font-heading); font-size: 48px; color: #fff; font-weight: 800; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); line-height: 1.2;"><?php echo esc_html( $hero_title ); ?></h1>
+                        <p class="ufo-hero-subtitle" style="font-size: 20px; color: var(--ufo-text-main); max-width: 820px; margin: 0 auto 35px; line-height: 1.6; text-shadow: 0 1px 5px rgba(0,0,0,0.8);"><?php echo esc_html( $hero_subtitle ); ?></p>
+                        <div class="ufo-hero-actions ufo-actions-centered" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px;">
+                            <a href="<?php echo esc_attr( $btn_1_url ); ?>" class="ufo-btn ufo-btn-primary" style="font-weight: 800; font-size: 16px; padding: 14px 32px; border-radius: 50px; text-decoration: none; transition: 0.3s all; background: var(--ufo-accent-primary); border: 1px solid var(--ufo-accent-primary); color: #000; box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);"><?php echo esc_html( $btn_1_text ); ?></a>
+                            <a href="<?php echo esc_attr( $btn_2_url ); ?>" class="ufo-btn ufo-btn-secondary" style="border: 1px solid var(--ufo-text-main); color: var(--ufo-text-main); background: rgba(11,14,20,0.65); backdrop-filter: blur(8px); font-weight: 700; font-size: 16px; padding: 14px 32px; border-radius: 50px; text-decoration: none; transition: 0.3s all;"><?php echo esc_html( $btn_2_text ); ?></a>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Slide 2: Expedições de Campo & Visão Noturna FLIR -->
-            <div class="ufo-jumbotron-slide" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000&auto=format&fit=crop');">
-                <div class="ufo-hero-overlay">
-                    <div class="ufo-container ufo-hero-content ufo-centered-content">
-                        <h2 class="ufo-hero-title">Expedições Noturnas Com Tecnologia FLIR e Radar Passivo</h2>
-                        <p class="ufo-hero-subtitle">Investigue avistamentos de campo com especialistas credenciados, equipamentos ópticos infravermelhos e sensores de gravidade nos roteiros do Brasil.</p>
-                        <div class="ufo-hero-actions ufo-actions-centered">
-                            <a href="#roteiros" class="ufo-btn ufo-btn-primary">Conhecer Expedições</a>
-                            <a href="https://wa.me/5511999999999" target="_blank" class="ufo-btn ufo-btn-secondary" style="border: 1px solid var(--ufo-text-main); color: var(--ufo-text-main); margin-left: 15px; background: rgba(11,14,20,0.65);">Falar com Guia</a>
+            <div class="ufo-jumbotron-slide" style="flex: 0 0 100%; width: 100%; background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; min-height: 600px; display: flex; align-items: center;">
+                <div class="ufo-hero-overlay" style="width: 100%; height: 100%; background: linear-gradient(180deg, rgba(11,14,20,0.5) 0%, rgba(11,14,20,0.85) 100%); padding: 80px 0;">
+                    <div class="ufo-container ufo-hero-content ufo-centered-content" style="max-width: 1100px; margin: 0 auto; text-align: center; padding: 0 20px;">
+                        <h2 class="ufo-hero-title" style="font-family: var(--ufo-font-heading); font-size: 48px; color: #fff; font-weight: 800; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); line-height: 1.2;">Expedições Noturnas Com Tecnologia FLIR e Radar Passivo</h2>
+                        <p class="ufo-hero-subtitle" style="font-size: 20px; color: var(--ufo-text-main); max-width: 820px; margin: 0 auto 35px; line-height: 1.6; text-shadow: 0 1px 5px rgba(0,0,0,0.8);">Investigue avistamentos de campo com especialistas credenciados, equipamentos ópticos infravermelhos e sensores de gravidade nos roteiros do Brasil.</p>
+                        <div class="ufo-hero-actions ufo-actions-centered" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px;">
+                            <a href="#roteiros" class="ufo-btn ufo-btn-primary" style="font-weight: 800; font-size: 16px; padding: 14px 32px; border-radius: 50px; text-decoration: none; transition: 0.3s all; background: var(--ufo-accent-primary); border: 1px solid var(--ufo-accent-primary); color: #000; box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);">Conhecer Expedições</a>
+                            <a href="https://wa.me/5511999999999" target="_blank" class="ufo-btn ufo-btn-secondary" style="border: 1px solid var(--ufo-text-main); color: var(--ufo-text-main); background: rgba(11,14,20,0.65); backdrop-filter: blur(8px); font-weight: 700; font-size: 16px; padding: 14px 32px; border-radius: 50px; text-decoration: none; transition: 0.3s all;">Falar com Guia</a>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Slide 3: Acervo AARO & Desclassificação Científica -->
-            <div class="ufo-jumbotron-slide" style="background-image: url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2000&auto=format&fit=crop');">
-                <div class="ufo-hero-overlay">
-                    <div class="ufo-container ufo-hero-content ufo-centered-content">
-                        <h2 class="ufo-hero-title">Acervo Oficial: Documentos Militares & Pesquisa UAP</h2>
-                        <p class="ufo-hero-subtitle">Relatórios desclassificados pelo Pentágono, auditações do Senado Americano e investigações científicas traduzidos com precisão na íntegra para o Português.</p>
-                        <div class="ufo-hero-actions ufo-actions-centered">
-                            <a href="#noticias" class="ufo-btn ufo-btn-primary">Explorar Acervo Central</a>
+            <div class="ufo-jumbotron-slide" style="flex: 0 0 100%; width: 100%; background-image: url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; min-height: 600px; display: flex; align-items: center;">
+                <div class="ufo-hero-overlay" style="width: 100%; height: 100%; background: linear-gradient(180deg, rgba(11,14,20,0.5) 0%, rgba(11,14,20,0.85) 100%); padding: 80px 0;">
+                    <div class="ufo-container ufo-hero-content ufo-centered-content" style="max-width: 1100px; margin: 0 auto; text-align: center; padding: 0 20px;">
+                        <h2 class="ufo-hero-title" style="font-family: var(--ufo-font-heading); font-size: 48px; color: #fff; font-weight: 800; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); line-height: 1.2;">Acervo Oficial: Documentos Militares & Pesquisa UAP</h2>
+                        <p class="ufo-hero-subtitle" style="font-size: 20px; color: var(--ufo-text-main); max-width: 820px; margin: 0 auto 35px; line-height: 1.6; text-shadow: 0 1px 5px rgba(0,0,0,0.8);">Relatórios desclassificados pelo Pentágono, auditações do Senado Americano e investigações científicas traduzidos com precisão na íntegra para o Português.</p>
+                        <div class="ufo-hero-actions ufo-actions-centered" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px;">
+                            <a href="#noticias" class="ufo-btn ufo-btn-primary" style="font-weight: 800; font-size: 16px; padding: 14px 32px; border-radius: 50px; text-decoration: none; transition: 0.3s all; background: var(--ufo-accent-primary); border: 1px solid var(--ufo-accent-primary); color: #000; box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);">Explorar Acervo Central</a>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Slide 4: Turismo Ufológico & Experiência de Campo -->
-            <div class="ufo-jumbotron-slide" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2072&auto=format&fit=crop');">
-                <div class="ufo-hero-overlay">
-                    <div class="ufo-container ufo-hero-content ufo-centered-content">
-                        <h2 class="ufo-hero-title">Imersão Completa nos Pontos Quentes da Ufologia no Brasil</h2>
-                        <p class="ufo-hero-subtitle">Vivencie uma jornada astronômica inesquecível aliando ciência aeronáutica, turismo responsável e contato com os mistérios mais fascinantes do universo.</p>
-                        <div class="ufo-hero-actions ufo-actions-centered">
-                            <a href="https://wa.me/5511999999999" target="_blank" class="ufo-btn ufo-btn-primary" style="background: var(--ufo-accent-vip); border-color: var(--ufo-accent-vip); color: #000;">💬 Acessar Fórum & WhatsApp VIP</a>
+            <div class="ufo-jumbotron-slide" style="flex: 0 0 100%; width: 100%; background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2072&auto=format&fit=crop'); background-size: cover; background-position: center; min-height: 600px; display: flex; align-items: center;">
+                <div class="ufo-hero-overlay" style="width: 100%; height: 100%; background: linear-gradient(180deg, rgba(11,14,20,0.5) 0%, rgba(11,14,20,0.85) 100%); padding: 80px 0;">
+                    <div class="ufo-container ufo-hero-content ufo-centered-content" style="max-width: 1100px; margin: 0 auto; text-align: center; padding: 0 20px;">
+                        <h2 class="ufo-hero-title" style="font-family: var(--ufo-font-heading); font-size: 48px; color: #fff; font-weight: 800; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); line-height: 1.2;">Imersão Completa nos Pontos Quentes da Ufologia no Brasil</h2>
+                        <p class="ufo-hero-subtitle" style="font-size: 20px; color: var(--ufo-text-main); max-width: 820px; margin: 0 auto 35px; line-height: 1.6; text-shadow: 0 1px 5px rgba(0,0,0,0.8);">Vivencie uma jornada astronômica inesquecível aliando ciência aeronáutica, turismo responsável e contato com os mistérios mais fascinantes do universo.</p>
+                        <div class="ufo-hero-actions ufo-actions-centered" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px;">
+                            <a href="https://wa.me/5511999999999" target="_blank" class="ufo-btn ufo-btn-primary" style="font-weight: 800; font-size: 16px; padding: 14px 32px; border-radius: 50px; text-decoration: none; transition: 0.3s all; background: var(--ufo-accent-vip, #00e676); border: 1px solid #00e676; color: #000; box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);">💬 Acessar Fórum & WhatsApp VIP</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ufo-jumbotron-dots">
-            <button class="ufo-dot active" data-slide="0" aria-label="Slide 1"></button>
-            <button class="ufo-dot" data-slide="1" aria-label="Slide 2"></button>
-            <button class="ufo-dot" data-slide="2" aria-label="Slide 3"></button>
-            <button class="ufo-dot" data-slide="3" aria-label="Slide 4"></button>
+        <div class="ufo-jumbotron-dots" style="position: absolute; bottom: 25px; left: 0; width: 100%; display: flex; justify-content: center; gap: 10px; z-index: 10;">
+            <button type="button" class="ufo-dot active" data-slide="0" aria-label="Slide 1" style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ufo-accent-primary, #00e5ff); background: var(--ufo-accent-primary, #00e5ff); cursor: pointer; transition: 0.3s all; box-shadow: 0 0 8px rgba(0,229,255,0.5);"></button>
+            <button type="button" class="ufo-dot" data-slide="1" aria-label="Slide 2" style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ufo-accent-primary, #00e5ff); background: transparent; cursor: pointer; transition: 0.3s all; box-shadow: 0 0 8px rgba(0,229,255,0.5);"></button>
+            <button type="button" class="ufo-dot" data-slide="2" aria-label="Slide 3" style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ufo-accent-primary, #00e5ff); background: transparent; cursor: pointer; transition: 0.3s all; box-shadow: 0 0 8px rgba(0,229,255,0.5);"></button>
+            <button type="button" class="ufo-dot" data-slide="3" aria-label="Slide 4" style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ufo-accent-primary, #00e5ff); background: transparent; cursor: pointer; transition: 0.3s all; box-shadow: 0 0 8px rgba(0,229,255,0.5);"></button>
         </div>
     </section>
     <?php
@@ -241,7 +242,7 @@ function ufo_render_section_noticias() {
 }
 
 /**
- * Módulo 4: Galeria das 12 Expedições Científicas de Turismo Ufológico no Brasil (Escala 70% Netflix)
+ * Módulo 4: Galeria das 12 Expedições Científicas de Turismo Ufológico no Brasil
  */
 function ufo_render_section_expedicoes() {
     $page_id = get_option( 'page_on_front' ) ?: ( get_the_ID() ?: 0 );
@@ -249,7 +250,6 @@ function ufo_render_section_expedicoes() {
 
     ob_start();
     ?>
-    <!-- Bloco Flexbox Elementor: Galeria 12 Expedições (70% Netflix) -->
     <div class="ufo-container ufo-home-container" style="max-width: 1440px; margin: 0 auto; padding: 0 200px;">
         <section id="roteiros" class="ufo-home-section ufo-carousel-wrapper ufo-elementor-flexbox-block" style="position: relative; margin-top: 35px; width: 100%;">
             <div class="ufo-section-header">
@@ -353,7 +353,6 @@ function ufo_render_section_expedicoes() {
 function ufo_render_section_eventos() {
     ob_start();
     ?>
-    <!-- Bloco Flexbox Elementor: Agenda de Congressos -->
     <div class="ufo-container ufo-home-container" style="max-width: 1440px; margin: 0 auto; padding: 0 200px;">
         <section id="eventos" class="ufo-home-section ufo-elementor-flexbox-block" style="margin-top: 45px; width: 100%;">
             <div class="ufo-section-header">
@@ -411,7 +410,6 @@ function ufo_render_section_cta() {
 
     ob_start();
     ?>
-    <!-- Bloco Flexbox Elementor: Banner CTA VIP -->
     <div class="ufo-container ufo-home-container" style="max-width: 1440px; margin: 0 auto; padding: 0 200px;">
         <section id="cta" class="ufo-cta-section ufo-elementor-flexbox-block" style="margin-top: 55px; background: linear-gradient(135deg, var(--ufo-surface) 0%, rgba(0, 229, 255, 0.12) 100%); border: 1px solid var(--ufo-border); border-radius: 12px; padding: 55px 35px; text-align: center; box-shadow: 0 10px 35px rgba(0,0,0,0.6); width: 100%;">
             <h2 style="font-size: 36px; color: var(--ufo-accent-primary); margin-bottom: 15px; font-family: var(--ufo-font-heading);"><?php echo esc_html( $cta_title ); ?></h2>
@@ -426,7 +424,7 @@ function ufo_render_section_cta() {
 }
 
 /**
- * Módulo 7: Zona de Publicidade Monetizada Ad Manager
+ * Módulo 7: Zona de Publicidade Monetizada Ad Manager / AdSense
  */
 function ufo_render_section_adsense( $atts = array() ) {
     $atts = shortcode_atts( array(
@@ -478,7 +476,7 @@ add_shortcode( 'ufo_cta_vip', 'ufo_render_section_cta' );
 add_shortcode( 'ufo_adsense', 'ufo_render_section_adsense' );
 
 /* ==========================================================================
-   3. INTEGRANDO WIDGETS NATIVOS PARA O CONSTRUTOR ELEMENTOR PRO (FLEXBOX)
+   3. REGISTRO WIDGETS NATIVOS ELEMENTOR PRO (CARROSSEL JUMBOTRON REPEATER DINÂMICO)
    ========================================================================== */
 add_action( 'elementor/init', function() {
     if ( ! class_exists( '\Elementor\Widget_Base' ) ) {
@@ -500,13 +498,245 @@ add_action( 'elementor/init', function() {
             return;
         }
 
+        // WIDGET CARROSSEL JUMBOTRON HERO COM REPEATER PARA ELEMENTOR PRO
         if ( ! class_exists( 'UFOTurismo_Elementor_Jumbotron_Widget' ) ) {
             class UFOTurismo_Elementor_Jumbotron_Widget extends \Elementor\Widget_Base {
                 public function get_name() { return 'ufo_jumbotron_widget'; }
-                public function get_title() { return '🚀 UFO Jumbotron Hero (4 Slides)'; }
+                public function get_title() { return '🚀 UFO Carrossel Hero (4 Slides Editáveis)'; }
                 public function get_icon() { return 'eicon-slider-push'; }
                 public function get_categories() { return [ 'ufoturismo-pro' ]; }
-                protected function render() { echo ufo_render_section_jumbotron(); }
+
+                protected function register_controls() {
+                    $this->start_controls_section(
+                        'section_slides',
+                        [
+                            'label' => __( 'Slides do Carrossel (Jumbotron)', 'ufoturismo-child' ),
+                            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+                        ]
+                    );
+
+                    $repeater = new \Elementor\Repeater();
+
+                    $repeater->add_control(
+                        'slide_title',
+                        [
+                            'label'       => __( 'Título do Slide', 'ufoturismo-child' ),
+                            'type'        => \Elementor\Controls_Manager::TEXTAREA,
+                            'default'     => __( 'A Verdade Está Lá Fora. E Nós Levamos Você Até Ela.', 'ufoturismo-child' ),
+                            'label_block' => true,
+                        ]
+                    );
+
+                    $repeater->add_control(
+                        'slide_subtitle',
+                        [
+                            'label'       => __( 'Subtítulo / Descrição', 'ufoturismo-child' ),
+                            'type'        => \Elementor\Controls_Manager::TEXTAREA,
+                            'default'     => __( 'O maior portal brasileiro focado em Turismo Ufológico, Pesquisa de Fenômenos Anômalos e Divulgação Científica.', 'ufoturismo-child' ),
+                            'label_block' => true,
+                        ]
+                    );
+
+                    $repeater->add_control(
+                        'slide_image',
+                        [
+                            'label'   => __( 'Imagem de Fundo (Media / Wallpaper)', 'ufoturismo-child' ),
+                            'type'    => \Elementor\Controls_Manager::MEDIA,
+                            'default' => [
+                                'url' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
+                            ],
+                        ]
+                    );
+
+                    $repeater->add_control(
+                        'btn_1_text',
+                        [
+                            'label'   => __( 'Texto Botão Principal', 'ufoturismo-child' ),
+                            'type'    => \Elementor\Controls_Manager::TEXT,
+                            'default' => __( 'Ver Expedições', 'ufoturismo-child' ),
+                        ]
+                    );
+
+                    $repeater->add_control(
+                        'btn_1_url',
+                        [
+                            'label'   => __( 'Link Botão Principal', 'ufoturismo-child' ),
+                            'type'    => \Elementor\Controls_Manager::URL,
+                            'default' => [ 'url' => '#roteiros' ],
+                        ]
+                    );
+
+                    $repeater->add_control(
+                        'btn_2_text',
+                        [
+                            'label'   => __( 'Texto Botão Secundário (Opcional)', 'ufoturismo-child' ),
+                            'type'    => \Elementor\Controls_Manager::TEXT,
+                            'default' => __( 'Últimas Notícias', 'ufoturismo-child' ),
+                        ]
+                    );
+
+                    $repeater->add_control(
+                        'btn_2_url',
+                        [
+                            'label'   => __( 'Link Botão Secundário', 'ufoturismo-child' ),
+                            'type'    => \Elementor\Controls_Manager::URL,
+                            'default' => [ 'url' => '#noticias' ],
+                        ]
+                    );
+
+                    $repeater->add_control(
+                        'btn_style',
+                        [
+                            'label'   => __( 'Estilo Especial do Botão Principal', 'ufoturismo-child' ),
+                            'type'    => \Elementor\Controls_Manager::SELECT,
+                            'default' => 'primary',
+                            'options' => [
+                                'primary' => __( 'Azul Elétrico Ciano (Padrão)', 'ufoturismo-child' ),
+                                'vip'     => __( 'Verde VIP WhatsApp (Destaque)', 'ufoturismo-child' ),
+                            ],
+                        ]
+                    );
+
+                    $this->add_control(
+                        'slides',
+                        [
+                            'label' => __( 'Lista de Slides (Arraste para Reordenar)', 'ufoturismo-child' ),
+                            'type'  => \Elementor\Controls_Manager::REPEATER,
+                            'fields' => $repeater->get_controls(),
+                            'title_field' => '{{{ slide_title }}}',
+                            'default' => [
+                                [
+                                    'slide_title'    => 'A Verdade Está Lá Fora. E Nós Levamos Você Até Ela.',
+                                    'slide_subtitle' => 'O maior portal brasileiro focado em Turismo Ufológico, Pesquisa de Fenômenos Anômalos e Divulgação Científica.',
+                                    'slide_image'    => [ 'url' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop' ],
+                                    'btn_1_text'     => 'Ver Expedições',
+                                    'btn_1_url'      => [ 'url' => '#roteiros' ],
+                                    'btn_2_text'     => 'Últimas Notícias',
+                                    'btn_2_url'      => [ 'url' => '#noticias' ],
+                                    'btn_style'      => 'primary',
+                                ],
+                                [
+                                    'slide_title'    => 'Expedições Noturnas Com Tecnologia FLIR e Radar Passivo',
+                                    'slide_subtitle' => 'Investigue avistamentos de campo com especialistas credenciados, equipamentos ópticos infravermelhos e sensores de gravidade nos roteiros do Brasil.',
+                                    'slide_image'    => [ 'url' => 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000&auto=format&fit=crop' ],
+                                    'btn_1_text'     => 'Conhecer Expedições',
+                                    'btn_1_url'      => [ 'url' => '#roteiros' ],
+                                    'btn_2_text'     => 'Falar com Guia',
+                                    'btn_2_url'      => [ 'url' => 'https://wa.me/5511999999999', 'is_external' => true ],
+                                    'btn_style'      => 'primary',
+                                ],
+                                [
+                                    'slide_title'    => 'Acervo Oficial: Documentos Militares & Pesquisa UAP',
+                                    'slide_subtitle' => 'Relatórios desclassificados pelo Pentágono, auditações do Senado Americano e investigações científicas traduzidos com precisão na íntegra para o Português.',
+                                    'slide_image'    => [ 'url' => 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2000&auto=format&fit=crop' ],
+                                    'btn_1_text'     => 'Explorar Acervo Central',
+                                    'btn_1_url'      => [ 'url' => '#noticias' ],
+                                    'btn_2_text'     => '',
+                                    'btn_2_url'      => [ 'url' => '' ],
+                                    'btn_style'      => 'primary',
+                                ],
+                                [
+                                    'slide_title'    => 'Imersão Completa nos Pontos Quentes da Ufologia no Brasil',
+                                    'slide_subtitle' => 'Vivencie uma jornada astronômica inesquecível aliando ciência aeronáutica, turismo responsável e contato com os mistérios mais fascinantes do universo.',
+                                    'slide_image'    => [ 'url' => 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2072&auto=format&fit=crop' ],
+                                    'btn_1_text'     => '💬 Acessar Fórum & WhatsApp VIP',
+                                    'btn_1_url'      => [ 'url' => 'https://wa.me/5511999999999', 'is_external' => true ],
+                                    'btn_2_text'     => '',
+                                    'btn_2_url'      => [ 'url' => '' ],
+                                    'btn_style'      => 'vip',
+                                ],
+                            ],
+                        ]
+                    );
+
+                    $this->end_controls_section();
+
+                    $this->start_controls_section(
+                        'section_slider_settings',
+                        [
+                            'label' => __( 'Configurações do Carrossel Pro', 'ufoturismo-child' ),
+                            'tab'   => \Elementor\Controls_Manager::TAB_SETTINGS,
+                        ]
+                    );
+
+                    $this->add_control(
+                        'autoplay_speed',
+                        [
+                            'label'   => __( 'Intervalo entre Slides (ms)', 'ufoturismo-child' ),
+                            'type'    => \Elementor\Controls_Manager::NUMBER,
+                            'default' => 5000,
+                            'min'     => 1000,
+                            'max'     => 30000,
+                            'step'    => 500,
+                        ]
+                    );
+
+                    $this->add_control(
+                        'transition_speed',
+                        [
+                            'label'   => __( 'Velocidade da Transição Animada (ms)', 'ufoturismo-child' ),
+                            'type'    => \Elementor\Controls_Manager::NUMBER,
+                            'default' => 600,
+                        ]
+                    );
+
+                    $this->end_controls_section();
+                }
+
+                protected function render() {
+                    $settings = $this->get_settings_for_display();
+                    $slides   = ! empty( $settings['slides'] ) ? $settings['slides'] : array();
+                    $autoplay = ! empty( $settings['autoplay_speed'] ) ? (int) $settings['autoplay_speed'] : 5000;
+                    $speed    = ! empty( $settings['transition_speed'] ) ? (int) $settings['transition_speed'] : 600;
+
+                    if ( empty( $slides ) ) {
+                        echo ufo_render_section_jumbotron();
+                        return;
+                    }
+
+                    $total_slides = count( $slides );
+                    $unique_id    = 'ufo_jumb_' . uniqid();
+                    ?>
+                    <!-- Bloco Flexbox Elementor PRO: Jumbotron Carrossel Editável -->
+                    <section class="ufo-jumbotron ufo-elementor-flexbox-block ufo-jumbotron-dynamic" id="<?php echo esc_attr($unique_id); ?>" data-autoplay="<?php echo esc_attr($autoplay); ?>" data-speed="<?php echo esc_attr($speed); ?>" style="position: relative; width: 100%; overflow: hidden; background: var(--ufo-bg);">
+                        <div class="ufo-jumbotron-track" id="<?php echo esc_attr($unique_id); ?>_track" style="display: flex; transition: transform <?php echo (float) ($speed / 1000); ?>s cubic-bezier(0.25, 1, 0.5, 1);">
+                            <?php foreach ( $slides as $slide ) : 
+                                $bg_url = ! empty( $slide['slide_image']['url'] ) ? $slide['slide_image']['url'] : 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop';
+                            ?>
+                                <div class="ufo-jumbotron-slide" style="flex: 0 0 100%; width: 100%; background-image: url('<?php echo esc_url($bg_url); ?>'); background-size: cover; background-position: center; min-height: 600px; display: flex; align-items: center;">
+                                    <div class="ufo-hero-overlay" style="width: 100%; height: 100%; background: linear-gradient(180deg, rgba(11,14,20,0.5) 0%, rgba(11,14,20,0.85) 100%); padding: 80px 0;">
+                                        <div class="ufo-container ufo-hero-content ufo-centered-content" style="max-width: 1100px; margin: 0 auto; text-align: center; padding: 0 20px;">
+                                            <h1 class="ufo-hero-title" style="font-family: var(--ufo-font-heading); font-size: 48px; color: #fff; font-weight: 800; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); line-height: 1.2;"><?php echo wp_kses_post( $slide['slide_title'] ); ?></h1>
+                                            <p class="ufo-hero-subtitle" style="font-size: 20px; color: var(--ufo-text-main); max-width: 820px; margin: 0 auto 35px; line-height: 1.6; text-shadow: 0 1px 5px rgba(0,0,0,0.8);"><?php echo wp_kses_post( $slide['slide_subtitle'] ); ?></p>
+                                            <div class="ufo-hero-actions ufo-actions-centered" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px;">
+                                                <?php if ( ! empty( $slide['btn_1_text'] ) && ! empty( $slide['btn_1_url']['url'] ) ) : 
+                                                    $target = ! empty( $slide['btn_1_url']['is_external'] ) ? ' target="_blank" rel="noopener"' : '';
+                                                    $style_css = ($slide['btn_style'] === 'vip') ? 'background: var(--ufo-accent-vip, #00e676); border-color: #00e676; color: #000; box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);' : 'background: var(--ufo-accent-primary); border-color: var(--ufo-accent-primary); color: #000; box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);';
+                                                ?>
+                                                    <a href="<?php echo esc_url( $slide['btn_1_url']['url'] ); ?>"<?php echo $target; ?> class="ufo-btn ufo-btn-primary" style="font-weight: 800; font-size: 16px; padding: 14px 32px; border-radius: 50px; text-decoration: none; transition: 0.3s all; <?php echo $style_css; ?>"><?php echo esc_html( $slide['btn_1_text'] ); ?></a>
+                                                <?php endif; ?>
+                                                
+                                                <?php if ( ! empty( $slide['btn_2_text'] ) && ! empty( $slide['btn_2_url']['url'] ) ) : 
+                                                    $target2 = ! empty( $slide['btn_2_url']['is_external'] ) ? ' target="_blank" rel="noopener"' : '';
+                                                ?>
+                                                    <a href="<?php echo esc_url( $slide['btn_2_url']['url'] ); ?>"<?php echo $target2; ?> class="ufo-btn ufo-btn-secondary" style="border: 1px solid var(--ufo-text-main); color: var(--ufo-text-main); background: rgba(11,14,20,0.65); backdrop-filter: blur(8px); font-weight: 700; font-size: 16px; padding: 14px 32px; border-radius: 50px; text-decoration: none; transition: 0.3s all;"><?php echo esc_html( $slide['btn_2_text'] ); ?></a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php if ( $total_slides > 1 ) : ?>
+                            <div class="ufo-jumbotron-dots" id="<?php echo esc_attr($unique_id); ?>_dots" style="position: absolute; bottom: 25px; left: 0; width: 100%; display: flex; justify-content: center; gap: 10px; z-index: 10;">
+                                <?php for ( $i = 0; $i < $total_slides; $i++ ) : ?>
+                                    <button type="button" class="ufo-dot <?php echo ( $i === 0 ) ? 'active' : ''; ?>" data-slide="<?php echo esc_attr( $i ); ?>" aria-label="Slide <?php echo ( $i + 1 ); ?>" style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ufo-accent-primary, #00e5ff); background: <?php echo ($i === 0) ? 'var(--ufo-accent-primary, #00e5ff)' : 'transparent'; ?>; cursor: pointer; transition: 0.3s all; box-shadow: 0 0 8px rgba(0,229,255,0.5);"></button>
+                                <?php endfor; ?>
+                            </div>
+                        <?php endif; ?>
+                    </section>
+                    <?php
+                }
             }
         }
 
@@ -585,23 +815,19 @@ add_action( 'elementor/init', function() {
    ========================================================================== */
 add_action( 'init', 'ufo_auto_populate_elementor_front_page', 20 );
 function ufo_auto_populate_elementor_front_page() {
-    // Evita rodar durante chamadas AJAX do Elementor ou salvar automáticos do editor
     if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
         return;
     }
 
     $page_ids = array();
-    
     $front_id = get_option( 'page_on_front' );
     if ( $front_id ) {
         $page_ids[] = (int) $front_id;
     }
-    
     if ( ! in_array( 57, $page_ids ) ) {
         $page_ids[] = 57;
     }
     
-    // SUBSTITUIÇÃO COMPATÍVEL COM WP 6.2+ (Evita o erro deprecated get_page_by_title)
     $pages_query = get_posts( array(
         'post_type'      => 'page',
         'title'          => 'Home',
@@ -619,14 +845,11 @@ function ufo_auto_populate_elementor_front_page() {
             continue;
         }
 
-        $synced = get_post_meta( $p_id, '_ufo_blocks_flex_synced_v5', true );
+        $synced = get_post_meta( $p_id, '_ufo_blocks_flex_synced_v6', true );
         $current_data = get_post_meta( $p_id, '_elementor_data', true );
 
-        // Sincroniza e corrige o banco com estrutura 100% válida e IDs alfanuméricos puros
         if ( ! $synced || empty( $current_data ) || strpos( $current_data, 'w100001' ) === false ) {
-
             $elementor_blocks = array(
-                // Bloco 1: Jumbotron Hero
                 array(
                     'id' => 'e100001',
                     'elType' => 'section',
@@ -647,7 +870,6 @@ function ufo_auto_populate_elementor_front_page() {
                         )
                     )
                 ),
-                // Bloco 2: Vídeos Netflix
                 array(
                     'id' => 'e100002',
                     'elType' => 'section',
@@ -668,7 +890,6 @@ function ufo_auto_populate_elementor_front_page() {
                         )
                     )
                 ),
-                // Bloco 3: Notícias e Relatos
                 array(
                     'id' => 'e100003',
                     'elType' => 'section',
@@ -689,7 +910,6 @@ function ufo_auto_populate_elementor_front_page() {
                         )
                     )
                 ),
-                // Bloco 4: Monetização AdSense Topo
                 array(
                     'id' => 'e100004',
                     'elType' => 'section',
@@ -710,7 +930,6 @@ function ufo_auto_populate_elementor_front_page() {
                         )
                     )
                 ),
-                // Bloco 5: Galeria 12 Expedições
                 array(
                     'id' => 'e100005',
                     'elType' => 'section',
@@ -731,7 +950,6 @@ function ufo_auto_populate_elementor_front_page() {
                         )
                     )
                 ),
-                // Bloco 6: Monetização Ad Manager Meio
                 array(
                     'id' => 'e100006',
                     'elType' => 'section',
@@ -752,7 +970,6 @@ function ufo_auto_populate_elementor_front_page() {
                         )
                     )
                 ),
-                // Bloco 7: Agenda de Congressos
                 array(
                     'id' => 'e100007',
                     'elType' => 'section',
@@ -773,7 +990,6 @@ function ufo_auto_populate_elementor_front_page() {
                         )
                     )
                 ),
-                // Bloco 8: Banner CTA VIP WhatsApp
                 array(
                     'id' => 'e100008',
                     'elType' => 'section',
@@ -794,7 +1010,6 @@ function ufo_auto_populate_elementor_front_page() {
                         )
                     )
                 ),
-                // Bloco 9: Monetização Rodapé
                 array(
                     'id' => 'e100009',
                     'elType' => 'section',
@@ -821,7 +1036,7 @@ function ufo_auto_populate_elementor_front_page() {
             update_post_meta( $p_id, '_elementor_edit_mode', 'builder' );
             update_post_meta( $p_id, '_elementor_template_type', 'wp-page' );
             update_post_meta( $p_id, '_elementor_version', '3.20.0' );
-            update_post_meta( $p_id, '_ufo_blocks_flex_synced_v5', 'yes' );
+            update_post_meta( $p_id, '_ufo_blocks_flex_synced_v6', 'yes' );
         }
     }
 }
@@ -832,59 +1047,80 @@ function ufo_auto_populate_elementor_front_page() {
 add_action( 'wp_footer', function() {
     if ( is_front_page() || ( class_exists( '\Elementor\Plugin' ) && \Elementor\Plugin::$instance->editor->is_edit_mode() ) || is_page() ) :
     ?>
-    <!-- Vanilla JS: Flexbox Módulos Motor (Slider Jumbotron 5s/600ms, Setas Rolagem & Hover Previews) -->
+    <!-- Vanilla JS: Flexbox Módulos Motor (Slider Jumbotron Universal & Hover Previews) -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 1. Motor do Jumbotron Slider (Troca de 5 em 5 segundos, animação suave de 600ms)
-        var track = document.getElementById('ufoJumbotronTrack');
-        var dots = document.querySelectorAll('.ufo-jumbotron-dots .ufo-dot');
-        var currentSlide = 0;
-        var totalSlides = dots ? dots.length : 0;
-        var slideInterval;
+    function initUFOSlidersAndCarousels() {
+        // 1. Motor Universal do Jumbotron Slider (Suporta Elementor PRO Carrossel Dinâmico & Fallback)
+        var sliders = document.querySelectorAll('.ufo-jumbotron-dynamic, #ufoJumbotronSlider');
+        sliders.forEach(function(slider) {
+            if (slider.getAttribute('data-slider-initialized') === 'true') return;
+            slider.setAttribute('data-slider-initialized', 'true');
 
-        function goToSlide(index) {
-            if (totalSlides <= 0) return;
-            currentSlide = (index + totalSlides) % totalSlides;
-            if (track) {
-                track.style.transform = 'translateX(-' + (currentSlide * 25) + '%)';
+            var track = slider.querySelector('.ufo-jumbotron-track');
+            var dots = slider.querySelectorAll('.ufo-jumbotron-dots .ufo-dot');
+            if (!track || !dots || dots.length <= 1) return;
+
+            var currentSlide = 0;
+            var totalSlides = dots.length;
+            var slideInterval;
+            var autoplaySpeed = parseInt(slider.getAttribute('data-autoplay') || 5000, 10);
+            var transSpeed = parseInt(slider.getAttribute('data-speed') || 600, 10);
+
+            if (transSpeed) {
+                track.style.transition = 'transform ' + (transSpeed / 1000) + 's cubic-bezier(0.25, 1, 0.5, 1)';
             }
-            dots.forEach(function(dot, i) {
-                if (i === currentSlide) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
+
+            function goToSlide(index) {
+                currentSlide = (index + totalSlides) % totalSlides;
+                track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+                dots.forEach(function(dot, i) {
+                    if (i === currentSlide) {
+                        dot.classList.add('active');
+                        dot.style.background = 'var(--ufo-accent-primary, #00e5ff)';
+                        dot.style.boxShadow = '0 0 12px rgba(0, 229, 255, 0.8)';
+                    } else {
+                        dot.classList.remove('active');
+                        dot.style.background = 'transparent';
+                        dot.style.boxShadow = '0 0 6px rgba(255, 255, 255, 0.3)';
+                    }
+                });
+            }
+
+            function startSlideShow() {
+                clearInterval(slideInterval);
+                if (autoplaySpeed > 0 && totalSlides > 1) {
+                    slideInterval = setInterval(function() {
+                        goToSlide(currentSlide + 1);
+                    }, autoplaySpeed);
                 }
-            });
-        }
+            }
 
-        function startSlideShow() {
-            if (!track || totalSlides <= 1) return;
-            clearInterval(slideInterval);
-            slideInterval = setInterval(function() {
-                goToSlide(currentSlide + 1);
-            }, 5000);
-        }
-
-        if (dots) {
             dots.forEach(function(dot) {
-                dot.addEventListener('click', function() {
+                dot.addEventListener('click', function(e) {
+                    e.preventDefault();
                     var idx = parseInt(this.getAttribute('data-slide'), 10);
                     goToSlide(idx);
                     startSlideShow();
                 });
             });
-        }
 
-        if (track && totalSlides > 0) {
+            slider.addEventListener('mouseenter', function() {
+                clearInterval(slideInterval);
+            });
+            slider.addEventListener('mouseleave', function() {
+                startSlideShow();
+            });
+
             startSlideShow();
-        }
+        });
 
         // 2. Rolagem Horizontal Animada Para a Galeria Compacta de Vídeos
         var videoCarousel = document.getElementById('ufoVideoCarousel');
         var btnLeft  = document.getElementById('btnSlideLeft');
         var btnRight = document.getElementById('btnSlideRight');
 
-        if (videoCarousel && btnLeft && btnRight) {
+        if (videoCarousel && btnLeft && btnRight && !btnLeft.hasAttribute('data-bound')) {
+            btnLeft.setAttribute('data-bound', 'true');
             btnLeft.addEventListener('click', function() {
                 var scrollAmount = window.innerWidth > 768 ? -750 : -280;
                 videoCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
@@ -900,7 +1136,8 @@ add_action( 'wp_footer', function() {
         var btnNewsLeft  = document.getElementById('btnNewsLeft');
         var btnNewsRight = document.getElementById('btnNewsRight');
 
-        if (newsCarousel && btnNewsLeft && btnNewsRight) {
+        if (newsCarousel && btnNewsLeft && btnNewsRight && !btnNewsLeft.hasAttribute('data-bound')) {
+            btnNewsLeft.setAttribute('data-bound', 'true');
             btnNewsLeft.addEventListener('click', function() {
                 var scrollAmount = window.innerWidth > 768 ? -750 : -280;
                 newsCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
@@ -916,7 +1153,8 @@ add_action( 'wp_footer', function() {
         var btnRotLeft  = document.getElementById('btnRoteirosLeft');
         var btnRotRight = document.getElementById('btnRoteirosRight');
 
-        if (rotCarousel && btnRotLeft && btnRotRight) {
+        if (rotCarousel && btnRotLeft && btnRotRight && !btnRotLeft.hasAttribute('data-bound')) {
+            btnRotLeft.setAttribute('data-bound', 'true');
             btnRotLeft.addEventListener('click', function() {
                 var scrollAmount = window.innerWidth > 768 ? -720 : -290;
                 rotCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
@@ -927,9 +1165,10 @@ add_action( 'wp_footer', function() {
             });
         }
 
-        // 5. Preview de Vídeo On-Hover (Injeta Iframe sem bloqueio no mouseenter)
-        var compactCards = document.querySelectorAll('.ufo-compact-video-card[data-videoid]');
+        // 5. Preview de Vídeo On-Hover
+        var compactCards = document.querySelectorAll('.ufo-compact-video-card[data-videoid]:not([data-hover-bound])');
         compactCards.forEach(function(card) {
+            card.setAttribute('data-hover-bound', 'true');
             var videoId = card.getAttribute('data-videoid');
             var container = card.querySelector('.ufo-hover-iframe-container');
             var hoverTimeout;
@@ -953,6 +1192,17 @@ add_action( 'wp_footer', function() {
                 }
             });
         });
+    }
+
+    document.addEventListener('DOMContentLoaded', initUFOSlidersAndCarousels);
+
+    // Compatibilidade em tempo real no construtor visual do Elementor PRO (atualiza sem recarregar!)
+    window.addEventListener('elementor/frontend/init', function() {
+        if (window.elementorFrontend) {
+            elementorFrontend.hooks.addAction('frontend/element_ready/ufo_jumbotron_widget.default', function($scope) {
+                initUFOSlidersAndCarousels();
+            });
+        }
     });
     </script>
     <?php
